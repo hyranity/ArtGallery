@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="ArtGalleryApp.Register" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="ArtGalleryApp.Login" %>
 
 <!DOCTYPE html>
 
@@ -7,31 +7,24 @@
     <title></title>
     <style type="text/css">
         .auto-style1 {
-            width: 131px;
+            width: 147px;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-            <table style="width: 100%;">
+            <table style="width:100%;">
                 <tr>
                     <td class="auto-style1">
-                        <asp:Label ID="Label1" runat="server" Text="Username"></asp:Label>
+                        <asp:Label ID="lblUsername" runat="server" Text="Username"></asp:Label>
                     </td>
                     <td>
                         <input id="username" name="username" type="text" /></td>
                 </tr>
                 <tr>
                     <td class="auto-style1">
-                        <asp:Label ID="Label2" runat="server" Text="Email"></asp:Label>
-                    </td>
-                    <td>
-                        <input id="email" name="email" type="text" /></td>
-                </tr>
-                <tr>
-                    <td class="auto-style1">
-                        <asp:Label ID="Label3" runat="server" Text="Password"></asp:Label>
+                        <asp:Label ID="lblPassword" runat="server" Text="Password"></asp:Label>
                     </td>
                     <td>
                         <input id="password" name="password" type="text" /></td>
@@ -39,7 +32,7 @@
                 <tr>
                     <td class="auto-style1">&nbsp;</td>
                     <td>
-                        <input id="register" type="submit" value="Register" runat="server" onserverclick="submit_Click"/></td>
+                        <input id="login" type="submit" value="Login" runat="server" onserverclick="login_Click"/></td>
                 </tr>
             </table>
         </div>
