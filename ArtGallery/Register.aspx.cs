@@ -50,5 +50,10 @@ namespace ArtGalleryApp
             // redirect
             Response.Redirect("RegisterDone.aspx?Id=" + id + "&Username=" + username + "&Email=" + email + "&Password=" + password);
         }
-    }
+
+		protected void FormView1_PageIndexChanging(object sender, FormViewPageEventArgs e)
+		{
+
+		}
+	}
 }

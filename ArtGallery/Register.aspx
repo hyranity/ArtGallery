@@ -43,6 +43,43 @@
                 </tr>
             </table>
         </div>
+    	<asp:FormView ID="FormView1" runat="server" DataKeyNames="username" DataSourceID="SqlDataSource1" DefaultMode="Insert">
+			<EditItemTemplate>
+				username:
+				<asp:Label ID="usernameLabel1" runat="server" Text='<%# Eval("username") %>' />
+				<br />
+				password:
+				<asp:TextBox ID="passwordTextBox" runat="server" Text='<%# Bind("password") %>' />
+				<br />
+				<asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
+				&nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+			</EditItemTemplate>
+			<InsertItemTemplate>
+				username:
+				<asp:TextBox ID="usernameTextBox" runat="server" Text='<%# Bind("username") %>' />
+				<br />
+				password:
+				<asp:TextBox ID="passwordTextBox" runat="server" Text='<%# Bind("password") %>' />
+				<br />
+				<asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
+				&nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+			</InsertItemTemplate>
+			<ItemTemplate>
+				username:
+				<asp:Label ID="usernameLabel" runat="server" Text='<%# Eval("username") %>' />
+				<br />
+				password:
+				<asp:Label ID="passwordLabel" runat="server" Text='<%# Bind("password") %>' />
+				<br />
+
+			</ItemTemplate>
+		</asp:FormView>
+		<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" InsertCommand="INSERT INTO Customer(username, password) VALUES (@username, @password)" SelectCommand="SELECT * FROM [Customer]">
+			<InsertParameters>
+				<asp:Parameter Name="username" />
+				<asp:Parameter Name="password" />
+			</InsertParameters>
+		</asp:SqlDataSource>
     </form>
 </body>
 </html>

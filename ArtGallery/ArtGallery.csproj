@@ -67,9 +67,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\ArtGalleryDB.mdf" />
-    <Content Include="App_Data\ArtGalleryDB_log.ldf">
-      <DependentUpon>ArtGalleryDB.mdf</DependentUpon>
+    <Content Include="App_Data\ArtGallery.mdf" />
+    <Content Include="App_Data\ArtGallery_log.ldf">
+      <DependentUpon>ArtGallery.mdf</DependentUpon>
     </Content>
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />

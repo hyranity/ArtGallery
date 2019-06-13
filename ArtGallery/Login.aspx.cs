@@ -24,12 +24,13 @@ namespace ArtGalleryApp
             string password = "";
 
             // validate login
+			/*
             string conStr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\USER\source\repos\ArtGallery\ArtGallery\App_Data\ArtGalleryDB.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(conStr);
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Members WHERE ([Username] = @username) AND ([Password] = @password)", con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Customer WHERE ([Username] = @username) AND ([Password] = @password)", con);
             cmd.Parameters.AddWithValue("@username", String.Format("{0}", Request.Form["username"]));
             cmd.Parameters.AddWithValue("@password", String.Format("{0}", Request.Form["password"]));
 
@@ -54,6 +55,7 @@ namespace ArtGalleryApp
 
             // redirect
             Response.Redirect("LoginDone.aspx?Id=" + id + "&Username=" + username + "&Email=" + email + "&Password=" + password);
+			*/
         }
     }
 }
