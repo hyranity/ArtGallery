@@ -37,6 +37,8 @@ namespace ArtGalleryApp
 				password = Convert.ToString(dr["password"]);
 				username = Convert.ToString(dr["username"]); ;
 				loginText.Text = "Success!";
+				Session["username"] = username;
+				Session["password"] = password;
 			}
 			else
 			{

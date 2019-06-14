@@ -71,12 +71,20 @@
     <Content Include="App_Data\ArtGallery_log.ldf">
       <DependentUpon>ArtGallery.mdf</DependentUpon>
     </Content>
+    <Content Include="EditAccount.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="RegisterDone.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditAccount.aspx.cs">
+      <DependentUpon>EditAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditAccount.aspx.designer.cs">
+      <DependentUpon>EditAccount.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
