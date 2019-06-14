@@ -99,6 +99,7 @@
     <Compile Include="RegisterDone.aspx.designer.cs">
       <DependentUpon>RegisterDone.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Util\DBUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

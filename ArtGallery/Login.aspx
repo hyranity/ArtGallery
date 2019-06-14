@@ -36,6 +36,7 @@
                 </tr>
             </table>
         </div>
+    	<asp:Label ID="loginText" runat="server" Text="Label"></asp:Label>
     </form>
 </body>
 </html>
