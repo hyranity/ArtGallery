@@ -7,7 +7,7 @@ using System;
 public class Hasher
 {
    byte[] Salt {get; set;}
-   string hashedPassword { get; set;}
+   string HashedPassword { get; set;}
 
   public Hasher(string password)
   {
@@ -21,7 +21,7 @@ public class Hasher
     Array.Copy(Salt, 0, hashBytes, 0, 16);
     Array.Copy(hash, 0, hashBytes, 16,20);
 
-    hashedPassword = Convert.ToBase64String(hashBytes);
+    HashedPassword = Convert.ToBase64String(hashBytes);
   }
 
   public Hasher(string password, byte[] Salt)
@@ -34,12 +34,12 @@ public class Hasher
     Array.Copy(Salt, 0, hashBytes, 0, 16);
     Array.Copy(hash, 0, hashBytes, 16,20);
 
-    hashedPassword = Convert.ToBase64String(hashBytes);
+    HashedPassword = Convert.ToBase64String(hashBytes);
   }
 
   public string GetHashedPassword()
   {
-    return this.hashedPassword;
+    return this.HashedPassword;
   }
 
   public byte[] GetSalt()
@@ -51,7 +51,7 @@ public class Hasher
   {
     Hasher hash2 = new Hasher(pass, usedSalt);
     string hashedSecondPass = hash2.GetHashedPassword();
-    if(hashedSecondPass == hashedPassword)
+    if(hashedSecondPass == HashedPassword)
       return true;
     else
       return false;
