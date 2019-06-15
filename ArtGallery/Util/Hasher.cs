@@ -1,0 +1,61 @@
+using System.Security.Cryptography;
+using System;
+
+// This code is possible thanks to: 
+// https://medium.com/@mehanix/lets-talk-security-salted-password-hashing-in-c-5460be5c3aae
+
+public class Hasher
+{
+   byte[] Salt {get; set;}
+   string hashedPassword { get; set;}
+
+  public Hasher(string password)
+  {
+    // Randomly generate salt
+    new RNGCryptoServiceProvider().GetBytes(Salt = new byte[16]);
+
+    var pbkdf2 = new Rfc2898DeriveBytes(password, Salt, 10000);
+
+    byte[] hash = pbkdf2.GetBytes(20);
+    byte[] hashBytes = new byte[36];
+    Array.Copy(Salt, 0, hashBytes, 0, 16);
+    Array.Copy(hash, 0, hashBytes, 16,20);
+
+    hashedPassword = Convert.ToBase64String(hashBytes);
+  }
+
+  public Hasher(string password, byte[] Salt)
+  {
+    // Use existing salt to generate 
+    var pbkdf2 = new Rfc2898DeriveBytes(password, Salt, 10000);
+
+    byte[] hash = pbkdf2.GetBytes(20);
+    byte[] hashBytes = new byte[36];
+    Array.Copy(Salt, 0, hashBytes, 0, 16);
+    Array.Copy(hash, 0, hashBytes, 16,20);
+
+    hashedPassword = Convert.ToBase64String(hashBytes);
+  }
+
+  public string GetHashedPassword()
+  {
+    return this.hashedPassword;
+  }
+
+  public byte[] GetSalt()
+  {
+    return Salt;
+  }
+
+  public bool ComparePassword(string pass, byte[] usedSalt)
+  {
+    Hasher hash2 = new Hasher(pass, usedSalt);
+    string hashedSecondPass = hash2.GetHashedPassword();
+    if(hashedSecondPass == hashedPassword)
+      return true;
+    else
+      return false;
+  }
+
+  
+}
