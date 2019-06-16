@@ -85,6 +85,7 @@
     <Compile Include="EditAccount.aspx.designer.cs">
       <DependentUpon>EditAccount.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Util\Hasher.cs" />
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

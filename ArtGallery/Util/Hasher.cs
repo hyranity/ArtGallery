@@ -1,4 +1,4 @@
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System;
 
 // This code is possible thanks to: 
@@ -6,56 +6,56 @@ using System;
 
 public class Hasher
 {
-   byte[] Salt {get; set;}
-   string HashedPassword { get; set;}
+	byte[] Salt { get; set; }
+	string HashedPassword { get; set; }
 
-  public Hasher(string password)
-  {
-    // Randomly generate salt
-    new RNGCryptoServiceProvider().GetBytes(Salt = new byte[16]);
+	public Hasher(string password)
+	{
+		// Randomly generate salt
+		new RNGCryptoServiceProvider().GetBytes(Salt = new byte[16]);
 
-    var pbkdf2 = new Rfc2898DeriveBytes(password, Salt, 10000);
+		var pbkdf2 = new Rfc2898DeriveBytes(password, Salt, 10000);
 
-    byte[] hash = pbkdf2.GetBytes(20);
-    byte[] hashBytes = new byte[36];
-    Array.Copy(Salt, 0, hashBytes, 0, 16);
-    Array.Copy(hash, 0, hashBytes, 16,20);
+		byte[] hash = pbkdf2.GetBytes(20);
+		byte[] hashBytes = new byte[36];
+		Array.Copy(Salt, 0, hashBytes, 0, 16);
+		Array.Copy(hash, 0, hashBytes, 16, 20);
 
-    HashedPassword = Convert.ToBase64String(hashBytes);
-  }
+		HashedPassword = Convert.ToBase64String(hashBytes);
+	}
 
-  public Hasher(string password, byte[] Salt)
-  {
-    // Use existing salt to generate 
-    var pbkdf2 = new Rfc2898DeriveBytes(password, Salt, 10000);
+	public Hasher(string password, byte[] Salt)
+	{
+		// Use existing salt to generate 
+		var pbkdf2 = new Rfc2898DeriveBytes(password, Salt, 10000);
 
-    byte[] hash = pbkdf2.GetBytes(20);
-    byte[] hashBytes = new byte[36];
-    Array.Copy(Salt, 0, hashBytes, 0, 16);
-    Array.Copy(hash, 0, hashBytes, 16,20);
+		byte[] hash = pbkdf2.GetBytes(20);
+		byte[] hashBytes = new byte[36];
+		Array.Copy(Salt, 0, hashBytes, 0, 16);
+		Array.Copy(hash, 0, hashBytes, 16, 20);
 
-    HashedPassword = Convert.ToBase64String(hashBytes);
-  }
+		HashedPassword = Convert.ToBase64String(hashBytes);
+	}
 
-  public string GetHashedPassword()
-  {
-    return this.HashedPassword;
-  }
+	public string GetHashedPassword()
+	{
+		return this.HashedPassword;
+	}
 
-  public byte[] GetSalt()
-  {
-    return Salt;
-  }
+	public byte[] GetSalt()
+	{
+		return Salt;
+	}
 
-  public bool ComparePassword(string pass, byte[] usedSalt)
-  {
-    Hasher hash2 = new Hasher(pass, usedSalt);
-    string hashedSecondPass = hash2.GetHashedPassword();
-    if(hashedSecondPass == HashedPassword)
-      return true;
-    else
-      return false;
-  }
+	public bool ComparePassword(string pass, byte[] usedSalt)
+	{
+		Hasher hash2 = new Hasher(pass, usedSalt);
+		string hashedSecondPass = hash2.GetHashedPassword();
+		if (hashedSecondPass == HashedPassword)
+			return true;
+		else
+			return false;
+	}
 
-  
+
 }
