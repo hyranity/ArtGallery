@@ -12,7 +12,7 @@ namespace ArtGallery.Classes
 		// constructors
 		public Artist()
 		{
-			
+
 		}
 
 		public Artist(string Id, string Fname, string Lname, string Email, string Password, byte[] PasswordSalt, string SelfDescription)
@@ -25,4 +25,5 @@ namespace ArtGallery.Classes
 			this.PasswordSalt = PasswordSalt;
 			this.SelfDescription = SelfDescription;
 		}
+	}
 }
