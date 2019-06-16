@@ -7,7 +7,7 @@ namespace ArtGallery.Classes
 {
 	public class Artist : Person
 	{
-		public string SelfDescription;
+		public string Bio;
 
 		// constructors
 		public Artist()
@@ -15,7 +15,7 @@ namespace ArtGallery.Classes
 
 		}
 
-		public Artist(string Id, string Fname, string Lname, string Email, string Password, byte[] PasswordSalt, string SelfDescription)
+		public Artist(string Id, string Fname, string Lname, string Email, string Password, byte[] PasswordSalt, string Bio)
 		{
 			this.Id = Id;
 			this.Fname = Fname;
@@ -23,7 +23,7 @@ namespace ArtGallery.Classes
 			this.Email = Email;
 			this.Password = Password;
 			this.PasswordSalt = PasswordSalt;
-			this.SelfDescription = SelfDescription;
+			this.Bio = Bio;
 		}
 	}
 }

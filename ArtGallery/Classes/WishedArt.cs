@@ -10,17 +10,17 @@ namespace ArtGallery.Classes
 	{
 		public string WishId; //PK
 		public string ArtpieceId; //FK
-		public string CustomerId; //FK
+		public string CustId; //FK
 
 		public WishedArt()
 		{
 		}
 
-		public WishedArt(string WishId, string ArtpieceId, string CustomerId)
+		public WishedArt(string WishId, string ArtpieceId, string CustId)
 		{
 			this.WishId = WishId;
 			this.ArtpieceId = ArtpieceId;
-			this.CustomerId = CustomerId;
+			this.CustId = CustId;
 		}
 	}
 }
