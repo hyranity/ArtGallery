@@ -78,7 +78,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Artist.cs" />
     <Compile Include="Classes\Artpiece.cs" />
+    <Compile Include="Classes\Customer.cs" />
+    <Compile Include="Classes\Order.cs" />
+    <Compile Include="Classes\OrderArtpiece.cs" />
+    <Compile Include="Classes\Person.cs" />
+    <Compile Include="Classes\WishedArt.cs" />
     <Compile Include="EditAccount.aspx.cs">
       <DependentUpon>EditAccount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

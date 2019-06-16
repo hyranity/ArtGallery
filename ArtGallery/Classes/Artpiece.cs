@@ -8,6 +8,7 @@ namespace ArtGallery.Classes
 	public class Artpiece
 	{
 		// variables
+		public string ArtpieceId { get; private set; }
 		public string ArtistId { get; private set; }
 		public string Title { get; private set; }
 		public string Description { get; private set; }
