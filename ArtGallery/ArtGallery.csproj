@@ -109,6 +109,7 @@
       <DependentUpon>RegisterDone.aspx</DependentUpon>
     </Compile>
     <Compile Include="Util\DBUtil.cs" />
+    <Compile Include="Util\Quick.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

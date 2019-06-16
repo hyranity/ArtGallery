@@ -28,8 +28,8 @@ namespace ArtGallery
 		{
 			DBUtil db = new DBUtil();
 			SqlCommand cmd = db.GenerateSql("UPDATE CUSTOMER SET PASSWORD = @password WHERE USERNAME = @username");
-			cmd.Parameters.AddWithValue("@username", String.Format("{0}", Request.Form["lblUsername"]));
-			cmd.Parameters.AddWithValue("@password", String.Format("{0}", Request.Form["newPass"]));
+			cmd.Parameters.AddWithValue("@username", lblUsername.Text);
+			cmd.Parameters.AddWithValue("@password", newPass.Text);
 			cmd.ExecuteNonQuery();
 
 			db.Disconnect();
