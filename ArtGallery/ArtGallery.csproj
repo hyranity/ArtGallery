@@ -86,6 +86,7 @@
     <Compile Include="Classes\OrderArtpiece.cs" />
     <Compile Include="Classes\Person.cs" />
     <Compile Include="Classes\WishedArt.cs" />
+    <Compile Include="Daos\CustomerDao.cs" />
     <Compile Include="Daos\ArtistDao.cs" />
     <Compile Include="Daos\Dao.cs" />
     <Compile Include="EditAccount.aspx.cs">

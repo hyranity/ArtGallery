@@ -19,7 +19,7 @@ namespace ArtGallery.Daos
         // crud functions
         public void Add(Artist Artist)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Artists(ArtistId, Fname, Lname, Email, Password, PasswordSalt, Bio"
+            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Artist(ArtistId, Fname, Lname, Email, Password, PasswordSalt, Bio"
                                 + "VALUES(@ArtistId, @Fname, @Lname, @Email, @Password, @PasswordSalt, @Bio");
             Cmd.Parameters.AddWithValue("@ArtistId", Artist.Id);
             Cmd.Parameters.AddWithValue("@Fname", Artist.Fname);

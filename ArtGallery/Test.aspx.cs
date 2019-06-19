@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 using ArtGallery.Classes;
 using ArtGallery.Daos;
+using ArtGallery.Util;
 
 namespace ArtGallery
 {
@@ -14,10 +15,18 @@ namespace ArtGallery
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ArtistDao ArtistDao = new ArtistDao();
-
-			List<Artist> alist = ArtistDao.GetList("fname", "John");
-			lbl.Text = alist[0].Fname;
         }
-    }
+
+		protected void Button1_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				Customer.RegisterCustomer("C01", TextBox1.Text, TextBox2.Text, TextBox3.Text, TextBox4.Text, TextBox5.Text);
+			}
+			catch (Exception ex)
+			{
+				Quick.Print(ex.Message);
+			}
+		}
+	}
 }
