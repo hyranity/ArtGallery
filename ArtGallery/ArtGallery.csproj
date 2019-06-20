@@ -73,6 +73,9 @@
     </Content>
     <Content Include="EditAccount.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="Pages\CSS\LoginRegister.css" />
+    <Content Include="Pages\JavaScript\LoginRegister.js" />
+    <Content Include="Pages\LoginRegister.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="RegisterDone.aspx" />
     <Content Include="Test.aspx" />
@@ -95,6 +98,13 @@
     </Compile>
     <Compile Include="EditAccount.aspx.designer.cs">
       <DependentUpon>EditAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LoginRegister.aspx.cs">
+      <DependentUpon>LoginRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\LoginRegister.aspx.designer.cs">
+      <DependentUpon>LoginRegister.aspx</DependentUpon>
     </Compile>
     <Compile Include="Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>

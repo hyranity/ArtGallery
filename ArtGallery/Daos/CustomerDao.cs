@@ -25,7 +25,7 @@ namespace ArtGallery.Daos
             Cmd.Parameters.AddWithValue("@Fname", Customer.Fname);
             Cmd.Parameters.AddWithValue("@Lname", Customer.Lname);
             Cmd.Parameters.AddWithValue("@Email", Customer.Email);
-            Cmd.Parameters.AddWithValue("@Password", Customer.Password);
+            Cmd.Parameters.AddWithValue("@Password", Customer.Passwd);
             Cmd.Parameters.AddWithValue("@PasswordSalt", Customer.PasswordSalt);
             Cmd.Parameters.AddWithValue("@CreditCardNo", Customer.CreditCardNo);
 
@@ -133,7 +133,7 @@ namespace ArtGallery.Daos
             Cmd.Parameters.AddWithValue("@Fname", Customer.Fname);
             Cmd.Parameters.AddWithValue("@Lname", Customer.Lname);
             Cmd.Parameters.AddWithValue("@Email", Customer.Email);
-            Cmd.Parameters.AddWithValue("@Password", Customer.Password);
+            Cmd.Parameters.AddWithValue("@Password", Customer.Passwd);
             Cmd.Parameters.AddWithValue("@PasswordSalt", Customer.PasswordSalt);
             Cmd.Parameters.AddWithValue("@CreditCardNo", Customer.CreditCardNo);
 
