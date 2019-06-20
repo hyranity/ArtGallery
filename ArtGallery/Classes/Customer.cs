@@ -11,6 +11,7 @@ namespace ArtGallery.Classes
 		public string CreditCardNo;
 
 		//Constructors
+		
 
 		public Customer()
 		{
