@@ -12,7 +12,7 @@ namespace ArtGallery.Classes
 		public string Fname;
 		public string Lname;
 		public string Email;
-		public string Password;
+		public string Passwd;
 		public byte[] PasswordSalt;
 
 		// Constructors

@@ -15,13 +15,13 @@ namespace ArtGallery.Classes
 
 		}
 
-		public Artist(string Id, string Fname, string Lname, string Email, string Password, byte[] PasswordSalt, string Bio)
+		public Artist(string Id, string Fname, string Lname, string Email, string Passwd, byte[] PasswordSalt, string Bio)
 		{
 			this.Id = Id;
 			this.Fname = Fname;
 			this.Lname = Lname;
 			this.Email = Email;
-			this.Password = Password;
+			this.Passwd = Passwd;
 			this.PasswordSalt = PasswordSalt;
 			this.Bio = Bio;
 		}
