@@ -51,7 +51,7 @@ namespace ArtGallery.Daos
                     //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
 
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-                    return new Artpiece(
+                    /*return new Artpiece(
                         (string)Dr["ArtpieceId"],
                         (string)Dr["ArtistId"],
                         (string)Dr["Title"],
@@ -61,7 +61,7 @@ namespace ArtGallery.Daos
                         (byte[])Dr["IsForSale"],
                         (string)Dr["Tags"],
                         (byte[])Dr["IsPublic"]
-                    );
+                    );*/
                 }
             }
 
@@ -85,7 +85,7 @@ namespace ArtGallery.Daos
                     //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
 
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-                    Artpiece.Add(new Artpiece(
+                    /*Artpiece.Add(new Artpiece(
                         (string)Dr["ArtpieceId"],
                         (string)Dr["ArtistId"],
                         (string)Dr["Title"],
@@ -95,7 +95,7 @@ namespace ArtGallery.Daos
                         (byte[])Dr["IsForSale"],
                         (string)Dr["Tags"],
                         (byte[])Dr["IsPublic"])
-                    );
+                    );*/
                 }
 
                 if (Artpiece.Any())

@@ -16,23 +16,24 @@ body {
 
 .container {
 	height: 2000px;
-	margin-top: -25%;
+	margin-top: -40%;
 	width: 800px;
 	background-color: white;
 	transform: rotate(-20deg);
 }
 
 a {
-	color: black;
-	font-family: Segoe UI;
-	font-weight: bold;
-	text-decoration: none;
+    color: black;
+    font-family: Roboto Condensed;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .top {
-	margin-top: 800px;
+	padding-top: 700px;
 	font-size: 30px;
-	margin-left: 150px;
+	margin-left: 200px;
+    padding-bottom: 50px;
 }
 
 	.top .title {
@@ -40,7 +41,7 @@ a {
 	}
 
 .form {
-	margin-top: 100px;
+	margin-top: 50px;
 }
 
 	.form div {
@@ -58,11 +59,11 @@ a {
 			font-size: 50px;
 		}
 
-		.form .mainForm .title input[type='submit'] {
+		.form .mainForm .title input[type='submit'] { /* asp:Button */
 			font-size: 50px;
 			background: transparent;
 			border: none;
-			font-family: Segoe UI;
+			font-family: Roboto Condensed;
 			font-weight: bold;
 			transition: color 0.3s;
 		}
@@ -90,15 +91,16 @@ a {
 			/* push forard so img doesn't overlap */
 		}
 
-		.form .mainForm .inputs input {
-			font-size: 25px;
-			z-index: 2;
-			/* push forard so img doesn't overlap */
-			font-family: Segoe UI;
-			font-weight: bold;
-			width: 200px;
-			border: none;
-		}
+        .form .mainForm .inputs input {
+            font-size: 25px;
+            z-index: 2;
+            /* push forard so img doesn't overlap */
+            font-family: Roboto Condensed;
+            ;
+            font-weight: bold;
+            width: 200px;
+            border: none;
+        }
 
 			.form .mainForm .inputs input::placeholder {
 				font-size: 25px;

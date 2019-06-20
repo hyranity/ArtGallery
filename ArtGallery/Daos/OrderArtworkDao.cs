@@ -75,18 +75,18 @@ namespace ArtGallery.Daos
                     //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
 
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-                    Order_Artwork.Add(new Order_Artwork(
+                    /*Order_Artwork.Add(new Order_Artwork(
                         (string)Dr["Index"],
                         (string)Dr["OrderId"],
                         (string)Dr["ArtpieceId"],
                         (int)Dr["Quantity"])
-                    );
+                    );*/
                 }
 
-                if (Order_Artwork.Any())
+                /*if (Order_Artwork.Any())
                 {
                     return Order_Artwork;
-                }
+                }*/
 
                 return null;
             }
@@ -120,6 +120,5 @@ namespace ArtGallery.Daos
             DBUtil.Disconnect();
         }
 
-    }
     }
 }
