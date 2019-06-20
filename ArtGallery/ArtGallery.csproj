@@ -86,12 +86,16 @@
     <Compile Include="Classes\Artpiece.cs" />
     <Compile Include="Classes\Customer.cs" />
     <Compile Include="Classes\Order.cs" />
-    <Compile Include="Classes\OrderArtpiece.cs" />
+    <Compile Include="Classes\Order_Artwork.cs" />
     <Compile Include="Classes\Person.cs" />
     <Compile Include="Classes\WishedArt.cs" />
+    <Compile Include="Daos\ArtpieceDao.cs" />
     <Compile Include="Daos\CustomerDao.cs" />
     <Compile Include="Daos\ArtistDao.cs" />
+    <Compile Include="Daos\CustorderDao.cs" />
     <Compile Include="Daos\Dao.cs" />
+    <Compile Include="Daos\OrderArtworkDao.cs" />
+    <Compile Include="Daos\WishedArtDao.cs" />
     <Compile Include="EditAccount.aspx.cs">
       <DependentUpon>EditAccount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
