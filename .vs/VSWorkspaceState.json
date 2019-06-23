@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ArtGallery"
+    "\\ArtGallery",
+    "\\ArtGallery\\Pages"
   ],
-  "SelectedNode": "\\ArtGallery.sln",
+  "SelectedNode": "\\ArtGallery\\Pages\\LoginRegister.aspx.cs",
   "PreviewInSolutionExplorer": false
 }

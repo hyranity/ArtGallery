@@ -47,11 +47,11 @@ public class Hasher
 		return Salt;
 	}
 
-	public bool ComparePassword(string pass, byte[] usedSalt)
+	public static bool ComparePassword(string hashedPass, string enteredPass, byte[] hashedPassSalt)
 	{
-		Hasher hash2 = new Hasher(pass, usedSalt);
-		string hashedSecondPass = hash2.GetHashedPassword();
-		if (hashedSecondPass == HashedPassword)
+		Hasher hash = new Hasher(enteredPass, hashedPassSalt);
+		string hashedSecondPass = hash.GetHashedPassword();
+		if (hashedSecondPass == hashedPass)
 			return true;
 		else
 			return false;

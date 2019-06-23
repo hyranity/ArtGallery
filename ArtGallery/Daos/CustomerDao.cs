@@ -19,14 +19,18 @@ namespace ArtGallery.Daos
         // crud functions
         public void Add(Customer Customer)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Customer(CustId, Fname, Lname, Email, Password, PasswordSalt, CreditCardNo)"
-                                + "VALUES(@CustomerId, @Fname, @Lname, @Email, @Password, @PasswordSalt, @CreditCardNo)");
-            Cmd.Parameters.AddWithValue("@CustomerId", Customer.Id);
+            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Customer(CustId, Fname, Lname, Email, Passwd, PasswordSalt, CreditCardNo)"
+								+ "VALUES(@CustID, @Fname, @Lname, @Email, @Passwd, @PasswordSalt, @CreditCardNo)");
+            Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
             Cmd.Parameters.AddWithValue("@Fname", Customer.Fname);
             Cmd.Parameters.AddWithValue("@Lname", Customer.Lname);
             Cmd.Parameters.AddWithValue("@Email", Customer.Email);
-            Cmd.Parameters.AddWithValue("@Password", Customer.Passwd);
+            Cmd.Parameters.AddWithValue("@Passwd", Customer.Passwd);
             Cmd.Parameters.AddWithValue("@PasswordSalt", Customer.PasswordSalt);
+
+			if (Customer.CreditCardNo == null)
+				Customer.CreditCardNo = "not given";
+
             Cmd.Parameters.AddWithValue("@CreditCardNo", Customer.CreditCardNo);
 
             Cmd.ExecuteNonQuery();
@@ -38,7 +42,7 @@ namespace ArtGallery.Daos
         {
             SqlCommand Cmd;
 
-            if (!Field.Equals("Password") && !Field.Equals("PasswordSalt"))
+            if (!Field.Equals("Passwd") && !Field.Equals("PasswordSalt"))
             {
                 Cmd = DBUtil.GenerateSql("SELECT * FROM Customer WHERE ([" + Field + "] = @Value)");
                 Cmd.Parameters.AddWithValue("@Value", Value);
@@ -58,11 +62,11 @@ namespace ArtGallery.Daos
 
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
                     return new Customer(
-                        (string) Dr["CustomerId"],
+                        (string) Dr["CustID"],
                         (string) Dr["Fname"],
                         (string) Dr["Lname"],
                         (string) Dr["Email"],
-                        (string) Dr["Password"],
+                        (string) Dr["Passwd"],
                         (byte[]) Dr["PasswordSalt"],
                         (string) Dr["CreditCardNo"]
                     );
@@ -76,7 +80,7 @@ namespace ArtGallery.Daos
         {
             SqlCommand Cmd;
 
-            if (!Field.Equals("Password") && !Field.Equals("PasswordSalt"))
+            if (!Field.Equals("Passwd") && !Field.Equals("PasswordSalt"))
             {
                 Cmd = DBUtil.GenerateSql("SELECT * FROM Customer WHERE ([" + Field + "] = @Value)");
                 Cmd.Parameters.AddWithValue("@Value", Value);
@@ -98,11 +102,11 @@ namespace ArtGallery.Daos
 
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
                     Customer.Add(new Customer(
-                        (string) Dr["CustomerId"],
+                        (string) Dr["CustID"],
                         (string) Dr["Fname"],
                         (string) Dr["Lname"],
                         (string) Dr["Email"],
-                        (string) Dr["Password"],
+                        (string) Dr["Passwd"],
                         (byte[]) Dr["PasswordSalt"],
                         (string) Dr["CreditCardNo"])
                     );
@@ -119,21 +123,21 @@ namespace ArtGallery.Daos
 
         public void Update(Customer Customer)
         {
-            // SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Customer SET ... WHERE ([CustomerId] = @CustomerId)");
+            // SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Customer SET ... WHERE ([CustID] = @CustID)");
             SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Customer " +
                 "SET Fname = @Fname" +
                 ", Lname = @Lname" +
                 ", Email = @Email" +
-                ", Password = @Password" +
+				", Passwd = @Passwd" +
                 ", PasswordSalt = @PasswordSalt" +
                 ", CreditCardNo = @CreditCardNo" +
-                " WHERE CustomerId = @CustomerId"
+                " WHERE CustID = @CustID"
             );
-            Cmd.Parameters.AddWithValue("@CustomerId", Customer.Id);
+            Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
             Cmd.Parameters.AddWithValue("@Fname", Customer.Fname);
             Cmd.Parameters.AddWithValue("@Lname", Customer.Lname);
             Cmd.Parameters.AddWithValue("@Email", Customer.Email);
-            Cmd.Parameters.AddWithValue("@Password", Customer.Passwd);
+            Cmd.Parameters.AddWithValue("@Passwd", Customer.Passwd);
             Cmd.Parameters.AddWithValue("@PasswordSalt", Customer.PasswordSalt);
             Cmd.Parameters.AddWithValue("@CreditCardNo", Customer.CreditCardNo);
 
@@ -144,8 +148,8 @@ namespace ArtGallery.Daos
 
         public void Delete(Customer Customer)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("DELETE FROM Customer WHERE CustomerId = @CustomerId");
-            Cmd.Parameters.AddWithValue("@CustomerId", Customer.Id);
+            SqlCommand Cmd = DBUtil.GenerateSql("DELETE FROM Customer WHERE CustID = @CustID");
+            Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
 
             Cmd.ExecuteNonQuery();
 

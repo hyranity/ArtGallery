@@ -31,13 +31,13 @@ namespace ArtGallery.Pages {
         protected global::System.Web.UI.WebControls.Button btnLogin;
         
         /// <summary>
-        /// txtLoginUsername control.
+        /// txtLoginID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLoginUsername;
+        protected global::System.Web.UI.WebControls.TextBox txtLoginID;
         
         /// <summary>
         /// txtLoginPassword control.
@@ -58,13 +58,31 @@ namespace ArtGallery.Pages {
         protected global::System.Web.UI.WebControls.Button btnRegister;
         
         /// <summary>
-        /// txtRegisterUsername control.
+        /// txtRegisterID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRegisterUsername;
+        protected global::System.Web.UI.WebControls.TextBox txtRegisterID;
+        
+        /// <summary>
+        /// txtRegisterFname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRegisterFname;
+        
+        /// <summary>
+        /// txtRegisterLname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRegisterLname;
         
         /// <summary>
         /// txtRegisterEmail control.
