@@ -2,8 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\ArtGallery",
-    "\\ArtGallery\\Pages"
+    "\\ArtGallery\\Pages",
+    "\\ArtGallery\\Util"
   ],
-  "SelectedNode": "\\ArtGallery.sln",
   "PreviewInSolutionExplorer": false
 }
