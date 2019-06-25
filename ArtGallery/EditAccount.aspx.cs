@@ -37,5 +37,10 @@ namespace ArtGallery
 			
 			msg.Text = "Success!";
 		}
+
+		protected void newPass_TextChanged(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

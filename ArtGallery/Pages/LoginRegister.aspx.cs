@@ -61,7 +61,10 @@ namespace ArtGallery.Pages
 					// Compare the password
 					if (Hasher.ComparePassword(cust.Passwd, txtLoginPassword.Text, cust.PasswordSalt))
 					{
+						//Login successful
 						Quick.Print("Customer logged in.");
+						Session["cust"] = cust;
+						Response.Redirect("~/Pages/CustomerAccount.aspx", false);
 					}
 					else
 					{
@@ -74,6 +77,8 @@ namespace ArtGallery.Pages
 					if (Hasher.ComparePassword(artist.Passwd, txtLoginPassword.Text, artist.PasswordSalt))
 					{
 						Quick.Print("Artist logged in.");
+						Session["artist"] = artist;
+						Response.Redirect("~/Pages/ArtistAccount.aspx", false);
 					}
 					else
 					{

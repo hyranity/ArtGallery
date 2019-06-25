@@ -117,20 +117,21 @@ namespace ArtGallery.Daos
             }
         }
 
-        public void Update(Artist Artist)
+        public void Update(Artist Artist, string OriginalID)
         {
             // SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Artist SET ... WHERE ([ArtistId] = @ArtistId)");
             SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Artist " +
-                "SET Fname = @Fname" +
+				"SET ArtistId = @ArtistId, Fname = @Fname" +
                 ", Lname = @Lname" +
                 ", Email = @Email" +
 				", Passwd = @Passwd" +
                 ", PasswordSalt = @PasswordSalt" +
                 ", Bio = @Bio" +
-                " WHERE ArtistId = @ArtistId"
+                " WHERE ArtistId = @OriginalArtistId"
             );
             Cmd.Parameters.AddWithValue("@ArtistId", Artist.Id);
-            Cmd.Parameters.AddWithValue("@Fname", Artist.Fname);
+			Cmd.Parameters.AddWithValue("@OriginalArtistId", OriginalID);
+			Cmd.Parameters.AddWithValue("@Fname", Artist.Fname);
             Cmd.Parameters.AddWithValue("@Lname", Artist.Lname);
             Cmd.Parameters.AddWithValue("@Email", Artist.Email);
             Cmd.Parameters.AddWithValue("@Passwd", Artist.Passwd);
@@ -138,11 +139,39 @@ namespace ArtGallery.Daos
             Cmd.Parameters.AddWithValue("@Bio", Artist.Bio);
 
             Cmd.ExecuteNonQuery();
+			Quick.Print(Artist.Id);
 
             DBUtil.Disconnect();
         }
 
-        public void Delete(Artist Artist)
+		public void Update(Artist Artist)
+		{
+			// SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Artist SET ... WHERE ([ArtistId] = @ArtistId)");
+			SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Artist " +
+				"SET Fname = @Fname" +
+				", Lname = @Lname" +
+				", Email = @Email" +
+				", Passwd = @Passwd" +
+				", PasswordSalt = @PasswordSalt" +
+				", Bio = @Bio" +
+				" WHERE ArtistId = @ArtistId"
+			);
+			Cmd.Parameters.AddWithValue("@ArtistId", Artist.Id);
+
+			Cmd.Parameters.AddWithValue("@Fname", Artist.Fname);
+			Cmd.Parameters.AddWithValue("@Lname", Artist.Lname);
+			Cmd.Parameters.AddWithValue("@Email", Artist.Email);
+			Cmd.Parameters.AddWithValue("@Passwd", Artist.Passwd);
+			Cmd.Parameters.AddWithValue("@PasswordSalt", Artist.PasswordSalt);
+			Cmd.Parameters.AddWithValue("@Bio", Artist.Bio);
+
+			Cmd.ExecuteNonQuery();
+			Quick.Print(Artist.Id);
+
+			DBUtil.Disconnect();
+		}
+
+		public void Delete(Artist Artist)
         {
             SqlCommand Cmd = DBUtil.GenerateSql("DELETE FROM Artist WHERE ArtistId = @ArtistId");
             Cmd.Parameters.AddWithValue("@ArtistId", Artist.Id);
@@ -151,6 +180,8 @@ namespace ArtGallery.Daos
 
             DBUtil.Disconnect();
         }	
+
+
 
     }
 }

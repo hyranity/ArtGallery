@@ -161,7 +161,6 @@ C:\Users\mast3\Source\Repos\ArtGallery\ArtGallery\bin\roslyn\VBCSCompiler.exe
 C:\Users\mast3\Source\Repos\ArtGallery\ArtGallery\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\mast3\Source\Repos\ArtGallery\ArtGallery\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\mast3\Source\Repos\ArtGallery\ArtGallery\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\mast3\Source\Repos\ArtGallery\ArtGallery\obj\Debug\ArtGallery.csprojAssemblyReference.cache
 C:\Users\mast3\Source\Repos\ArtGallery\ArtGallery\obj\Debug\ArtGallery.csproj.CoreCompileInputs.cache
 C:\Users\mast3\Source\Repos\ArtGallery\ArtGallery\obj\Debug\ArtGallery.csproj.CopyComplete
 C:\Users\mast3\Source\Repos\ArtGallery\ArtGallery\obj\Debug\ArtGallery.dll
