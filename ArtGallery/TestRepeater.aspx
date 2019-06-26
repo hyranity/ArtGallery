@@ -9,22 +9,19 @@
 <body>
 	<form id="form1" runat="server">
 		<div>
-			<asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1" OnItemCommand="Repeater1_ItemCommand">
-				<HeaderTemplate>
-					<table>
-				</HeaderTemplate>
-				<ItemTemplate>
-					<!-- The following code is obtained from: Jeff Sternal @ https://stackoverflow.com/questions/1765942/how-do-you-show-x-items-per-row-in-a-repeater/1766379#1766379 -->
-					<%# (Container.ItemIndex + 4) % 4 == 0 ? "<tr>" : string.Empty %>
-					<td><%# Eval("ARTISTID") %></td>
-					<%# (Container.ItemIndex + 4) % 4 == 3 ? "</tr>" : string.Empty %>
-				</ItemTemplate>
-				<FooterTemplate>
-					</table>
-				</FooterTemplate>
-			</asp:Repeater>
-			<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [ARTIST]"></asp:SqlDataSource>
+			<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [ARTIST]" OnSelecting="SqlDataSource1_Selecting"></asp:SqlDataSource>
 		</div>
+		<asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ARTISTID" DataSourceID="SqlDataSource1">
+			<Columns>
+				<asp:BoundField DataField="ARTISTID" HeaderText="ARTISTID" ReadOnly="True" SortExpression="ARTISTID" />
+				<asp:BoundField DataField="BIO" HeaderText="BIO" SortExpression="BIO" />
+				<asp:BoundField DataField="FNAME" HeaderText="FNAME" SortExpression="FNAME" />
+				<asp:BoundField DataField="LNAME" HeaderText="LNAME" SortExpression="LNAME" />
+				<asp:BoundField DataField="EMAIL" HeaderText="EMAIL" SortExpression="EMAIL" />
+				<asp:BoundField DataField="PASSWD" HeaderText="PASSWD" SortExpression="PASSWD" />
+				<asp:CheckBoxField DataField="ACTIVE" HeaderText="ACTIVE" SortExpression="ACTIVE" />
+			</Columns>
+		</asp:GridView>
 	</form>
 </body>
 </html>
