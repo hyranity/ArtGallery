@@ -42,9 +42,9 @@
           <div class='inputs' style='margin-left: -65px;'>
 			 <asp:TextBox ID="txtRegisterID" Placeholder="ID" runat="server" ></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
-            <asp:TextBox ID="txtRegisterFname" Placeholder="first name" runat="server" ></asp:TextBox>
+            <asp:TextBox ID="txtRegisterUsername" Placeholder="username" runat="server" ></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
-			<asp:TextBox ID="txtRegisterLname" Placeholder="last name" runat="server"></asp:TextBox>
+			<asp:TextBox ID="txtRegisterDisplayName" Placeholder="display name" runat="server"></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
             <asp:TextBox ID="txtRegisterEmail" Placeholder="email" runat="server"></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>

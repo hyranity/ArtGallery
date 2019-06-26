@@ -242,7 +242,7 @@
 
 						<div class='box'>
 							<a class='artpiece'><%# Eval("TITLE") %></a>
-							<a class='artist'><%# Eval("FNAME") %> <%# Eval("LNAME") %></a>
+							<a class='artist'><%# Eval("Username") %> <%# Eval("DisplayName") %></a>
 						</div>
 					</a>
 				</td>
@@ -253,7 +253,7 @@
 			</FooterTemplate>
 		</asp:Repeater>
 
-		<asp:SqlDataSource ID="GallerySource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT ARTPIECE.TITLE, ARTPIECE.IMAGELINK AS URL, ARTIST.FNAME, ARTIST.LNAME FROM ARTPIECE INNER JOIN ARTIST ON ARTPIECE.ARTISTID = ARTIST.ARTISTID WHERE (ARTPIECE.ISPUBLIC = 1) ORDER BY ARTPIECE.ARTPIECEID DESC"></asp:SqlDataSource>
+		<asp:SqlDataSource ID="GallerySource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT ARTPIECE.TITLE, ARTPIECE.IMAGELINK AS URL, ARTIST.Username, ARTIST.DisplayName FROM ARTPIECE INNER JOIN ARTIST ON ARTPIECE.ARTISTID = ARTIST.ARTISTID WHERE (ARTPIECE.ISPUBLIC = 1) ORDER BY ARTPIECE.ARTPIECEID DESC"></asp:SqlDataSource>
 
 		<div class='footer'>
 			<a href='#' class='link'>ABOUT</a>

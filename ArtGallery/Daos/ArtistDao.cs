@@ -19,11 +19,11 @@ namespace ArtGallery.Daos
         // crud functions
         public void Add(Artist Artist)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Artist(ArtistId, Fname, Lname, Email, Passwd, PasswordSalt, Bio, Active)"
-								+ "VALUES(@ArtistId, @Fname, @Lname, @Email, @Passwd, @PasswordSalt, @Bio, @Active)");
+            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Artist(ArtistId, Username, DisplayName, Email, Passwd, PasswordSalt, Bio, Active)"
+								+ "VALUES(@ArtistId, @Username, @DisplayName, @Email, @Passwd, @PasswordSalt, @Bio, @Active)");
             Cmd.Parameters.AddWithValue("@ArtistId", Artist.Id);
-            Cmd.Parameters.AddWithValue("@Fname", Artist.Fname);
-            Cmd.Parameters.AddWithValue("@Lname", Artist.Lname);
+            Cmd.Parameters.AddWithValue("@Username", Artist.Username);
+            Cmd.Parameters.AddWithValue("@DisplayName", Artist.DisplayName);
             Cmd.Parameters.AddWithValue("@Email", Artist.Email);
             Cmd.Parameters.AddWithValue("@Passwd", Artist.Passwd);
             Cmd.Parameters.AddWithValue("@PasswordSalt", Artist.PasswordSalt);
@@ -59,8 +59,8 @@ namespace ArtGallery.Daos
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
                     return new Artist(
                         (string) Dr["ArtistId"],
-                        (string) Dr["Fname"],
-                        (string) Dr["Lname"],
+                        (string) Dr["Username"],
+                        (string) Dr["DisplayName"],
                         (string) Dr["Email"],
                         (string) Dr["Passwd"],
                         (byte[]) Dr["PasswordSalt"],
@@ -99,8 +99,8 @@ namespace ArtGallery.Daos
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
                     Artists.Add(new Artist(
                         (string) Dr["ArtistId"],
-                        (string) Dr["Fname"],
-                        (string) Dr["Lname"],
+                        (string) Dr["Username"],
+                        (string) Dr["DisplayName"],
                         (string) Dr["Email"],
                         (string) Dr["Passwd"],
                         (byte[]) Dr["PasswordSalt"],
@@ -121,8 +121,8 @@ namespace ArtGallery.Daos
         {
             // SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Artist SET ... WHERE ([ArtistId] = @ArtistId)");
             SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Artist " +
-				"SET ArtistId = @ArtistId, Fname = @Fname" +
-                ", Lname = @Lname" +
+				"SET ArtistId = @ArtistId, Username = @Username" +
+                ", DisplayName = @DisplayName" +
                 ", Email = @Email" +
 				", Passwd = @Passwd" +
                 ", PasswordSalt = @PasswordSalt" +
@@ -131,8 +131,8 @@ namespace ArtGallery.Daos
             );
             Cmd.Parameters.AddWithValue("@ArtistId", Artist.Id);
 			Cmd.Parameters.AddWithValue("@OriginalArtistId", OriginalID);
-			Cmd.Parameters.AddWithValue("@Fname", Artist.Fname);
-            Cmd.Parameters.AddWithValue("@Lname", Artist.Lname);
+			Cmd.Parameters.AddWithValue("@Username", Artist.Username);
+            Cmd.Parameters.AddWithValue("@DisplayName", Artist.DisplayName);
             Cmd.Parameters.AddWithValue("@Email", Artist.Email);
             Cmd.Parameters.AddWithValue("@Passwd", Artist.Passwd);
             Cmd.Parameters.AddWithValue("@PasswordSalt", Artist.PasswordSalt);
@@ -148,8 +148,8 @@ namespace ArtGallery.Daos
 		{
 			// SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Artist SET ... WHERE ([ArtistId] = @ArtistId)");
 			SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Artist " +
-				"SET Fname = @Fname" +
-				", Lname = @Lname" +
+				"SET Username = @Username" +
+				", DisplayName = @DisplayName" +
 				", Email = @Email" +
 				", Passwd = @Passwd" +
 				", PasswordSalt = @PasswordSalt" +
@@ -158,8 +158,8 @@ namespace ArtGallery.Daos
 			);
 			Cmd.Parameters.AddWithValue("@ArtistId", Artist.Id);
 
-			Cmd.Parameters.AddWithValue("@Fname", Artist.Fname);
-			Cmd.Parameters.AddWithValue("@Lname", Artist.Lname);
+			Cmd.Parameters.AddWithValue("@Username", Artist.Username);
+			Cmd.Parameters.AddWithValue("@DisplayName", Artist.DisplayName);
 			Cmd.Parameters.AddWithValue("@Email", Artist.Email);
 			Cmd.Parameters.AddWithValue("@Passwd", Artist.Passwd);
 			Cmd.Parameters.AddWithValue("@PasswordSalt", Artist.PasswordSalt);

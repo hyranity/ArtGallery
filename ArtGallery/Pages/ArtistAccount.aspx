@@ -350,13 +350,11 @@
 			<div class='container'>
 				<div style='display: flex; flex-direction: row;'>
 					<div id='left'>
+						<asp:TextBox ID="id" Placeholder="id" runat="server"></asp:TextBox>
+						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
 						<asp:TextBox ID="username" Placeholder="username" runat="server"></asp:TextBox>
 						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
-						<asp:TextBox ID="password" TextMode="Password" Placeholder="new password" runat="server"></asp:TextBox>
-						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
-						<asp:TextBox ID="email" Placeholder="email" runat="server"></asp:TextBox>
-						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
-						<asp:TextBox ID="skills" Placeholder="skills" runat="server"></asp:TextBox>
+						<asp:TextBox ID="displayName" Placeholder="display name" runat="server"></asp:TextBox>
 						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
 						<a class='text'>ARTIST<br>
 							ACCOUNT</a>
@@ -366,9 +364,11 @@
 					</div>
 					<div id='right'>
 						<a href='#' class='text'>LOGOUT</a>
-						<asp:TextBox ID="fname" Placeholder="first name" runat="server"></asp:TextBox>
+						<asp:TextBox ID="password" TextMode="Password" Placeholder="new password" runat="server"></asp:TextBox>
 						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
-						<asp:TextBox ID="lname" Placeholder="last name" runat="server"></asp:TextBox>
+						<asp:TextBox ID="email" Placeholder="email" runat="server"></asp:TextBox>
+						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
+						<asp:TextBox ID="skills" Placeholder="skills" runat="server"></asp:TextBox>
 						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
 						<asp:TextBox ID="bio" Placeholder="bio" runat="server"></asp:TextBox>
 						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>

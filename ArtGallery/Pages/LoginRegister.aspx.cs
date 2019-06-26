@@ -21,18 +21,19 @@ namespace ArtGallery.Pages
 		{
 			// Should be changed to dropdownlist
 			if (txtRegisterPosition.Text == "customer")
-				Customer.RegisterCustomer(txtRegisterID.Text, txtRegisterFname.Text, txtRegisterLname.Text, txtRegisterEmail.Text, txtRegisterPassword.Text, null);
+				Customer.RegisterCustomer(txtRegisterID.Text, txtRegisterUsername.Text, txtRegisterDisplayName.Text, txtRegisterEmail.Text, txtRegisterPassword.Text, null);
 
 			if (txtRegisterPosition.Text == "artist")
-				Artist.RegisterArtist(txtRegisterID.Text, txtRegisterFname.Text, txtRegisterLname.Text, txtRegisterEmail.Text, txtRegisterPassword.Text);
+				Artist.RegisterArtist(txtRegisterID.Text, txtRegisterUsername.Text, txtRegisterDisplayName.Text, txtRegisterEmail.Text, txtRegisterPassword.Text);
 
 			txtRegisterID.Text = "";
 			txtRegisterEmail.Text = "";
-			txtRegisterLname.Text = "";
+			txtRegisterDisplayName.Text = "";
 			txtRegisterPassword.Text = "";
 			txtRegisterPosition.Text = "";
-			txtRegisterFname.Text = "";
-		}
+			txtRegisterUsername.Text = "";
+            Quick.Print("lol!");
+        }
 
 		protected void btnLogin_Click(object sender, EventArgs e)
 		{

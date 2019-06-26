@@ -67,22 +67,22 @@ namespace ArtGallery.Pages {
         protected global::System.Web.UI.WebControls.TextBox txtRegisterID;
         
         /// <summary>
-        /// txtRegisterFname control.
+        /// txtRegisterUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRegisterFname;
+        protected global::System.Web.UI.WebControls.TextBox txtRegisterUsername;
         
         /// <summary>
-        /// txtRegisterLname control.
+        /// txtRegisterDisplayName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRegisterLname;
+        protected global::System.Web.UI.WebControls.TextBox txtRegisterDisplayName;
         
         /// <summary>
         /// txtRegisterEmail control.

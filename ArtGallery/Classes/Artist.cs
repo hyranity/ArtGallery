@@ -16,21 +16,21 @@ namespace ArtGallery.Classes
 
 		}
 
-		public Artist(string Id, string Fname, string Lname, string Email, string Passwd, byte[] PasswordSalt, string Bio)
+		public Artist(string Id, string Username, string DisplayName, string Email, string Passwd, byte[] PasswordSalt, string Bio)
 		{
 			this.Id = Id;
-			this.Fname = Fname;
-			this.Lname = Lname;
+			this.Username = Username;
+			this.DisplayName = DisplayName;
 			this.Email = Email;
 			this.Passwd = Passwd;
 			this.PasswordSalt = PasswordSalt;
 			this.Bio = Bio;
 		}
 
-		public static void RegisterArtist(string Id, string Fname, string Lname, string Email, string Password)
+		public static void RegisterArtist(string Id, string Username, string DisplayName, string Email, string Password)
 		{
 			Hasher hash = new Hasher(Password);
-			Artist artist = new Artist(Id, Fname, Lname, Email, hash.GetHashedPassword(), hash.GetSalt(), "Tell us about yourself.");
+			Artist artist = new Artist(Id, Username, DisplayName, Email, hash.GetHashedPassword(), hash.GetSalt(), "Tell us about yourself.");
 			ArtistDao dao = new ArtistDao();
 			dao.Add(artist);
 		}

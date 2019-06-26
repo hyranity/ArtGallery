@@ -9,8 +9,8 @@ namespace ArtGallery.Classes
 	{
 		
 		public string Id;
-		public string Fname;
-		public string Lname;
+		public string Username;
+		public string DisplayName;
 		public string Email;
 		public string Passwd;
 		public byte[] PasswordSalt;
@@ -21,11 +21,11 @@ namespace ArtGallery.Classes
 
 		}
 
-		public Person(string Id, string Fname, string Lname, string Email, string Passwd, byte[] PasswordSalt)
+		public Person(string Id, string Username, string DisplayName, string Email, string Passwd, byte[] PasswordSalt)
 		{
 			this.Id = Id;
-			this.Fname = Fname;
-			this.Lname = Lname;
+			this.Username = Username;
+			this.DisplayName = DisplayName;
 			this.Email = Email;
 			this.Passwd = Passwd;
 			this.PasswordSalt = PasswordSalt;

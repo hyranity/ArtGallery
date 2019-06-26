@@ -15,8 +15,8 @@
 			<Columns>
 				<asp:BoundField DataField="ARTISTID" HeaderText="ARTISTID" ReadOnly="True" SortExpression="ARTISTID" />
 				<asp:BoundField DataField="BIO" HeaderText="BIO" SortExpression="BIO" />
-				<asp:BoundField DataField="FNAME" HeaderText="FNAME" SortExpression="FNAME" />
-				<asp:BoundField DataField="LNAME" HeaderText="LNAME" SortExpression="LNAME" />
+				<asp:BoundField DataField="Username" HeaderText="Username" SortExpression="Username" />
+				<asp:BoundField DataField="DisplayName" HeaderText="DisplayName" SortExpression="DisplayName" />
 				<asp:BoundField DataField="EMAIL" HeaderText="EMAIL" SortExpression="EMAIL" />
 				<asp:BoundField DataField="PASSWD" HeaderText="PASSWD" SortExpression="PASSWD" />
 				<asp:CheckBoxField DataField="ACTIVE" HeaderText="ACTIVE" SortExpression="ACTIVE" />

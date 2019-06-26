@@ -20,7 +20,7 @@ namespace ArtGallery.Daos
         public void Add(Artpiece Artpiece)
         {
             SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Artpiece(ArtpieceId, ArtistId, Title, ImageLink, Price, QuantityLeft, IsForSale, Tags, IsPublic)"
-                                + "VALUES(@CustomerId, @Fname, @Lname, @Email, @Password, @PasswordSalt, @CreditCardNo)");
+                                + "VALUES(@CustomerId, @Username, @DisplayName, @Email, @Password, @PasswordSalt, @CreditCardNo)");
             Cmd.Parameters.AddWithValue("@ArtpieceId", Artpiece.ArtpieceId);
             Cmd.Parameters.AddWithValue("@ArtistId", Artpiece.ArtistId);
             Cmd.Parameters.AddWithValue("@Title", Artpiece.Title);

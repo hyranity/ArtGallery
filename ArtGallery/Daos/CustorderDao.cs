@@ -22,8 +22,8 @@ namespace ArtGallery.Daos
             SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Custorder(OrderId, CustomerId, TotalPrice)"
                                 + "VALUES(@OrderId, @CustomerId, @TotalPrice)");
             Cmd.Parameters.AddWithValue("@CustomerId", Custorder.OrderId);
-            Cmd.Parameters.AddWithValue("@Fname", Custorder.CustomerId);
-            Cmd.Parameters.AddWithValue("@Lname", Custorder.TotalPrice);
+            Cmd.Parameters.AddWithValue("@Username", Custorder.CustomerId);
+            Cmd.Parameters.AddWithValue("@DisplayName", Custorder.TotalPrice);
 
             Cmd.ExecuteNonQuery();
 

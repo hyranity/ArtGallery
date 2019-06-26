@@ -19,11 +19,11 @@ namespace ArtGallery.Daos
         // crud functions
         public void Add(Customer Customer)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Customer(CustId, Fname, Lname, Email, Passwd, PasswordSalt, CreditCardNo)"
-								+ "VALUES(@CustID, @Fname, @Lname, @Email, @Passwd, @PasswordSalt, @CreditCardNo)");
+            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Customer(CustId, Username, DisplayName, Email, Passwd, PasswordSalt, CreditCardNo)"
+								+ "VALUES(@CustID, @Username, @DisplayName, @Email, @Passwd, @PasswordSalt, @CreditCardNo)");
             Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
-            Cmd.Parameters.AddWithValue("@Fname", Customer.Fname);
-            Cmd.Parameters.AddWithValue("@Lname", Customer.Lname);
+            Cmd.Parameters.AddWithValue("@Username", Customer.Username);
+            Cmd.Parameters.AddWithValue("@DisplayName", Customer.DisplayName);
             Cmd.Parameters.AddWithValue("@Email", Customer.Email);
             Cmd.Parameters.AddWithValue("@Passwd", Customer.Passwd);
             Cmd.Parameters.AddWithValue("@PasswordSalt", Customer.PasswordSalt);
@@ -63,8 +63,8 @@ namespace ArtGallery.Daos
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
                     return new Customer(
                         (string) Dr["CustID"],
-                        (string) Dr["Fname"],
-                        (string) Dr["Lname"],
+                        (string) Dr["Username"],
+                        (string) Dr["DisplayName"],
                         (string) Dr["Email"],
                         (string) Dr["Passwd"],
                         (byte[]) Dr["PasswordSalt"],
@@ -103,8 +103,8 @@ namespace ArtGallery.Daos
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
                     Customer.Add(new Customer(
                         (string) Dr["CustID"],
-                        (string) Dr["Fname"],
-                        (string) Dr["Lname"],
+                        (string) Dr["Username"],
+                        (string) Dr["DisplayName"],
                         (string) Dr["Email"],
                         (string) Dr["Passwd"],
                         (byte[]) Dr["PasswordSalt"],
@@ -125,8 +125,8 @@ namespace ArtGallery.Daos
         {
             // SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Customer SET ... WHERE ([CustID] = @CustID)");
             SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Customer " +
-                "SET Fname = @Fname" +
-                ", Lname = @Lname" +
+                "SET Username = @Username" +
+                ", DisplayName = @DisplayName" +
                 ", Email = @Email" +
 				", Passwd = @Passwd" +
                 ", PasswordSalt = @PasswordSalt" +
@@ -134,8 +134,8 @@ namespace ArtGallery.Daos
                 " WHERE CustID = @CustID"
             );
             Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
-            Cmd.Parameters.AddWithValue("@Fname", Customer.Fname);
-            Cmd.Parameters.AddWithValue("@Lname", Customer.Lname);
+            Cmd.Parameters.AddWithValue("@Username", Customer.Username);
+            Cmd.Parameters.AddWithValue("@DisplayName", Customer.DisplayName);
             Cmd.Parameters.AddWithValue("@Email", Customer.Email);
             Cmd.Parameters.AddWithValue("@Passwd", Customer.Passwd);
             Cmd.Parameters.AddWithValue("@PasswordSalt", Customer.PasswordSalt);

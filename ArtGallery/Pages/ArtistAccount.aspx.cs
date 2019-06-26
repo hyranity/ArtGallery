@@ -27,13 +27,15 @@ namespace ArtGallery.Pages
 					artist = dao.Get("ARTISTID", artist.Id);
 					Session["artist"] = artist;
 
-					nameLbl.Text = artist.Fname + " " + artist.Lname;
-					usernameLbl.Text = artist.Id;
-					bioLbl.Text = artist.Bio;
+                    //nameLbl.Text = artist.Username + " " + artist.DisplayName;
+                    //usernameLbl.Text = artist.Id;
+                    nameLbl.Text = artist.DisplayName;
+                    usernameLbl.Text = "@" + artist.Username;
+                    bioLbl.Text = artist.Bio;
 
-					username.Text = artist.Id;
-					fname.Text = artist.Fname;
-					lname.Text = artist.Lname;
+					id.Text = artist.Id;
+					username.Text = artist.Username;
+					displayName.Text = artist.DisplayName;
 					email.Text = artist.Email;
 					bio.Text = artist.Bio;
 				}
@@ -54,7 +56,7 @@ namespace ArtGallery.Pages
 				 NewSalt = hash.GetSalt();
 			}
 
-			Artist newArtist = new Artist(username.Text, fname.Text, lname.Text, email.Text, NewPass, NewSalt, bio.Text);
+			Artist newArtist = new Artist(id.Text, username.Text, displayName.Text, email.Text, NewPass, NewSalt, bio.Text);
 			
 			ArtistDao dao = new ArtistDao();
 			dao.Update(newArtist, OldArtist.Id); //Update the record based on original ID
