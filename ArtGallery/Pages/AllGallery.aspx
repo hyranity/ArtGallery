@@ -229,7 +229,7 @@
 			</tr>
 		</table>
 
-		<asp:Repeater ID="Repeater1" runat="server" DataSourceID="GallerySource">
+		<asp:Repeater ID="Repeater1" runat="server">
 			<HeaderTemplate>
 				<table class='gallery'>
 			</HeaderTemplate>
@@ -253,7 +253,7 @@
 			</FooterTemplate>
 		</asp:Repeater>
 
-		<asp:SqlDataSource ID="GallerySource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT ARTPIECE.TITLE, ARTPIECE.IMAGELINK AS URL, ARTIST.Username, ARTIST.DisplayName FROM ARTPIECE INNER JOIN ARTIST ON ARTPIECE.ARTISTID = ARTIST.ARTISTID WHERE (ARTPIECE.ISPUBLIC = 1) ORDER BY ARTPIECE.ARTPIECEID DESC"></asp:SqlDataSource>
+		<asp:SqlDataSource ID="GallerySource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"></asp:SqlDataSource>
 
 		<div class='footer'>
 			<a href='#' class='link'>ABOUT</a>
