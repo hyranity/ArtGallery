@@ -229,7 +229,7 @@
 			</tr>
 		</table>
 
-		<asp:Repeater ID="Repeater1" runat="server">
+		<asp:Repeater ID="ArtRepeater" runat="server">
 			<HeaderTemplate>
 				<table class='gallery'>
 			</HeaderTemplate>
@@ -239,7 +239,7 @@
 				<td>
 					<a href='#'>
 						<asp:Image runat="server" ImageUrl='<%# Eval("URL") %>' />
-
+						
 						<div class='box'>
 							<a class='artpiece'><%# Eval("TITLE") %></a>
 							<a class='artist'><%# Eval("Username") %> <%# Eval("DisplayName") %></a>
@@ -253,8 +253,11 @@
 			</FooterTemplate>
 		</asp:Repeater>
 
-		<asp:SqlDataSource ID="GallerySource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"></asp:SqlDataSource>
-
+		
+		<!-- Pagination -->
+		<asp:SqlDataSource ID="GallerySource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>">
+		</asp:SqlDataSource>
+		
 		<div class='footer'>
 			<a href='#' class='link'>ABOUT</a>
 			<a href='#' class='text'>ART-X 2019</a>

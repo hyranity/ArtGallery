@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArtGallery.Daos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,8 @@ namespace ArtGallery.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+			ArtpieceDao Dao = new ArtpieceDao();
+			//Artpiece Artpiece = Dao.Get("
         }
     }
 }

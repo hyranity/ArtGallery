@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -17,6 +18,14 @@ namespace ArtGallery.Util
 			System.Diagnostics.Debug.Print(str);
 		}
 
+		//Code possible thanks to Nikhil Agrawal https://stackoverflow.com/questions/48017535/having-an-int-as-a-sql-parameter
+		public static SqlParameter GetParam(int num, string field)
+		{
+			return new SqlParameter(field, System.Data.SqlDbType.Int)
+			{
+				Value = num
+			};
+		}
 		
 	}
 }

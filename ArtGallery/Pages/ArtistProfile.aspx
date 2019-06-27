@@ -26,13 +26,13 @@
 			    <div class='card'>
 
 				    <div id='left'>
-                        <asp:Label ID="lblHandle" runat="server" CssClass="label handle">@seandoran</asp:Label>
+                        <asp:Label ID="lblHandle" runat="server" CssClass="label handle"></asp:Label>
 					    <div id='main'>
 						    <img src='https://pbs.twimg.com/profile_images/1055263632861343745/vIqzOHXj.jpg' >
-                            <asp:Label ID="lblName" runat="server" CssClass="label name">Sean Doran</asp:Label>
+                            <asp:Label ID="lblName" runat="server" CssClass="label name"></asp:Label>
 					    </div>
-                        <asp:Label ID="lblLocation" runat="server" CssClass="label location">NEW YORK CITY, USA</asp:Label>
-                        <asp:Label ID="lblBio" runat="server" CssClass="label bio">UI/UX designer based in NYC.</asp:Label>
+                        <asp:Label ID="lblLocation" runat="server" CssClass="label location"></asp:Label>
+                        <asp:Label ID="lblBio" runat="server" CssClass="label bio"></asp:Label>
 					    <div id='tags'>
 						    <a class='tag'>UI</a>
 						    <a class='tag'>UX</a>
@@ -72,72 +72,37 @@
 			    </div>
 		    </div>
 
-		    <table class='gallery'>
-              <tr>
-                <td>
-                  <a href='#'>
-                    <img src='https://images.unsplash.com/photo-1536851101967-55988a52f455?ixlib=rb-1.2.1&auto=format&fit=crop&w=1936&q=80'>
-                    <div class='box'>
-                      <a class='artpiece'>Waves</a>
-                      <a class='artist'>RYAN KOROH</a>
-                    </div>
-                  </a>
-                </td>
-                <td>
-                  <a href='#'>
-                    <img src='https://images.unsplash.com/photo-1536851101967-55988a52f455?ixlib=rb-1.2.1&auto=format&fit=crop&w=1936&q=80'>
-                    <div class='box'>
-                      <a class='artpiece'>Waves</a>
-                      <a class='artist'>RYAN KOROH</a>
-                    </div>
-                  </a>
-                </td>
-                <td>
-                  <a href='#'>
-                    <img src='https://images.unsplash.com/photo-1536851101967-55988a52f455?ixlib=rb-1.2.1&auto=format&fit=crop&w=1936&q=80'>
-                    <div class='box'>
-                      <a class='artpiece'>Waves</a>
-                      <a class='artist'>RYAN KOROH</a>
-                    </div>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a href='#'>
-                    <img src='https://images.unsplash.com/photo-1536851101967-55988a52f455?ixlib=rb-1.2.1&auto=format&fit=crop&w=1936&q=80'>
-                    <div class='box'>
-                      <a class='artpiece'>Waves</a>
-                      <a class='artist'>RYAN KOROH</a>
-                    </div>
-                  </a>
-                </td>
-                <td>
-                  <a href='#'>
-                    <img src='https://images.unsplash.com/photo-1536851101967-55988a52f455?ixlib=rb-1.2.1&auto=format&fit=crop&w=1936&q=80'>
-                    <div class='box'>
-                      <a class='artpiece'>Waves</a>
-                      <a class='artist'>RYAN KOROH</a>
-                    </div>
-                  </a>
-                </td>
-                <td>
-                  <a href='#'>
-                    <img src='https://images.unsplash.com/photo-1536851101967-55988a52f455?ixlib=rb-1.2.1&auto=format&fit=crop&w=1936&q=80'>
-                    <div class='box'>
-                      <a class='artpiece'>Waves</a>
-                      <a class='artist'>RYAN KOROH</a>
-                    </div>
-                  </a>
-                </td>
-              </tr>
-            </table>
+		   <asp:Repeater ID="ArtRepeater" runat="server">
+			<HeaderTemplate>
+				<table class='gallery'>
+			</HeaderTemplate>
+			<ItemTemplate>
+				<!-- The following code is obtained from: Jeff Sternal @ https://stackoverflow.com/questions/1765942/how-do-you-show-x-items-per-row-in-a-repeater/1766379#1766379 -->
+				<%# (Container.ItemIndex + 3) % 3 == 0 ? "<tr>" : string.Empty %>
+				<td>
+					<a href='#'>
+						<asp:Image runat="server" ImageUrl='<%# Eval("URL") %>' />
+
+						<div class='box'>
+							<a class='artpiece'><%# Eval("TITLE") %></a>
+							<a class='artist'><%# Eval("Username") %> <%# Eval("DisplayName") %></a>
+						</div>
+					</a>
+				</td>
+				&nbsp;&nbsp;<%# (Container.ItemIndex + 3) % 3 == 2 ? "</tr>" : string.Empty %>
+			</ItemTemplate>
+			<FooterTemplate>
+				</table>
+			</FooterTemplate>
+		</asp:Repeater>
+
+		<asp:SqlDataSource ID="GallerySource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"></asp:SqlDataSource>
 
             <div class='footer'>
               <a href='#' class='link'>ABOUT</a>
               <a href='#' class='text'>ART-X 2019</a>
               <a href='#' class='link'>FAQ</a>
-            <div>
+            </div>
 
         </form>
 
