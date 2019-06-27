@@ -1,0 +1,107 @@
+﻿html, body, #form1 {
+    margin: 0px;
+    padding: 0px;
+    width: 1920px;
+}
+
+a, .label {
+    font-family: Roboto Condensed;
+    text-decoration: none;
+    color: #4B4848;
+    font-weight: bold;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 30px;
+    margin-left: 50px;
+    /* margin-left: -1300px; */
+}
+
+    .header .title {
+        font-size: 100px;
+        margin-right: 50px;
+    }
+
+    .header .link {
+        font-size: 25px;
+        margin-right: 25px;
+    }
+
+.footer {
+    margin-top: 60px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 30px; /* weird div size stuff w/out this */
+}
+
+    .footer .link {
+        font-size: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .footer .text {
+        font-size: 25px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+    .container #image img {
+        width: 1000px;
+    }
+
+    .container #details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        margin-left: 80px;
+    }
+
+        .container #details .type {
+            font-size: 25px;
+            color: #F9CA6A;
+        }
+
+        .container #details .title {
+            font-size: 70px;
+            margin-top: -5px;
+        }
+
+        .container #details .artist {
+            font-size: 30px;
+            margin-top: -2px;
+        }
+
+        .container #details .description {
+            font-size: 30px;
+            margin-top: 40px;
+        }
+
+        .container #details .tags {
+            margin-top: 10px;
+        }
+
+            .container #details .tags a {
+                font-size: 15px;
+                margin-right: 10px;
+                color: #847E7E;
+            }
+
+            .container #details .tags .sale {
+                color: #86C18F;
+            }
