@@ -29,9 +29,9 @@ namespace ArtGallery.Pages
 
                     //nameLbl.Text = artist.Username + " " + artist.DisplayName;
                     //usernameLbl.Text = artist.Id;
-                    nameLbl.Text = artist.DisplayName;
-                    usernameLbl.Text = "@" + artist.Username;
-                    bioLbl.Text = artist.Bio;
+                    lblName.Text = artist.DisplayName;
+                    lblUsername.Text = "@" + artist.Username;
+                    lblBio.Text = artist.Bio;
 
 					id.Text = artist.Id;
 					username.Text = artist.Username;

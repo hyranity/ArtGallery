@@ -81,7 +81,9 @@
     <Content Include="Pages\CSS\ArtistProfile.css" />
     <Content Include="Pages\CSS\Artpiece.css" />
     <Content Include="Pages\CSS\ArtpiecePreview.css" />
+    <Content Include="Pages\CSS\CustomerAccount.css" />
     <Content Include="Pages\CSS\LoginRegister.css" />
+    <Content Include="Pages\CustomerAccount.aspx" />
     <Content Include="Pages\JavaScript\LoginRegister.js" />
     <Content Include="Pages\LoginRegister.aspx" />
     <Content Include="Register.aspx" />
@@ -146,6 +148,13 @@
     </Compile>
     <Compile Include="Pages\ArtpiecePreview.aspx.designer.cs">
       <DependentUpon>ArtpiecePreview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CustomerAccount.aspx.cs">
+      <DependentUpon>CustomerAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\CustomerAccount.aspx.designer.cs">
+      <DependentUpon>CustomerAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\LoginRegister.aspx.cs">
       <DependentUpon>LoginRegister.aspx</DependentUpon>

@@ -1,0 +1,285 @@
+﻿html, body, #form1 {
+    margin: 0px;
+    padding: 0px;
+    width: 1920px;
+    overflow: hidden;
+}
+
+.label, a {
+    font-family: Roboto Condensed;
+    text-decoration: none;
+    color: #4B4848;
+    font-weight: bold;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 30px;
+    margin-left: 50px;
+    /* margin-left: -1300px; */
+}
+
+    .header .title {
+        font-size: 100px;
+        margin-right: 50px;
+    }
+
+    .header .link {
+        font-size: 25px;
+        margin-right: 25px;
+    }
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: -1000px;
+    margin-top: 100px;
+}
+
+    .card .handle {
+        font-size: 30px;
+    }
+
+    .card #main {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: -10px;
+    }
+
+        .card #main img {
+            border-radius: 100px;
+            width: 80px;
+            margin-right: 20px;
+        }
+
+        .card #main .name {
+            font-size: 90px;
+        }
+
+    .card .location {
+        font-size: 20px;
+        color: grey;
+    }
+
+    .card .bio {
+        margin-top: 20px;
+        font-size: 35px;
+    }
+
+    .card #tags {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: 5px;
+        margin-bottom: 20px;
+    }
+
+        .card #tags .tag {
+            font-size: 20px;
+            margin-right: 10px;
+            color: grey;
+        }
+
+    .card #topstats, .card #bottomstats {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .card #topstats div {
+            float: left;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .card #topstats .number {
+            font-size: 70px;
+            font-weight: bold;
+            color: #F9CA6A;
+            margin-right: 5px;
+        }
+
+        .card #topstats .stat {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .card #bottomstats div {
+            float: left;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .card #bottomstats .number {
+            font-size: 50px;
+            font-weight: bold;
+            color: #F9CA6A;
+            margin-right: 5px;
+        }
+
+        .card #bottomstats .stat {
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+    .card .back {
+        margin-top: 50px;
+        color: grey;
+        font-size: 25px;
+    }
+
+.purple {
+    background-color: #807187;
+    height: 2000px;
+    width: 1200px;
+    transform: rotate(20deg);
+    margin-left: 800px;
+    margin-top: -1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+    .purple .container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: -350px;
+        margin-right: 100px;
+    }
+
+        .purple .container #center {
+            transform: rotate(-90deg);
+            z-index: 1;
+        }
+
+            .purple .container #center input {
+                color: white;
+                font-size: 80px;
+                background: transparent;
+                border: none;
+                font-family: Roboto Condensed;
+                font-weight: bold;
+            }
+
+                .purple .container #center input:focus {
+                    outline: none;
+                }
+
+        .purple .container #left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            z-index: 1;
+            margin-right: -210px;
+            margin-top: -190px;
+        }
+
+            .purple .container #left input {
+                font-size: 35px;
+                z-index: 2;
+                font-weight: bold;
+                width: 200px;
+                border: none;
+                background: transparent;
+                color: white;
+                text-align: right;
+                font-family: Roboto Condensed;
+            }
+
+                .purple .container #left input::placeholder {
+                    color: white;
+                    font-size: 35px;
+                    font-family: Roboto Condensed;
+                }
+
+                .purple .container #left input:focus {
+                    outline: none;
+                }
+
+            .purple .container #left img {
+                margin-top: -18px;
+                z-index: 1;
+                width: 50px;
+                margin-bottom: -15px;
+                filter: invert(100%);
+                float: right;
+            }
+
+            .purple .container #left .text {
+                transform: rotate(-90deg);
+                color: #87D291;
+                font-size: 35px;
+                text-align: right;
+                margin-top: 50px;
+                position: relative;
+                left: 30px;
+            }
+
+        .purple .container #right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            z-index: 1;
+            margin-left: -240px;
+            margin-bottom: -200px;
+        }
+
+            .purple .container #right input {
+                font-size: 35px;
+                z-index: 2;
+                font-weight: bold;
+                width: 200px;
+                border: none;
+                background: transparent;
+                color: white;
+                text-align: left;
+                font-family: Roboto Condensed;
+            }
+
+                .purple .container #right input::placeholder {
+                    color: white;
+                    font-size: 35px;
+                    font-family: Roboto Condensed;
+                }
+
+                .purple .container #right input:focus {
+                    outline: none;
+                }
+
+            .purple .container #right img {
+                margin-top: -18px;
+                z-index: 1;
+                width: 50px;
+                margin-bottom: -15px;
+                filter: invert(100%);
+                float: right;
+            }
+
+            .purple .container #right .text {
+                transform: rotate(-90deg);
+                color: #E88484;
+                font-size: 35px;
+                text-align: left;
+                margin-bottom: 60px;
+                position: relative;
+                right: 45px;
+            }

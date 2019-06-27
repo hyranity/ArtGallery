@@ -12,14 +12,14 @@
 		overflow: hidden;
 	}
 
-	.labels, a {
+	.label, a {
 		font-family: Roboto Condensed;
 		text-decoration: none;
 		color: #4B4848;
 		font-weight: bold;
 	}
 
-	.header {
+	.header {   
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -303,13 +303,13 @@
 		</div>
 
 		<div class='card'>
-			<asp:Label ID="usernameLbl" runat="server" CssClass="handle labels"></asp:Label>
+			<asp:Label ID="lblUsername" runat="server" CssClass="label handle"></asp:Label>
 			<div id='main'>
 				<img src='https://pbs.twimg.com/profile_images/1055263632861343745/vIqzOHXj.jpg'>
-				<asp:Label ID="nameLbl" runat="server" CssClass="name labels"></asp:Label>
+				<asp:Label ID="lblName" runat="server" CssClass="label name"></asp:Label>
 			</div>
-			<a class='location'>NEW YORK CITY, USA</a>
-			<asp:Label ID="bioLbl" CssClass="labels" runat="server"/>
+            <asp:Label ID="lblLocation" runat="server" CssClass="label location">NEW YORK CITY, USA</asp:Label>
+			<asp:Label ID="lblBio" runat="server" CssClass="label bio"></asp:Label>
 			<div id='tags'>
 				<a class='tag'>UI</a>
 				<a class='tag'>UX</a>
@@ -319,28 +319,26 @@
 			</div>
 			<div id='topstats'>
 				<div>
-					<a class='number'>23</a>
-					<a class='stat'>ARTPIECES<br>
-						POSTED</a>
+                    <asp:Label ID="lblNumberArtpiecesPosted" runat="server" CssClass="label number">23</asp:Label>
+                    <asp:Label ID="lblStatArtpiecesPosted" runat="server" CssClass="label stat">ARTPIECES<br />POSTED</asp:Label>
 				</div>
 				<div>
-					<a class='number'>1.5k</a>
-					<a class='stat'>FOLLOWERS</a>
+                    <asp:Label ID="lblNumberFollowers" runat="server" CssClass="label number">1.5k</asp:Label>
+                    <asp:Label ID="lblStatFollowers" runat="server" CssClass="label stat">FOLLOWERS</asp:Label>
 				</div>
 			</div>
 			<div id='bottomstats'>
 				<div>
-					<a class='number'>184</a>
-					<a class='stat'>ARTPIECES<br>
-						LIKED</a>
+                    <asp:Label ID="lblNumberArtpiecesLiked" runat="server" CssClass="label number">184</asp:Label>
+                    <asp:Label ID="lblStatArtpiecesLiked" runat="server" CssClass="label stat">ARTPIECES<br />LIKED</asp:Label>
 				</div>
 				<div>
-					<a class='number'>312</a>
-					<a class='stat'>SALES</a>
+                    <asp:Label ID="lblNumberSales" runat="server" CssClass="label number">312</asp:Label>
+                    <asp:Label ID="lblStatSales" runat="server" CssClass="label stat">SALES</asp:Label>
 				</div>
 				<div>
-					<a class='number'>74</a>
-					<a class='stat'>FOLLOWING</a>
+                    <asp:Label ID="lblNumberFollowing" runat="server" CssClass="label number">74</asp:Label>
+                    <asp:Label ID="lblStatFollowing" runat="server" CssClass="label stat">FOLLOWING</asp:Label>
 				</div>
 			</div>
 			<a href='#' class='back'>BACK TO PROFILE</a>
