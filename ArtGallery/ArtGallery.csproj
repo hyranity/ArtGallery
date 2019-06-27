@@ -78,6 +78,7 @@
     <Content Include="Pages\ArtistProfile.aspx" />
     <Content Include="Pages\Artpiece.aspx" />
     <Content Include="Pages\ArtpiecePreview.aspx" />
+    <Content Include="Pages\CSS\AllGallery.css" />
     <Content Include="Pages\CSS\ArtistProfile.css" />
     <Content Include="Pages\CSS\Artpiece.css" />
     <Content Include="Pages\CSS\ArtpiecePreview.css" />

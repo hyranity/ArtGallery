@@ -93,6 +93,10 @@
 			</ItemTemplate>
 			<FooterTemplate>
 				</table>
+                <div class="arrows">
+                    <a href="#"><</a>
+                    <a href="#">></a>
+                </div>
 			</FooterTemplate>
 		</asp:Repeater>
 
