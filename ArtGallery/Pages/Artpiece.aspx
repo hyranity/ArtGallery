@@ -24,15 +24,15 @@
 
 		    <div class='container'>
 			    <div id='image'>
-				    <img src='https://images.unsplash.com/photo-1526304760382-3591d3840148?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80'>
+				    <asp:Image runat="server" ID="artpieceImg" />
 			    </div>
 			    <div id='details'>
-                    <asp:Label ID="lblType" runat="server" CssClass="label type">ILLUSTRATION</asp:Label>
-                    <asp:Label ID="lblTitle" runat="server" CssClass="label title">Prism Hand</asp:Label>
-                    <asp:Label ID="lblArtist" runat="server" CssClass="label artist">GUSTAVO CENTURION</asp:Label>
-                    <asp:Label ID="lblDescription" runat="server" CssClass="label description">My latest street art piece!</asp:Label>
+                    <asp:Label ID="lblType" runat="server" CssClass="label type"></asp:Label>
+                    <asp:Label ID="lblTitle" runat="server" CssClass="label title"></asp:Label>
+                    <asp:Label ID="lblArtist" runat="server" CssClass="label artist"></asp:Label>
+                    <asp:Label ID="lblDescription" runat="server" CssClass="label description"></asp:Label>
 				    <div class='tags'>
-					    <a href='#' class='sale'>FOR SALE</a>
+					    <asp:Label runat="server" id="lblForSale" CssClass='sale'>FOR SALE</asp:Label>
 					    <a href='#' class='tag'>ILLUSRATION</a>
 					    <a href='#' class='tag'>MODERN</a>
 					    <br>

@@ -22,6 +22,15 @@ namespace ArtGallery.Pages {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// artpieceImg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image artpieceImg;
+        
+        /// <summary>
         /// lblType control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace ArtGallery.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDescription;
+        
+        /// <summary>
+        /// lblForSale control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblForSale;
         
         /// <summary>
         /// lblNumberViews control.

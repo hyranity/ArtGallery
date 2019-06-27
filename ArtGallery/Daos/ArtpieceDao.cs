@@ -51,17 +51,18 @@ namespace ArtGallery.Daos
                     //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
 
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-                    /*return new Artpiece(
+                    return new Artpiece(
                         (string)Dr["ArtpieceId"],
                         (string)Dr["ArtistId"],
                         (string)Dr["Title"],
-                        (string)Dr["ImageLink"],
-                        (double)Dr["Price"],
+						(string)Dr["About"],
+						(string)Dr["ImageLink"],
+                        Convert.ToDouble((decimal)Dr["Price"]),
                         (int)Dr["QuantityLeft"],
-                        (byte[])Dr["IsForSale"],
+                        (bool)Dr["IsForSale"],
                         (string)Dr["Tags"],
-                        (byte[])Dr["IsPublic"]
-                    );*/
+                        (bool)Dr["IsPublic"]
+                    );
                 }
             }
 
@@ -80,25 +81,26 @@ namespace ArtGallery.Daos
 
                 while (Dr.Read())
                 {
-                    /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
-                    // int i = 0;
-                    //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
+					/* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
+					// int i = 0;
+					//return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
 
-                    // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-                    /*Artpiece.Add(new Artpiece(
+					// method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
+					/*Artpiece.Add(new Artpiece(
                         (string)Dr["ArtpieceId"],
                         (string)Dr["ArtistId"],
                         (string)Dr["Title"],
-                        (string)Dr["ImageLink"],
-                        (double)Dr["Price"],
+						(string)Dr["About"],
+						(string)Dr["ImageLink"],
+                        Convert.ToDouble((decimal)Dr["Price"]),
                         (int)Dr["QuantityLeft"],
-                        (byte[])Dr["IsForSale"],
+                        (bool)Dr["IsForSale"],
                         (string)Dr["Tags"],
-                        (byte[])Dr["IsPublic"])
+                        (bool)Dr["IsPublic"]
                     );*/
-                }
+				}
 
-                if (Artpiece.Any())
+				if (Artpiece.Any())
                 {
                     return Artpiece;
                 }

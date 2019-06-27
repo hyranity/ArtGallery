@@ -21,7 +21,7 @@ namespace ArtGallery.Pages
 			}
 			catch (Exception ex)
 			{
-				//Redirect to homepage
+				// Show error msg
 			}
 
 			int offsetAmt = 0;
@@ -63,7 +63,7 @@ namespace ArtGallery.Pages
 			}
 			else
 			{
-				lblHandle.Text = Artist.username;
+				lblHandle.Text = Artist.Username;
 				lblName.Text = Artist.DisplayName;
 				lblBio.Text = Artist.Bio;
 			}

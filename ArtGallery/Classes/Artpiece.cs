@@ -25,8 +25,9 @@ namespace ArtGallery.Classes
 
 		}
 
-		public Artpiece(string ArtistId, string Title, string About, string ImageLink, double Price, int QuantityLeft, Boolean IsForSale, string Tags, Boolean IsPublic)
+		public Artpiece(string ArtpieceId, string ArtistId, string Title, string About, string ImageLink, double Price, int QuantityLeft, Boolean IsForSale, string Tags, Boolean IsPublic)
 		{
+			this.ArtpieceId = ArtpieceId;
 			this.ArtistId = ArtistId;
 			this.Title = Title;
 			this.About = About;
