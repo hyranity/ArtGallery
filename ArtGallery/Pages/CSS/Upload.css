@@ -1,0 +1,182 @@
+﻿html, body, #form1 {
+    margin: 0px;
+    padding: 0px;
+    width: 1920px;
+}
+
+body, #form1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+a {
+    font-family: Roboto Condensed;
+    text-decoration: none;
+    color: #4B4848;
+    font-weight: bold;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-left: -1300px;
+}
+
+    .header .title {
+        font-size: 100px;
+        margin-right: 50px;
+    }
+
+    .header .link {
+        font-size: 25px;
+        margin-right: 25px;
+    }
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-15deg);
+    margin-top: 210px;
+    margin-bottom: 210px;
+}
+
+    .container #left {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+    }
+
+        .container #left input {
+            font-size: 35px;
+            z-index: 2;
+            font-weight: bold;
+            width: 200px;
+            border: none;
+            background: transparent;
+            color: #4B4848;
+            text-align: right;
+            font-family: Roboto Condensed;
+        }
+
+            .container #left input::placeholder {
+                color: #4B4848;
+                font-size: 35px;
+                font-family: Roboto Condensed;
+            }
+
+            .container #left input:focus {
+                outline: none;
+            }
+
+        .container #left img {
+            margin-top: -18px;
+            z-index: 1;
+            width: 50px;
+            margin-bottom: -15px;
+            filter: invert(30%);
+            float: right;
+        }
+
+    .container #center {
+        margin-left: 100px;
+        margin-right: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .container #center #upload {
+            color: #4B4848;
+            font-size: 110px;
+            background: transparent;
+            border: none;
+            font-family: Roboto Condensed;
+            font-weight: bold;
+        }
+
+        .container #center #file {
+            color: #4B4848;
+            font-size: 40px;
+            background: #807187;
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            border-radius: 30px;
+            border: none;
+            font-family: Roboto Condensed;
+            font-weight: bold;
+            color: white;
+        }
+
+        .container #center input:focus {
+            outline: none;
+        }
+
+    .container #right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+        .container #right input {
+            font-size: 35px;
+            z-index: 2;
+            font-weight: bold;
+            width: 200px;
+            border: none;
+            background: transparent;
+            color: #4B4848;
+            text-align: left;
+            font-family: Roboto Condensed;
+        }
+
+            .container #right input::placeholder {
+                color: #4B4848;
+                font-size: 35px;
+                font-family: Roboto Condensed;
+            }
+
+            .container #right input:focus {
+                outline: none;
+            }
+
+        .container #right img {
+            margin-top: -18px;
+            z-index: 1;
+            width: 50px;
+            margin-bottom: -15px;
+            filter: invert(30%);
+            float: right;
+        }
+
+.footer {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 30px; /* weird div size stuff w/out this */
+}
+
+    .footer .link {
+        font-size: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .footer .text {
+        font-size: 25px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }

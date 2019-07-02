@@ -84,9 +84,11 @@
     <Content Include="Pages\CSS\ArtpiecePreview.css" />
     <Content Include="Pages\CSS\CustomerAccount.css" />
     <Content Include="Pages\CSS\LoginRegister.css" />
+    <Content Include="Pages\CSS\Upload.css" />
     <Content Include="Pages\CustomerAccount.aspx" />
     <Content Include="Pages\JavaScript\LoginRegister.js" />
     <Content Include="Pages\LoginRegister.aspx" />
+    <Content Include="Pages\Upload.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="RegisterDone.aspx" />
     <Content Include="TestRepeater.aspx" />
@@ -163,6 +165,13 @@
     </Compile>
     <Compile Include="Pages\LoginRegister.aspx.designer.cs">
       <DependentUpon>LoginRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Upload.aspx.cs">
+      <DependentUpon>Upload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Upload.aspx.designer.cs">
+      <DependentUpon>Upload.aspx</DependentUpon>
     </Compile>
     <Compile Include="TestRepeater.aspx.cs">
       <DependentUpon>TestRepeater.aspx</DependentUpon>
