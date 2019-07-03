@@ -93,16 +93,17 @@ a {
         justify-content: center;
     }
 
-        .container #center #upload {
+        .container #center .upload {
             color: #4B4848;
             font-size: 110px;
             background: transparent;
             border: none;
             font-family: Roboto Condensed;
             font-weight: bold;
+            text-align: center;
         }
 
-        .container #center #file {
+        .container #center .file {
             color: #4B4848;
             font-size: 40px;
             background: #807187;
@@ -127,8 +128,12 @@ a {
         align-items: flex-start;
         justify-content: center;
     }
+        
+        .container #right a {
+            font-size: 35px;
+        }
 
-        .container #right input {
+        .container #right input[type='text'] {
             font-size: 35px;
             z-index: 2;
             font-weight: bold;
@@ -140,13 +145,13 @@ a {
             font-family: Roboto Condensed;
         }
 
-            .container #right input::placeholder {
+            .container #right input[type='text']::placeholder {
                 color: #4B4848;
                 font-size: 35px;
                 font-family: Roboto Condensed;
             }
 
-            .container #right input:focus {
+            .container #right input[type='text']:focus {
                 outline: none;
             }
 
@@ -158,6 +163,20 @@ a {
             filter: invert(30%);
             float: right;
         }
+
+        .container #right .rblIsPublic, .container #right .rblForSale {
+
+        }
+
+            .container #right .rblIsPublic label, .container #right .rblForSale label {
+                
+                color: #4B4848;
+                font-size: 20px;
+                font-family: Roboto Condensed;
+                font-weight: bold;
+                margin-left: 5px;
+                margin-right: 10px;
+            }
 
 .footer {
     margin-top: 100px;

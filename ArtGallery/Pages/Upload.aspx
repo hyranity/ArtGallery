@@ -30,9 +30,8 @@
 			</div>
 
 			<div id='center'>
-				<input type='submit' value='UPLOAD' id='upload'>
-				<asp:Button runat="server" ID="uploadBt" OnClick="uploadBt_Click" />
-				<input type='submit' value='select file' id='file'>
+				<asp:Button runat="server" ID="uploadBt" OnClick="uploadBt_Click" CssClass="upload" Text="UPLOAD"/>
+                <asp:Button runat="server" ID="fileBt" CssClass="file" Text="select file"/>
 				<div id='category'>
 					<div id='image'>
                         <!-- TBC -->
@@ -44,10 +43,16 @@
 			</div>
 
 			<div id='right'>
-				<asp:Textbox ID="txtIsPublic" runat="server" Placeholder="is public?"></asp:Textbox>
-				<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
-				<asp:Textbox ID="txtForSale" runat="server" Placeholder="for sale?"></asp:Textbox>
-				<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
+                <a>is public?</a>
+                <asp:RadioButtonList ID="rblIsPublic" runat="server" CssClass="rblIsPublic" RepeatDirection="Horizontal">
+                    <asp:ListItem>yes</asp:ListItem>
+                    <asp:ListItem>no</asp:ListItem>
+                </asp:RadioButtonList>
+                <a>for sale?</a>
+                <asp:RadioButtonList ID="rblForSale" runat="server" CssClass="rblForSale" RepeatDirection="Horizontal">
+                    <asp:ListItem>yes</asp:ListItem>
+                    <asp:ListItem>no</asp:ListItem>
+                </asp:RadioButtonList>
 				<asp:Textbox ID="txtStocks" runat="server" Placeholder="stocks"></asp:Textbox>
 				<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
 				<asp:Textbox ID="txtPrice" runat="server" Placeholder="price"></asp:Textbox>

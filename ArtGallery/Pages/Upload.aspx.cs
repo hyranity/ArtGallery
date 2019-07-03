@@ -15,8 +15,8 @@ namespace ArtGallery.Pages
         protected void Page_Load(object sender, EventArgs e)
         {
 			// Check if logged in as Artist or not
-			if (Session["artist"] == null)
-				Response.Redirect("~/Pages/LoginRegister.aspx");
+			//if (Session["artist"] == null)
+				//Response.Redirect("~/Pages/LoginRegister.aspx");
         }
 
 		protected void uploadBt_Click(object sender, EventArgs e)
@@ -34,16 +34,16 @@ namespace ArtGallery.Pages
 			artpiece.QuantityLeft = Convert.ToInt32(txtStocks.Text);  // Need to validate        
 
 			// NOTE! NEED TO CHANGE TO DROPDOWNLIST
-			if (txtForSale.Text == "true") // If the artpiece is for sale
+			/*if (txtForSale.Text == "true") // If the artpiece is for sale
 				artpiece.IsForSale = true;
 			else
-				artpiece.IsForSale = false;
+				artpiece.IsForSale = false;*/
 
 			// NOTE! NEED TO CHANGE TO DROPDOWNLIST
-			if (txtIsPublic.Text == "true") // If the artpiece is public
+			/*if (txtIsPublic.Text == "true") // If the artpiece is public
 				artpiece.IsPublic = true;
 			else
-				artpiece.IsPublic = false;
+				artpiece.IsPublic = false;*/
 
 			//artpiece.ImageLink = FileUtil.Upload(fileUpload, "~/Pics");     // For image link
 

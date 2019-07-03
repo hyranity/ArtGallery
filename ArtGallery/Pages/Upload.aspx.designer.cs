@@ -58,22 +58,31 @@ namespace ArtGallery.Pages {
         protected global::System.Web.UI.WebControls.Button uploadBt;
         
         /// <summary>
-        /// txtIsPublic control.
+        /// fileBt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIsPublic;
+        protected global::System.Web.UI.WebControls.Button fileBt;
         
         /// <summary>
-        /// txtForSale control.
+        /// rblIsPublic control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtForSale;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblIsPublic;
+        
+        /// <summary>
+        /// rblForSale control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rblForSale;
         
         /// <summary>
         /// txtStocks control.
