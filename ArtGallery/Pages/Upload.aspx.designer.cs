@@ -22,6 +22,15 @@ namespace ArtGallery.Pages {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// txtTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTitle;
+        
+        /// <summary>
         /// txtDescription control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,24 @@ namespace ArtGallery.Pages {
         protected global::System.Web.UI.WebControls.TextBox txtTags;
         
         /// <summary>
+        /// uploadBt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button uploadBt;
+        
+        /// <summary>
+        /// txtIsPublic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIsPublic;
+        
+        /// <summary>
         /// txtForSale control.
         /// </summary>
         /// <remarks>
@@ -47,6 +74,15 @@ namespace ArtGallery.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtForSale;
+        
+        /// <summary>
+        /// txtStocks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtStocks;
         
         /// <summary>
         /// txtPrice control.

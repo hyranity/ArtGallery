@@ -8,16 +8,16 @@ namespace ArtGallery.Classes
     public class Artpiece
     {
         // variables
-        public string ArtpieceId { get; private set; }
-        public string ArtistId { get; private set; }
-        public string Title { get; private set; }
-        public string About { get; private set; }
-        public string ImageLink { get; private set; }
-        public double Price { get; private set; }
-        public int QuantityLeft { get; private set; }
-        public Boolean IsForSale { get; private set; }
-        public string Tags { get; private set; }
-        public Boolean IsPublic { get; private set; }
+        public string ArtpieceId { get; set; }
+        public string ArtistId { get; set; }
+        public string Title { get; set; }
+        public string About { get; set; }
+        public string ImageLink { get; set; }
+        public double Price { get; set; }
+        public int QuantityLeft { get; set; }
+        public Boolean IsForSale { get; set; }
+        public string Tags { get; set; }
+        public Boolean IsPublic { get; set; }
         // constructors
 
         public Artpiece()

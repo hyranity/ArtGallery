@@ -21,6 +21,8 @@
 		<div class='container'>
 
 			<div id='left'>
+				<asp:Textbox ID="txtTitle" runat="server" Placeholder="title"></asp:Textbox>
+				<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
                 <asp:Textbox ID="txtDescription" runat="server" Placeholder="description"></asp:Textbox>
 				<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
 				<asp:Textbox ID="txtTags" runat="server" Placeholder="tags"></asp:Textbox>
@@ -29,6 +31,7 @@
 
 			<div id='center'>
 				<input type='submit' value='UPLOAD' id='upload'>
+				<asp:Button runat="server" ID="uploadBt" OnClick="uploadBt_Click" />
 				<input type='submit' value='select file' id='file'>
 				<div id='category'>
 					<div id='image'>
@@ -41,7 +44,11 @@
 			</div>
 
 			<div id='right'>
+				<asp:Textbox ID="txtIsPublic" runat="server" Placeholder="is public?"></asp:Textbox>
+				<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
 				<asp:Textbox ID="txtForSale" runat="server" Placeholder="for sale?"></asp:Textbox>
+				<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
+				<asp:Textbox ID="txtStocks" runat="server" Placeholder="stocks"></asp:Textbox>
 				<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
 				<asp:Textbox ID="txtPrice" runat="server" Placeholder="price"></asp:Textbox>
 				<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
