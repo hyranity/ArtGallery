@@ -19,25 +19,26 @@ namespace ArtGallery.Daos
         // crud functions
         public void Add(Artpiece Artpiece)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Artpiece(ArtpieceId, ArtistId, Title, ImageLink, Price, QuantityLeft, IsForSale, Tags, IsPublic)"
-                                + "VALUES(@CustomerId, @Username, @DisplayName, @Email, @Password, @PasswordSalt, @CreditCardNo)");
+            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Artpiece(ArtpieceId, ArtistId, Title, About, ImageLink, Price, QuantityLeft, IsForSale, Tags, IsPublic)"
+                                + "VALUES(@ArtpieceId, @ArtistId, @Title, @About, @ImageLink, @Price, @QuantityLeft, @IsForSale, @Tags, @IsPublic)");
             Cmd.Parameters.AddWithValue("@ArtpieceId", Artpiece.ArtpieceId);
             Cmd.Parameters.AddWithValue("@ArtistId", Artpiece.ArtistId);
             Cmd.Parameters.AddWithValue("@Title", Artpiece.Title);
             Cmd.Parameters.AddWithValue("@ImageLink", Artpiece.ImageLink);
             Cmd.Parameters.AddWithValue("@Price", Artpiece.Price);
             Cmd.Parameters.AddWithValue("@QuantityLeft", Artpiece.QuantityLeft);
-            Cmd.Parameters.AddWithValue("@ForSale", Artpiece.IsForSale);
+            Cmd.Parameters.AddWithValue("@IsForSale", Artpiece.IsForSale);
             Cmd.Parameters.AddWithValue("@Tags", Artpiece.Tags);
             Cmd.Parameters.AddWithValue("@IsPublic", Artpiece.IsPublic);
-
-            Cmd.ExecuteNonQuery();
+			Cmd.Parameters.AddWithValue("@About", Artpiece.About);
+			Cmd.ExecuteNonQuery();
 
             DBUtil.Disconnect();
         }
 
         public Artpiece Get(string Field, string Value)
         {
+			
             SqlCommand Cmd;
                 Cmd = DBUtil.GenerateSql("SELECT * FROM Artpiece WHERE ([" + Field + "] = @Value)");
                 Cmd.Parameters.AddWithValue("@Value", Value);

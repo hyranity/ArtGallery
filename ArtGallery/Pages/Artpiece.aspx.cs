@@ -1,4 +1,5 @@
-﻿using ArtGallery.Daos;
+﻿using ArtGallery.Classes;
+using ArtGallery.Daos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,27 +31,60 @@ namespace ArtGallery.Pages
 			// Validate artpiece ID
 			if (artpiece == null)
 				lblTitle.Text = "Artpiece does not exist";
-			else if (!artpiece.IsPublic)
-			{
-				lblTitle.Text = "Artpiece is private";
-			}
 			else
 			{
 				// Get Artist info
 				ArtistDao artistDao = new ArtistDao();
 				Classes.Artist artist = artistDao.Get("ARTISTID", artpiece.ArtistId);
 
-				lblArtist.Text = artist.DisplayName;
-				lblDescription.Text = artpiece.About;
-				lblTitle.Text = artpiece.Title;
-				artpieceImg.ImageUrl = artpiece.ImageLink;
+				// Will be null if currently logged in user is not an artist
+				Artist currentArtist = (Artist)Session["Artist"];
 
-				if (!artpiece.IsForSale)
+				// Block private artpiece from customer
+				if (!artpiece.IsPublic && currentArtist == null)
 				{
-					lblForSale.Text = "NOT FOR SALE";
-					lblForSale.CssClass = "notforsale";
+					lblTitle.Text = "Artpiece is private";
+				}
+				else
+				{
+
+					// Block private artpiece from other artists
+					if (!artpiece.IsPublic && currentArtist.Id != artist.Id)
+					{
+						lblTitle.Text = "Artpiece is private";
+					}
+					// Show private artpiece to the original artist
+					else if (!artpiece.IsPublic && currentArtist.Id == artist.Id)
+					{
+						//Display artpiece details
+						lblArtist.Text = artist.DisplayName;
+						lblDescription.Text = artpiece.About;
+						lblTitle.Text = artpiece.Title + "(PRIVATE ARTPIECE)";
+						artpieceImg.ImageUrl = artpiece.ImageLink;
+
+						if (!artpiece.IsForSale)
+						{
+							lblForSale.Text = "NOT FOR SALE";
+							lblForSale.CssClass = "notforsale";
+						}
+					}
+					else // Show public artpiece
+					{
+						//Display artpiece details
+						lblArtist.Text = artist.DisplayName;
+						lblDescription.Text = artpiece.About;
+						lblTitle.Text = artpiece.Title;
+						artpieceImg.ImageUrl = artpiece.ImageLink;
+
+						if (!artpiece.IsForSale)
+						{
+							lblForSale.Text = "NOT FOR SALE";
+							lblForSale.CssClass = "notforsale";
+						}
+					}
 				}
 			}
+
         }
     }
 }

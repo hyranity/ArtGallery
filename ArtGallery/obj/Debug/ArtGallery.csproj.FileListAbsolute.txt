@@ -165,4 +165,4 @@ C:\Users\mast3\Source\Repos\ArtGallery\ArtGallery\obj\Debug\ArtGallery.csproj.Co
 C:\Users\mast3\Source\Repos\ArtGallery\ArtGallery\obj\Debug\ArtGallery.csproj.CopyComplete
 C:\Users\mast3\Source\Repos\ArtGallery\ArtGallery\obj\Debug\ArtGallery.dll
 C:\Users\mast3\Source\Repos\ArtGallery\ArtGallery\obj\Debug\ArtGallery.pdb
-C:\Users\mast3\source\repos\ArtGallery\ArtGallery\obj\Debug\ArtGallery.csprojAssemblyReference.cache
+C:\Users\mast3\Source\Repos\ArtGallery\ArtGallery\obj\Debug\ArtGallery.csprojAssemblyReference.cache

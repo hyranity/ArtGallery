@@ -31,7 +31,7 @@
 
 			<div id='center'>
 				<asp:Button runat="server" ID="uploadBt" OnClick="uploadBt_Click" CssClass="upload" Text="UPLOAD"/>
-                <asp:Button runat="server" ID="fileBt" CssClass="file" Text="select file"/>
+                <asp:FileUpload runat="server" ID="fileBt" CssClass="file" Text="select file"/>
 				<div id='category'>
 					<div id='image'>
                         <!-- TBC -->
