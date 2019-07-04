@@ -17,16 +17,23 @@ namespace ArtGallery.Pages
 			
 		}
 
-		protected void btnRegister_Click(object sender, EventArgs e)
-		{
-			// Should be changed to dropdownlist
-			if (txtRegisterPosition.Text == "customer")
-				Customer.RegisterCustomer(txtRegisterID.Text, txtRegisterUsername.Text, txtRegisterDisplayName.Text, txtRegisterEmail.Text, txtRegisterPassword.Text, null);
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+            IdGen IdGen = new IdGen();
 
-			if (txtRegisterPosition.Text == "artist")
-				Artist.RegisterArtist(txtRegisterID.Text, txtRegisterUsername.Text, txtRegisterDisplayName.Text, txtRegisterEmail.Text, txtRegisterPassword.Text);
+            // Should be changed to dropdownlist
+            if (txtRegisterPosition.Text == "customer")
+            {
+                String Id = IdGen.GenerateId("Customer");
+                Customer.RegisterCustomer(Id, txtRegisterUsername.Text, txtRegisterDisplayName.Text, txtRegisterEmail.Text, txtRegisterPassword.Text, null);
+            }
 
-			txtRegisterID.Text = "";
+            if (txtRegisterPosition.Text == "artist")
+            {
+                String Id = IdGen.GenerateId("Artist");
+                Artist.RegisterArtist(Id, txtRegisterUsername.Text, txtRegisterDisplayName.Text, txtRegisterEmail.Text, txtRegisterPassword.Text);
+            }
+
 			txtRegisterEmail.Text = "";
 			txtRegisterDisplayName.Text = "";
 			txtRegisterPassword.Text = "";

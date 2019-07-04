@@ -22,8 +22,7 @@ namespace ArtGallery.Util
 			Con = new SqlConnection(ConnectStr);
 			Con.Open();
 		}
-
-
+        
 		// Generates an SQL 
 		public SqlCommand GenerateSql(String query)
 		{

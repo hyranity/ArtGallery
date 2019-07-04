@@ -23,10 +23,14 @@ namespace ArtGallery.Pages
 		{
 			// Obtain artist info
 			Artist artist = (Artist)Session["artist"];
+
+            // Generate Artpiece Id
+            IdGen IdGen = new IdGen();
+            String ArtpieceId = IdGen.GenerateId("Artpiece");
 			
 			// Obtain the values from the form
 			Classes.Artpiece artpiece = new Classes.Artpiece();
-			artpiece.ArtpieceId = "TESTING"; // NOTE TO BE CHANGED TO AN AUTO GENERATING ID
+            artpiece.ArtpieceId = ArtpieceId;
 			artpiece.ArtistId = artist.Id;
 			artpiece.Tags = txtTags.Text;
 			artpiece.About = txtDescription.Text;

@@ -9,7 +9,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script src="JavaScript/LoginRegister.js"></script>
 	<link href="CSS/LoginRegister.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet"/>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -27,9 +27,9 @@
           </div>
           <div class='inputs' style='margin-left: -30px'>
             <asp:TextBox ID="txtLoginID" Placeholder="ID" runat="server"></asp:TextBox>
-            <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
+            <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
             <asp:TextBox ID="txtLoginPassword" Placeholder="password" runat="server"></asp:TextBox>
-            <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
+            <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
           </div>
         </div>
       </div>
@@ -40,18 +40,16 @@
             <asp:Button ID="btnRegister" runat="server" Text="REGISTER" OnClick="btnRegister_Click" />
           </div>
           <div class='inputs' style='margin-left: -65px;'>
-			 <asp:TextBox ID="txtRegisterID" Placeholder="ID" runat="server" ></asp:TextBox>
-            <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
             <asp:TextBox ID="txtRegisterUsername" Placeholder="username" runat="server" ></asp:TextBox>
-            <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
+            <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
 			<asp:TextBox ID="txtRegisterDisplayName" Placeholder="display name" runat="server"></asp:TextBox>
-            <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
+            <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
             <asp:TextBox ID="txtRegisterEmail" Placeholder="email" runat="server"></asp:TextBox>
-            <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
+            <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
             <asp:TextBox ID="txtRegisterPassword" Placeholder="password" runat="server"></asp:TextBox>
-            <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
+            <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
             <asp:TextBox ID="txtRegisterPosition" Placeholder="position" runat="server"></asp:TextBox>
-            <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
+            <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
           </div>
         </div>
       </div>
