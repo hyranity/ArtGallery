@@ -14,7 +14,7 @@ namespace ArtGallery.Pages
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+			
 		}
 
 		protected void btnRegister_Click(object sender, EventArgs e)
@@ -64,7 +64,7 @@ namespace ArtGallery.Pages
 					{
 						//Login successful
 						Quick.Print("Customer logged in.");
-						Session["cust"] = cust;
+						Session["customer"] = cust;
 						Response.Redirect("~/Pages/CustomerAccount.aspx", false);
 					}
 					else

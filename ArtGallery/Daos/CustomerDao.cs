@@ -146,7 +146,33 @@ namespace ArtGallery.Daos
             DBUtil.Disconnect();
         }
 
-        public void Delete(Customer Customer)
+		public void Update(Customer Customer, string OriginalID)
+		{
+			// SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Customer SET ... WHERE ([CustID] = @CustID)");
+			SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Customer " +
+				"SET CustID = @CustID, Username = @Username" +
+				", DisplayName = @DisplayName" +
+				", Email = @Email" +
+				", Passwd = @Passwd" +
+				", PasswordSalt = @PasswordSalt" +
+				", CreditCardNo = @CreditCardNo" +
+				" WHERE CustID = @OriginalCustID"
+			);
+			Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
+			Cmd.Parameters.AddWithValue("@OriginalCustID", OriginalID);
+			Cmd.Parameters.AddWithValue("@Username", Customer.Username);
+			Cmd.Parameters.AddWithValue("@DisplayName", Customer.DisplayName);
+			Cmd.Parameters.AddWithValue("@Email", Customer.Email);
+			Cmd.Parameters.AddWithValue("@Passwd", Customer.Passwd);
+			Cmd.Parameters.AddWithValue("@PasswordSalt", Customer.PasswordSalt);
+			Cmd.Parameters.AddWithValue("@CreditCardNo", Customer.CreditCardNo);
+
+			Cmd.ExecuteNonQuery();
+
+			DBUtil.Disconnect();
+		}
+
+		public void Delete(Customer Customer)
         {
             SqlCommand Cmd = DBUtil.GenerateSql("DELETE FROM Customer WHERE CustID = @CustID");
             Cmd.Parameters.AddWithValue("@CustID", Customer.Id);

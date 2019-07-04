@@ -24,15 +24,6 @@
 				<img src='https://pbs.twimg.com/profile_images/1055263632861343745/vIqzOHXj.jpg'>
 				<asp:Label ID="lblName" runat="server" CssClass="name labels"></asp:Label>
 			</div>
-            <asp:Label ID="lblLocation" runat="server" CssClass="label location">NEW YORK CITY, USA</asp:Label>
-			<asp:Label ID="lblBio" runat="server" CssClass="label bio"></asp:Label>
-			<div id='tags'>
-				<a class='tag'>UI</a>
-				<a class='tag'>UX</a>
-				<a class='tag'>DESIGN</a>
-				<a class='tag'>WEB</a>
-				<a class='tag'>MOBILE</a>
-			</div>
 			<div id='topstats'>
 				<div>
                     <asp:Label ID="lblNumberArtpiecesBought" runat="server" CssClass="label number">23</asp:Label>
@@ -70,7 +61,7 @@
 							ACCOUNT</a>
 					</div>
 					<div id='center'>
-						<asp:Button ID="btnEdit" runat="server" Text="UPDATE DETAILS" />
+						<asp:Button ID="btnEdit" runat="server" Text="UPDATE DETAILS" OnClick="btnEdit_Click" />
 					</div>
 					<div id='right'>
 						<a href='#' class='text'>LOGOUT</a>

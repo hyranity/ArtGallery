@@ -139,7 +139,6 @@ namespace ArtGallery.Daos
             Cmd.Parameters.AddWithValue("@Bio", Artist.Bio);
 
             Cmd.ExecuteNonQuery();
-			Quick.Print(Artist.Id);
 
             DBUtil.Disconnect();
         }
