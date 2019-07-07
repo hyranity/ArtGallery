@@ -22,5 +22,7 @@ namespace ArtGallery.Classes
 			this.ArtpieceId = ArtpieceId;
 			this.CustId = CustId;
 		}
+
+		
 	}
 }
