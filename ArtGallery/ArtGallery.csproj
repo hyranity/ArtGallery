@@ -78,10 +78,12 @@
     <Content Include="Pages\ArtistProfile.aspx" />
     <Content Include="Pages\Artpiece.aspx" />
     <Content Include="Pages\ArtpiecePreview.aspx" />
+    <Content Include="Pages\Cart.aspx" />
     <Content Include="Pages\CSS\AllGallery.css" />
     <Content Include="Pages\CSS\ArtistProfile.css" />
     <Content Include="Pages\CSS\Artpiece.css" />
     <Content Include="Pages\CSS\ArtpiecePreview.css" />
+    <Content Include="Pages\CSS\Cart.css" />
     <Content Include="Pages\CSS\CustomerAccount.css" />
     <Content Include="Pages\CSS\LoginRegister.css" />
     <Content Include="Pages\CSS\Upload.css" />
@@ -151,6 +153,13 @@
     </Compile>
     <Compile Include="Pages\ArtpiecePreview.aspx.designer.cs">
       <DependentUpon>ArtpiecePreview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\CustomerAccount.aspx.cs">
       <DependentUpon>CustomerAccount.aspx</DependentUpon>

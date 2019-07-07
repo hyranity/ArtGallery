@@ -1,0 +1,258 @@
+﻿html, body, #form1 {
+    margin: 0px;
+    padding: 0px;
+    width: 1920px;
+    overflow-x: hidden; /* disable only horizontal scrolling*/
+}
+
+a, .label {
+    font-family: Roboto Condensed;
+    text-decoration: none;
+    color: #4B4848;
+    font-weight: bold;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 30px;
+    margin-left: 50px;
+    /* margin-left: -1300px; */
+}
+
+    .header .title {
+        font-size: 100px;
+        margin-right: 50px;
+    }
+
+    .header .link {
+        font-size: 25px;
+        margin-right: 25px;
+    }
+
+    .header .link {
+        margin-left: 20px;
+        font-size: 20px;
+    }
+
+.footer {
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 30px; /* weird div size stuff w/out this */
+}
+
+    .footer .link {
+        font-size: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .footer .text {
+        font-size: 25px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+    .container .purple {
+        background-color: #807187;
+        width: 2020px;
+        height: 300px;
+        margin-left: -50px;
+        transform: rotate(-5deg);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+        .container .purple #left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+            .container .purple #left #heading {
+                font-size: 100px;
+                color: white;
+            }
+
+            .container .purple #left img {
+                height: 15px;
+                width: 200px;
+                margin-top: -5px;
+                margin-bottom: 20px;
+            }
+
+            .container .purple #left #back {
+                font-size: 25px;
+                color: #D4C8C8;
+            }
+
+        .container .purple #centre {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+
+            .container .purple #centre div {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+            }
+
+                .container .purple #centre div .stat {
+                    color: #D4C8C8;
+                    margin-right: 20px;
+                    font-size: 50px;
+                }
+
+                .container .purple #centre div .value {
+                    color: white;
+                    font-size: 50px;
+                }
+
+        .container .purple #right {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .container .purple #right #image {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .container .purple #right #text {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+            }
+
+                .container .purple #right #text a {
+                    font-size: 50px;
+                    color: white;
+                }
+
+                .container .purple #right #text img {
+                    height: 10px;
+                    width: 80px;
+                }
+
+.gallery {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+    .gallery tr td {
+        padding: 25px;
+    }
+
+        .gallery tr td img {
+            width: 500px;
+            height: 375px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 5px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery tr td .details {
+            display: flex;
+            flex-direction: row;
+            width: 500px;
+        }
+
+            .gallery tr td .details .of_artpiece {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                width: 50%;
+            }
+
+                .gallery tr td .details .of_artpiece .title {
+                    font-size: 40px;
+                }
+
+                .gallery tr td .details .of_artpiece .artist {
+                    font-size: 20px;
+                }
+
+            .gallery tr td .details .of_order {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                justify-content: center;
+                width: 50%;
+            }
+
+                .gallery tr td .details .of_order .quantity {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                    .gallery tr td .details .of_order .quantity a {
+                        font-size: 35px;
+                        color: #918D8D;
+                    }
+
+                    .gallery tr td .details .of_order .quantity input[type='submit'] {
+                        background: transparent;
+                        border: none;
+                        font-size: 45px;
+                        font-weight: bold;
+                        font-family: Roboto Condensed;
+                    }
+
+                        .gallery tr td .details .of_order .quantity input[type='submit']:focus {
+                            outline: none;
+                        }
+
+                    .gallery tr td .details .of_order .quantity .decrement {
+                        color: #DE9670;
+                    }
+
+                    .gallery tr td .details .of_order .quantity .increment {
+                        color: #89B28D;
+                    }
+
+                .gallery tr td .details .of_order .subtotal {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    margin-right: 5px;
+                    margin-top: -5px;
+                }
+
+                .gallery tr td .details .of_order .caption {
+                    font-size: 20px;
+                    color: #918D8D;
+                    margin-right: 10px;
+                }
+
+                .gallery tr td .details .of_order .value {
+                    font-size: 20px;
+                    color: #4B4848;
+                }
