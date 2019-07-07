@@ -52,7 +52,6 @@
 
           <table class='gallery'>
             <tr>
-
               <td>
                 <a href='#'>
                   <asp:Image runat="server" ImageUrl='https://images.unsplash.com/photo-1536851101967-55988a52f455?ixlib=rb-1.2.1&auto=format&fit=crop&w=1936&q=80' />

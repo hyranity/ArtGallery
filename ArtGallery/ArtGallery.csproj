@@ -223,6 +223,7 @@
     <Compile Include="Util\FileUtil.cs" />
     <Compile Include="Util\IdGen.cs" />
     <Compile Include="Util\Quick.cs" />
+    <Compile Include="Util\Net.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
