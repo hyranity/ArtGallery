@@ -126,9 +126,19 @@ a, .label {
                 justify-content: center;
             }
 
-                .container #details .buttons div a {
-                    font-size: 35px;
+                .container #details .buttons div .button {
+                    font-size: 30px;
                     color: #847E7E;
+                    background: transparent;
+                    border: none;
+                    font-family: Roboto Condensed;
+                    text-decoration: none;
+                    font-weight: bold;
+                    margin-top: 10px;
+                }
+
+                .container #details .buttons div .button:focus {
+                    outline: none;
                 }
 
         .container #details .stats {

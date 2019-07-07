@@ -41,13 +41,17 @@
 				    </div>
 				    <div class='buttons'>
 					    <div>
-						    <a href='#'>LIKE</a>
+                            <asp:Button ID="btnLike" runat="server" Text="LIKE" CssClass="button" />
 						    <img src='https://i.imgur.com/DXquOBN.png'>
-					    </div>
+					        <asp:Button ID="btnViewArtist" runat="server" Text="VIEW ARTIST" CssClass="button" />
+						    <img src='https://i.imgur.com/DXquOBN.png'>
+                        </div>
 					    <div>
-						    <a href='#'>VIEW ARTIST</a>
+						    <asp:Button ID="btnAddToWishlist" runat="server" Text="ADD TO WISHLIST" CssClass="button" />
 						    <img src='https://i.imgur.com/DXquOBN.png'>
-					    </div>
+						    <asp:Button ID="btnAddToCart" runat="server" Text="ADD TO CART" CssClass="button" />
+						    <img src='https://i.imgur.com/DXquOBN.png'>
+                        </div>
 				    </div>
 				    <div class='stats'>
 					    <div>
