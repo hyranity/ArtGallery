@@ -122,6 +122,8 @@ namespace ArtGallery.Pages
                 }
             }
 
+            litGallery.Text += "</table>";
+
             /*
 			// Check if there is an active cart
 			Order order = (Order) Session["order"];

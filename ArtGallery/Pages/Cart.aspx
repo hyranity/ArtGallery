@@ -52,6 +52,8 @@
             
           <asp:Literal ID="litGallery" runat="server"></asp:Literal>
 
+            <!--
+
           <table class='gallery'>
             <tr>
               <td>
@@ -197,6 +199,8 @@
 
             </tr>
           </table>
+
+                -->
 
         </div>
 
