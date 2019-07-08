@@ -8,7 +8,7 @@ namespace ArtGallery.Classes
 	
 	public class WishedArt
 	{
-		public string WishId; //PK
+		public int WishIndex; //PK
 		public string ArtpieceId; //FK
 		public string CustId; //FK
 
@@ -16,9 +16,9 @@ namespace ArtGallery.Classes
 		{
 		}
 
-		public WishedArt(string WishId, string ArtpieceId, string CustId)
+		public WishedArt(int WishIndex, string ArtpieceId, string CustId)
 		{
-			this.WishId = WishId;
+			this.WishIndex = WishIndex;
 			this.ArtpieceId = ArtpieceId;
 			this.CustId = CustId;
 		}

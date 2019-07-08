@@ -19,9 +19,8 @@ namespace ArtGallery.Daos
         // crud functions
         public void Add(WishedArt WishedArt)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO WishedArt(WishId, ArtpieceId, CustId)"
-                                + "VALUES(@WishId, @ArtpieceId, @CustId)");
-            Cmd.Parameters.AddWithValue("@WishId", WishedArt.WishId);
+            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO WishedArt(ArtpieceId, CustId)"
+                                + "VALUES(@ArtpieceId, @CustId)");
             Cmd.Parameters.AddWithValue("@ArtpieceId", WishedArt.ArtpieceId);
             Cmd.Parameters.AddWithValue("@CustId", WishedArt.CustId);
 
@@ -46,7 +45,7 @@ namespace ArtGallery.Daos
 
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
                     return new WishedArt(
-                        (string)Dr["WishId"],
+                        (int)Dr["WishIndex"],
                         (string)Dr["ArtpieceId"],
                         (string)Dr["CustId"]
                     );
@@ -73,7 +72,7 @@ namespace ArtGallery.Daos
 
 					// method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
 					return new WishedArt(
-						(string)Dr["WishId"],
+						(int)Dr["WishIndex"],
 						(string)Dr["ArtpieceId"],
 						(string)Dr["CustId"]
 					);
@@ -101,7 +100,7 @@ namespace ArtGallery.Daos
 
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
                     WishedArt.Add(new WishedArt(
-                        (string)Dr["WishId"],
+                        (int)Dr["WishIndex"],
                         (string)Dr["ArtpieceId"],
                         (string)Dr["CustId"])
                     );
@@ -122,9 +121,9 @@ namespace ArtGallery.Daos
             SqlCommand Cmd = DBUtil.GenerateSql("UPDATE WishedArt " +
                 "SET ArtpieceId = @ArtpieceId" +
                 ", CustId = @CustId" +
-                " WHERE WishId = @WishId"
+                " WHERE WishIndex = @WishIndex"
             );
-            Cmd.Parameters.AddWithValue("@WishId", WishedArt.WishId);
+            Cmd.Parameters.AddWithValue("@WishIndex", WishedArt.WishIndex);
             Cmd.Parameters.AddWithValue("@ArtpieceId", WishedArt.ArtpieceId);
             Cmd.Parameters.AddWithValue("@CustId", WishedArt.CustId);
 
@@ -135,8 +134,8 @@ namespace ArtGallery.Daos
 
         public void Delete(WishedArt WishedArt)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("DELETE FROM WishedArt WHERE WishId = @WishId");
-            Cmd.Parameters.AddWithValue("@WishId", WishedArt.WishId);
+            SqlCommand Cmd = DBUtil.GenerateSql("DELETE FROM WishedArt WHERE WishIndex = @WishIndex");
+            Cmd.Parameters.AddWithValue("@WishIndex", WishedArt.WishIndex);
 
             Cmd.ExecuteNonQuery();
 
