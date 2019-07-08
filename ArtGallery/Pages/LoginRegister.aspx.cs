@@ -49,10 +49,10 @@ namespace ArtGallery.Pages
 
 			// Creates both objects to read from both Customer and Artist tables
 			CustomerDao custDao = new CustomerDao();
-			Customer cust = custDao.Get("CUSTID", txtLoginID.Text);
+			Customer cust = custDao.Get("USERNAME", txtLoginUsername.Text);
 
 			ArtistDao artistDao = new ArtistDao();
-			Artist artist = artistDao.Get("ARTISTID", txtLoginID.Text);
+			Artist artist = artistDao.Get("USERNAME", txtLoginUsername.Text);
 
 			if (cust == null)			// If no customer has that ID
 				if (artist == null)		// If no artist has that ID

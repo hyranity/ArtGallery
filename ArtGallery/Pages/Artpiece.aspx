@@ -47,7 +47,7 @@
 						    <img src='https://i.imgur.com/DXquOBN.png'>
                         </div>
 					    <div>
-						    <asp:Button ID="btnAddToWishlist" runat="server" Text="ADD TO WISHLIST" CssClass="button" />
+						    <asp:Button ID="btnAddToWishlist" runat="server" Text="ADD TO WISHLIST" CssClass="button" OnClick="btnAddToWishlist_Click" />
 						    <img src='https://i.imgur.com/DXquOBN.png'>
 						    <asp:Button ID="btnAddToCart" runat="server" Text="ADD TO CART" CssClass="button" />
 						    <img src='https://i.imgur.com/DXquOBN.png'>

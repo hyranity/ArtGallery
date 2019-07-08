@@ -31,7 +31,6 @@ namespace ArtGallery.Pages
 					lblName.Text = customer.DisplayName;
 					lblUsername.Text = "@" + customer.Username;
 
-					id.Text = customer.Id;
 					username.Text = customer.Username;
 					displayName.Text = customer.DisplayName;
 					email.Text = customer.Email;
@@ -63,7 +62,7 @@ namespace ArtGallery.Pages
 			else
 				cardNoStr = cardNo.Text;
 
-			Customer newCustomer = new Customer(id.Text, username.Text, displayName.Text, email.Text, NewPass, NewSalt, cardNoStr);
+			Customer newCustomer = new Customer(OldCustomer.Id, username.Text, displayName.Text, email.Text, NewPass, NewSalt, cardNoStr);
 			CustomerDao dao = new CustomerDao();
 			dao.Update(newCustomer, OldCustomer.Id); //Update the record based on original ID
 			Session["customer"] = newCustomer; // Update the one in the session

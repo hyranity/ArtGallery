@@ -26,7 +26,7 @@
             <asp:Button ID="btnLogin" runat="server" Text="LOGIN" OnClick="btnLogin_Click" />
           </div>
           <div class='inputs' style='margin-left: -30px'>
-            <asp:TextBox ID="txtLoginID" Placeholder="ID" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtLoginUsername" Placeholder="username" runat="server"></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
             <asp:TextBox ID="txtLoginPassword" Placeholder="password" runat="server"></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>

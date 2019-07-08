@@ -33,7 +33,6 @@ namespace ArtGallery.Pages
                     lblUsername.Text = "@" + artist.Username;
                     lblBio.Text = artist.Bio;
 
-					id.Text = artist.Id;
 					username.Text = artist.Username;
 					displayName.Text = artist.DisplayName;
 					email.Text = artist.Email;
@@ -56,7 +55,7 @@ namespace ArtGallery.Pages
 				 NewSalt = hash.GetSalt();
 			}
 
-			Artist newArtist = new Artist(id.Text, username.Text, displayName.Text, email.Text, NewPass, NewSalt, bio.Text);
+			Artist newArtist = new Artist(OldArtist.Id, username.Text, displayName.Text, email.Text, NewPass, NewSalt, bio.Text);
 			
 			ArtistDao dao = new ArtistDao();
 			dao.Update(newArtist, OldArtist.Id); //Update the record based on original ID
