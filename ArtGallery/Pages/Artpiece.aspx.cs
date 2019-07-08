@@ -140,6 +140,8 @@ namespace ArtGallery.Pages
 			{
 				if (wish == null) // If havent added yet
 				{
+					wish = new WishedArt(); // Create new object
+
 					//Make new wish 
 					IdGen IdGen = new IdGen();
 					wish.WishId = IdGen.GenerateId("wishedart");
