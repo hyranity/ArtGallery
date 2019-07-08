@@ -31,11 +31,11 @@
             <div id='centre'>
               <div>
                 <a class='stat'>ITEMS</a>
-                <a class='value'>6 PCS</a>
+                <asp:Literal ID="litNoOfitems" runat="server"></asp:Literal>
               </div>
               <div>
                 <a class='stat'>TOTAL</a>
-                <a class='value'>RM 231</a>
+                <asp:Literal ID="litTotalPrice" runat="server"></asp:Literal>
               </div>
             </div>
 
@@ -49,6 +49,8 @@
             </div>
 
           </div>
+            
+          <asp:Literal ID="litGallery" runat="server"></asp:Literal>
 
           <table class='gallery'>
             <tr>
