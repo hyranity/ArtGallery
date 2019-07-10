@@ -71,7 +71,7 @@ namespace ArtGallery.Pages
                 gallery.Controls.Add(new LiteralControl("" +
                         "</a>" +
                         "<div class='details'>" +
-                            "<div class='of_artpiece"));
+                            "<div class='of_artpiece'>"));
 
                 // ---
 
@@ -107,7 +107,7 @@ namespace ArtGallery.Pages
 
                 Label lblQuantity = new Label();
                 lblQuantity.ID = "lblQuantity" + loopCounter.ToString();
-                lblQuantity.Text = orderArtwork.Quantity.ToString();
+                lblQuantity.Text = orderArtwork.Quantity.ToString() + " PCS";
                 lblQuantity.CssClass = "label";
 
                 Button btnIncrement = new Button();
