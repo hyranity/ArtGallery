@@ -75,6 +75,8 @@
     <Content Include="Login.aspx" />
     <Content Include="Pages\AllGallery.aspx" />
     <Content Include="Pages\ArtistAccount.aspx" />
+    <Content Include="Pages\CSS\Home.css" />
+    <Content Include="Pages\CSS\PaymentHistory.css" />
     <Content Include="Pages\CustomerProfile.aspx" />
     <Content Include="Pages\ArtistProfile.aspx" />
     <Content Include="Pages\Artpiece.aspx" />
@@ -89,8 +91,10 @@
     <Content Include="Pages\CSS\LoginRegister.css" />
     <Content Include="Pages\CSS\Upload.css" />
     <Content Include="Pages\CustomerAccount.aspx" />
+    <Content Include="Pages\Home.aspx" />
     <Content Include="Pages\JavaScript\LoginRegister.js" />
     <Content Include="Pages\LoginRegister.aspx" />
+    <Content Include="Pages\PaymentHistory.aspx" />
     <Content Include="Pages\Upload.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="RegisterDone.aspx" />
@@ -176,12 +180,26 @@
     <Compile Include="Pages\CustomerAccount.aspx.designer.cs">
       <DependentUpon>CustomerAccount.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\LoginRegister.aspx.cs">
       <DependentUpon>LoginRegister.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\LoginRegister.aspx.designer.cs">
       <DependentUpon>LoginRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PaymentHistory.aspx.cs">
+      <DependentUpon>PaymentHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\PaymentHistory.aspx.designer.cs">
+      <DependentUpon>PaymentHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Upload.aspx.cs">
       <DependentUpon>Upload.aspx</DependentUpon>

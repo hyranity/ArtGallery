@@ -1,0 +1,181 @@
+﻿html, body {
+    margin: 0px;
+    padding: 0px;
+    width: 1920px;
+    overflow-x: hidden; /* disable horizontal scrolling*/
+}
+
+a, .label {
+    font-family: Roboto Condensed;
+    text-decoration: none;
+    color: #4B4848;
+    font-weight: bold;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 30px;
+    margin-left: 50px;
+    /* margin-left: -1300px; */
+}
+
+    .header .title {
+        font-size: 100px;
+        margin-right: 50px;
+    }
+
+    .header .link {
+        font-size: 25px;
+        margin-right: 25px;
+    }
+
+    .header .link {
+        margin-left: 20px;
+        font-size: 20px;
+    }
+
+.footer {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 30px; /* weird div size stuff w/out this */
+}
+
+    .footer .link {
+        font-size: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .footer .text {
+        font-size: 25px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+.heading {
+    padding-left: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+    .heading a {
+        font-size: 80px;
+    }
+
+    .heading img {
+        width: 150px;
+        height: 15px;
+        margin-top: -5px;
+    }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+    .container .box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 1650px;
+        border-radius: 70px;
+        box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.5);
+        margin-top: 50px;
+    }
+
+        .container .box .details {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+            .container .box .details div {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                margin-left: 25px;
+                margin-right: 25px;
+            }
+
+                .container .box .details div .text {
+                    font-size: 30px;
+                    color: #F9CA6A;
+                    margin-right: 10px;
+                }
+
+                .container .box .details div .value {
+                    font-size: 35px;
+                }
+
+        .container .box .artpieces {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap; /* important! keeps it so that there are only max 3 items at any time in row (based on how many can fit) */
+            margin-bottom: 30px;
+        }
+
+            .container .box .artpieces .artpiece {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                margin-left: 25px;
+                margin-right: 25px;
+                margin-top: 30px;
+            }
+
+                .container .box .artpieces .artpiece .left {
+                }
+
+                    .container .box .artpieces .artpiece .left img {
+                        width: 250px;
+                        border-radius: 20px;
+                        box-shadow: 0px 0px 7px -5px rgba(0, 0, 0, 0.5);
+                    }
+
+                .container .box .artpieces .artpiece .right {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: center;
+                    margin-left: 15px;
+                }
+
+                    .container .box .artpieces .artpiece .right .title {
+                        font-size: 40px;
+                    }
+
+                    .container .box .artpieces .artpiece .right .artist {
+                        font-size: 20px;
+                    }
+
+                    .container .box .artpieces .artpiece .right .quantity {
+                        font-size: 35px;
+                        color: #F9CA6A;
+                        margin-top: 10px;
+                    }
+
+                    .container .box .artpieces .artpiece .right .subtotal {
+                        font-size: 20px;
+                    }
+
+                        .container .box .artpieces .artpiece .right .subtotal span {
+                            color: #918D8D;
+                        }
