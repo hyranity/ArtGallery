@@ -1,5 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="ArtGallery.Pages.Cart" %>
 
+<%@ Import Namespace="ArtGallery.Classes" %>
+<%@ Import Namespace="ArtGallery.Daos" %>
+<%@ Import Namespace="ArtGallery.Util" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -51,149 +55,49 @@
           </div>
 
           <table class='gallery'>
-            <tr>
-              <td>
-                <a href='#'>
-                  <asp:Image runat="server" ImageUrl='https://images.unsplash.com/photo-1536851101967-55988a52f455?ixlib=rb-1.2.1&auto=format&fit=crop&w=1936&q=80' />
-                </a>
-                <div class='details'>
-            	    <div class='of_artpiece'>
-                        <asp:Label ID="lblTitle1" runat="server" Text="Play Hard" CssClass="label title"></asp:Label>
-                        <asp:Label ID="lblArtist1" runat="server" Text="ENISAURUS" CssClass="label artist"></asp:Label>
-            	    </div>
-            	    <div class='of_order'>
-            		    <div class='quantity'>
-                            <asp:Button ID="btnDecrement1" runat="server" Text="-" CssClass="decrement" />
-            			    <a>2 PCS</a>
-                            <asp:Button ID="btnIncrement1" runat="server" Text="+" CssClass="increment" />
-            		    </div>
-            		    <div class='subtotal'>
-            			    <a class='caption'>SUBTOTAL</a>
-                            <asp:Label ID="lblValue1" runat="server" Text="RM 76" CssClass="label value"></asp:Label>
-            		    </div>
-            	    </div>
-                </div>
-              </td>
+            <%
+                int indexCounter = 0;
 
-              <td>
-                <a href='#'>
-                  <asp:Image runat="server" ImageUrl='https://images.unsplash.com/photo-1536851101967-55988a52f455?ixlib=rb-1.2.1&auto=format&fit=crop&w=1936&q=80' />
-                </a>
-                <div class='details'>
-            	    <div class='of_artpiece'>
-                        <asp:Label ID="lblTitle2" runat="server" Text="Play Hard" CssClass="label title"></asp:Label>
-                        <asp:Label ID="lblArtist2" runat="server" Text="ENISAURUS" CssClass="label artist"></asp:Label>
-            	    </div>
-            	    <div class='of_order'>
-            		    <div class='quantity'>
-                            <asp:Button ID="btnDecrement2" runat="server" Text="-" CssClass="decrement" />
-            			    <a>2 PCS</a>
-                            <asp:Button ID="btnIncrement2" runat="server" Text="+" CssClass="increment" />
-            		    </div>
-            		    <div class='subtotal'>
-            			    <a class='caption'>SUBTOTAL</a>
-                            <asp:Label ID="lblValue2" runat="server" Text="RM 76" CssClass="label value"></asp:Label>
-            		    </div>
-            	    </div>
-                </div>
-              </td>
+                foreach (Order_Artwork orderArtwork in oaList)
+                {
+                    // Get corresponding artpiece and artist
+                    Artpiece artpiece = artpieceDao.Get("ArtpieceId", orderArtwork.ArtpieceId);
+                    Artist artist = artistDao.Get("ArtistId", artpiece.ArtistId);
 
-              <td>
-                <a href='#'>
-                  <asp:Image runat="server" ImageUrl='https://images.unsplash.com/photo-1536851101967-55988a52f455?ixlib=rb-1.2.1&auto=format&fit=crop&w=1936&q=80' />
-                </a>
-                <div class='details'>
-            	    <div class='of_artpiece'>
-                        <asp:Label ID="lblTitle3" runat="server" Text="Play Hard" CssClass="label title"></asp:Label>
-                        <asp:Label ID="lblArtist3" runat="server" Text="ENISAURUS" CssClass="label artist"></asp:Label>
-            	    </div>
-            	    <div class='of_order'>
-            		    <div class='quantity'>
-                            <asp:Button ID="btnDecrement3" runat="server" Text="-" CssClass="decrement" />
-            			    <a>2 PCS</a>
-                            <asp:Button ID="btnIncrement3" runat="server" Text="+" CssClass="increment" />
-            		    </div>
-            		    <div class='subtotal'>
-            			    <a class='caption'>SUBTOTAL</a>
-                            <asp:Label ID="lblValue3" runat="server" Text="RM 76" CssClass="label value"></asp:Label>
-            		    </div>
-            	    </div>
-                </div>
-              </td>
-
-            </tr>
-            <tr>
-
-              <td>
-                <a href='#'>
-                  <asp:Image runat="server" ImageUrl='https://images.unsplash.com/photo-1536851101967-55988a52f455?ixlib=rb-1.2.1&auto=format&fit=crop&w=1936&q=80' />
-                </a>
-                <div class='details'>
-            	    <div class='of_artpiece'>
-                        <asp:Label ID="lblTitle4" runat="server" Text="Play Hard" CssClass="label title"></asp:Label>
-                        <asp:Label ID="lblArtist4" runat="server" Text="ENISAURUS" CssClass="label artist"></asp:Label>
-            	    </div>
-            	    <div class='of_order'>
-            		    <div class='quantity'>
-                            <asp:Button ID="btnDecrement4" runat="server" Text="-" CssClass="decrement" />
-            			    <a>2 PCS</a>
-                            <asp:Button ID="btnIncrement4" runat="server" Text="+" CssClass="increment" />
-            		    </div>
-            		    <div class='subtotal'>
-            			    <a class='caption'>SUBTOTAL</a>
-                            <asp:Label ID="lblValue4" runat="server" Text="RM 76" CssClass="label value"></asp:Label>
-            		    </div>
-            	    </div>
-                </div>
-              </td>
-
-              <td>
-                <a href='#'>
-                  <asp:Image runat="server" ImageUrl='https://images.unsplash.com/photo-1536851101967-55988a52f455?ixlib=rb-1.2.1&auto=format&fit=crop&w=1936&q=80' />
-                </a>
-                <div class='details'>
-            	    <div class='of_artpiece'>
-                        <asp:Label ID="lblTitle5" runat="server" Text="Play Hard" CssClass="label title"></asp:Label>
-                        <asp:Label ID="lblArtist5" runat="server" Text="ENISAURUS" CssClass="label artist"></asp:Label>
-            	    </div>
-            	    <div class='of_order'>
-            		    <div class='quantity'>
-                            <asp:Button ID="btnDecrement5" runat="server" Text="-" CssClass="decrement" />
-            			    <a>2 PCS</a>
-                            <asp:Button ID="btnIncrement5" runat="server" Text="+" CssClass="increment" />
-            		    </div>
-            		    <div class='subtotal'>
-            			    <a class='caption'>SUBTOTAL</a>
-                            <asp:Label ID="lblValue5" runat="server" Text="RM 76" CssClass="label value"></asp:Label>
-            		    </div>
-            	    </div>
-                </div>
-              </td>
-
-              <td>
-                <a href='#'>
-                  <asp:Image runat="server" ImageUrl='https://images.unsplash.com/photo-1536851101967-55988a52f455?ixlib=rb-1.2.1&auto=format&fit=crop&w=1936&q=80' />
-                </a>
-                <div class='details'>
-            	    <div class='of_artpiece'>
-                        <asp:Label ID="lblTitle6" runat="server" Text="Play Hard" CssClass="label title"></asp:Label>
-                        <asp:Label ID="lblArtist6" runat="server" Text="ENISAURUS" CssClass="label artist"></asp:Label>
-            	    </div>
-            	    <div class='of_order'>
-            		    <div class='quantity'>
-                            <asp:Button ID="btnDecrement6" runat="server" Text="-" CssClass="decrement" />
-            			    <a>2 PCS</a>
-                            <asp:Button ID="btnIncrement6" runat="server" Text="+" CssClass="increment" />
-            		    </div>
-            		    <div class='subtotal'>
-            			    <a class='caption'>SUBTOTAL</a>
-                            <asp:Label ID="lblValue6" runat="server" Text="RM 76" CssClass="label value"></asp:Label>
-            		    </div>
-            	    </div>
-                </div>
-              </td>
-
-            </tr>
+                    if (indexCounter % 3 == 0)
+                    {
+                        %> <tr> <%
+                    }
+                    %>
+                        <td>
+                            <a href="#">
+                                <asp:Image runat="server" ImageUrl='<%= artpiece.ImageUrl %>' />
+                            </a>
+                            <div class="details">
+                                <div class="of_artpiece">
+                                    <asp:Label ID='<%= "lblTitle" + indexCounter %>' runat="server" Text='<%= artpiece.Title %>' CssClass='label title'></asp:Label>
+                                    <asp:Label ID='<%= "lblArtist" + indexCounter %>' runat="server" Text='<%= artist.DisplayName %>' CssClass='label artist'></asp:Label>
+                                </div>
+            	                <div class='of_order'>
+            		                <div class='quantity'>
+                                        <asp:Button ID='<%= "btnDecrement" + indexCounter %>' runat='server' Text='-' CssClass='decrement'  />
+            			                <a><%= orderArtwork.Quantity %> PCS</a>
+                                        <asp:Button ID='<%= "btnIncrement" + indexCounter %>' runat='server' Text='+' CssClass='increment' />
+            		                </div>
+            		                <div class='subtotal'>
+            			                <a class='caption'>SUBTOTAL</a>
+                                        <asp:Label ID='<%= "lblSubtotal" + indexCounter %>' runat='server' Text='<%= "RM " + (artpiece.Price * (double)orderArtwork.Quantity) %>' CssClass='label value'></asp:Label>
+            		                </div>
+            	                </div>
+                            </div>
+                        </td>
+                    <%
+                    if (indexCounter % 3 == 0)
+                    {
+                        %> </tr> <%
+                    }
+                }
+            %>
           </table>
 
         </div>
