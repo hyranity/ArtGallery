@@ -40,48 +40,57 @@ namespace ArtGallery.Pages {
         protected global::System.Web.UI.WebControls.Label lblPrice;
         
         /// <summary>
-        /// <%= "lblTitle" + indexCounter %> control.
+        /// gallery control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label <%= "lblTitle" + indexCounter %>;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gallery;
         
         /// <summary>
-        /// <%= "lblArtist" + indexCounter %> control.
+        /// lblTitle1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label <%= "lblArtist" + indexCounter %>;
+        protected global::System.Web.UI.WebControls.Label lblTitle1;
         
         /// <summary>
-        /// <%= "btnDecrement" + indexCounter %> control.
+        /// lblArtist1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button <%= "btnDecrement" + indexCounter %>;
+        protected global::System.Web.UI.WebControls.Label lblArtist1;
         
         /// <summary>
-        /// <%= "btnIncrement" + indexCounter %> control.
+        /// btnDecrement1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button <%= "btnIncrement" + indexCounter %>;
+        protected global::System.Web.UI.WebControls.Button btnDecrement1;
         
         /// <summary>
-        /// <%= "lblSubtotal" + indexCounter %> control.
+        /// btnIncrement1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label <%= "lblSubtotal" + indexCounter %>;
+        protected global::System.Web.UI.WebControls.Button btnIncrement1;
+        
+        /// <summary>
+        /// lblValue1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValue1;
     }
 }
