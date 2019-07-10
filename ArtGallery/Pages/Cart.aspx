@@ -58,7 +58,7 @@
 
           </div>
 
-          <table class='gallery'>
+          <!-- <table class='gallery'>
             <tr>
               <td>
                 <a href='#'>
@@ -82,8 +82,30 @@
             	    </div>
                 </div>
               </td>
+              <td>
+                <a href='#'>
+                  <asp:Image runat="server" ImageUrl='https://images.unsplash.com/photo-1536851101967-55988a52f455?ixlib=rb-1.2.1&auto=format&fit=crop&w=1936&q=80' />
+                </a>
+                <div class='details'>
+            	    <div class='of_artpiece'>
+                        <asp:Label ID="Label1" runat="server" Text="Play Hard" CssClass="label title"></asp:Label>
+                        <asp:Label ID="Label2" runat="server" Text="ENISAURUS" CssClass="label artist"></asp:Label>
+            	    </div>
+            	    <div class='of_order'>
+            		    <div class='quantity'>
+                            <asp:Button ID="Button1" runat="server" Text="-" CssClass="decrement" />
+            			    <a>2 PCS</a>
+                            <asp:Button ID="Button2" runat="server" Text="+" CssClass="increment" />
+            		    </div>
+            		    <div class='subtotal'>
+            			    <a class='caption'>SUBTOTAL</a>
+                            <asp:Label ID="Label3" runat="server" Text="RM 76" CssClass="label value"></asp:Label>
+            		    </div>
+            	    </div>
+                </div>
+              </td>
             </tr>
-          </table>
+          </table> -->
 
         </div>
 

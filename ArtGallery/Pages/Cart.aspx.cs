@@ -40,16 +40,20 @@ namespace ArtGallery.Pages
             oaList.Add(new Order_Artwork("testorder", "LILO", 5, oaList));
             /* END */
 
+            gallery.Controls.Add(new LiteralControl("<table class='gallery'>"));
+
             foreach (Order_Artwork orderArtwork in oaList)
             {
                 // Get corresponding artpiece and artist
                 ArtGallery.Classes.Artpiece artpiece = artpieceDao.Get("ArtpieceId", orderArtwork.ArtpieceId);
                 Artist artist = artistDao.Get("ArtistId", artpiece.ArtistId);
 
-                gallery.Controls.Add(new LiteralControl("<table class='gallery'>"));
-
                 if (loopCounter % 3 == 0)
                 {
+                    if (loopCounter != 0)
+                    {
+                        gallery.Controls.Add(new LiteralControl("</tr>"));
+                    }
                     gallery.Controls.Add(new LiteralControl("<tr>"));
                 }
 
@@ -75,19 +79,27 @@ namespace ArtGallery.Pages
 
                 // ---
 
-                Label lblTitle = new Label();
+                /*Label lblTitle = new Label();
                 lblTitle.ID = "lblTitle" + loopCounter.ToString();
                 lblTitle.Text = artpiece.Title;
                 lblTitle.CssClass = "label title";
 
-                gallery.Controls.Add(lblTitle);
+                gallery.Controls.Add(lblTitle);*/
 
-                Label lblArtist = new Label();
+                //gallery.Controls.Add(new LiteralControl("<asp:Label ID='lblTitle" + loopCounter + "' runat='server' Text='" + artpiece.Title + "' CssClass='label title'></asp:Label>"));
+
+                gallery.Controls.Add(new LiteralControl("<a class='title'>" + artpiece.Title + "</a>"));
+
+                /*Label lblArtist = new Label();
                 lblArtist.ID = "lblArtist" + loopCounter.ToString();
                 lblArtist.Text = artist.DisplayName;
                 lblTitle.CssClass = "label artist";
 
-                gallery.Controls.Add(lblArtist);
+                gallery.Controls.Add(lblArtist);*/
+
+                //gallery.Controls.Add(new LiteralControl("<asp:Label ID='lblArtist" + loopCounter + "' runat='server' Text='" + artist.DisplayName + "' CssClass='label artist'></asp:Label>"));
+
+                gallery.Controls.Add(new LiteralControl("<a class='artist'>" + artist.DisplayName + "</a>"));
 
                 // ---
 
@@ -105,17 +117,21 @@ namespace ArtGallery.Pages
 
                 gallery.Controls.Add(btnDecrement);
 
-                Label lblQuantity = new Label();
+                /*Label lblQuantity = new Label();
                 lblQuantity.ID = "lblQuantity" + loopCounter.ToString();
                 lblQuantity.Text = orderArtwork.Quantity.ToString() + " PCS";
                 lblQuantity.CssClass = "label";
+
+                gallery.Controls.Add(lblQuantity);*/
+
+                gallery.Controls.Add(new LiteralControl("<a>" + orderArtwork.Quantity.ToString() + " PCS</a>"));
 
                 Button btnIncrement = new Button();
                 btnIncrement.ID = "btnIncrement" + loopCounter.ToString();
                 btnIncrement.Text = "+";
                 btnIncrement.CssClass = "increment";
 
-                gallery.Controls.Add(btnDecrement);
+                gallery.Controls.Add(btnIncrement);
 
                 // ---
 
@@ -143,13 +159,10 @@ namespace ArtGallery.Pages
 
                 // ---
 
-                if (loopCounter % 3 == 0)
-                {
-                    gallery.Controls.Add(new LiteralControl("</tr>"));
-                }
+                loopCounter++;
             }
 
-            if (loopCounter % 3 != 0)
+            if (oaList.Count > 0)
             {
                 gallery.Controls.Add(new LiteralControl("</tr>"));
             }

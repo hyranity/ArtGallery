@@ -212,7 +212,7 @@ a, .label {
                     justify-content: center;
                 }
 
-                    .gallery tr td .details .of_order .quantity a {
+                    .gallery tr td .details .of_order .quantity a, .gallery tr td .details .of_order .quantity .test {
                         font-size: 35px;
                         color: #918D8D;
                     }
