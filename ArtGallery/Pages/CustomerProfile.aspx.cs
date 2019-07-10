@@ -3,6 +3,7 @@ using ArtGallery.Daos;
 using ArtGallery.Util;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -14,11 +15,13 @@ namespace ArtGallery.Pages
 	{
 
 		public int pageNo;
+		string username = "";
+
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
+			
 			// To ensure that a valid username is entered
-			string username = "";
 			try
 			{
 				username = Request.QueryString["username"].ToString();
@@ -31,27 +34,22 @@ namespace ArtGallery.Pages
 			int offsetAmt = 0;
 			int ItemLimit = 9; // How many items per page
 
-			
-			
-			bool hasError = false;
 
 			// Convert page into number
 			try
 			{
 				pageNo = Convert.ToInt32(Request.QueryString["page"].ToString());
+				LoadButtons(ItemLimit);
 			}
 			catch (Exception ex)
 			{
-				hasError = true;
-
+				Net.Redirect("~/Pages/CustomerProfile.aspx?username=" + username + "&page=1");
 			}
 
-			// If the querystring is simply entered, show default
-			if (!hasError)
-			{
-				pageNo--;
-				offsetAmt = pageNo * ItemLimit + 1;
-			}
+			if(pageNo<1)
+				Net.Redirect("~/Pages/CustomerProfile.aspx?username=" + username + "&page=1");
+
+			offsetAmt = CalculateOffset(ItemLimit);
 
 			// Clear parameters
 			GallerySource.SelectParameters.Clear();
@@ -86,24 +84,40 @@ namespace ArtGallery.Pages
 
 		}
 
-		protected void LoadButtons()
+		protected int CalculateOffset(int ItemLimit)
 		{
-			if (pageNo == 0)
+			return (pageNo - 1) * ItemLimit;
+		}
+
+		protected void LoadButtons(int ItemLimit)
+		{
+			if (pageNo == 1)
 				PrevPage.Visible = false;
 			else
 				PrevPage.Visible = true;
 
-			
+			// Get no of records in selected table
+			DBUtil DBUtil = new DBUtil();
+			SqlCommand Cmd = DBUtil.GenerateSql("SELECT COUNT(*) FROM ARTPIECE INNER JOIN ARTIST ON ARTPIECE.ARTISTID = ARTIST.ARTISTID INNER JOIN WISHEDART ON WISHEDART.ARTPIECEID = ARTPIECE.ARTPIECEID INNER JOIN CUSTOMER ON CUSTOMER.CUSTID = WISHEDART.CUSTID WHERE CUSTOMER.USERNAME = @USERNAME ");
+			Cmd.Parameters.AddWithValue("@USERNAME", username);
+			int NoOfRecords = Convert.ToInt32(Cmd.ExecuteScalar());
+
+			if (pageNo * ItemLimit < NoOfRecords)
+				NextPage.Visible = true;
+			else
+				NextPage.Visible = false;
 		}
 
 		protected void PrevPage_Click(object sender, EventArgs e)
 		{
-			int newPage = 0;
+			pageNo--;
+			Net.Redirect("~/Pages/CustomerProfile.aspx?username=" + username + "&page=" + pageNo);
+		}
 
-			if (pageNo > 0)
-				pageNo--;
-
-			
+		protected void NextPage_Click(object sender, EventArgs e)
+		{
+			pageNo++;
+			Net.Redirect("~/Pages/CustomerProfile.aspx?username=" + username + "&page=" + pageNo);
 		}
 	}
 }

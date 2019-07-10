@@ -11,32 +11,33 @@ namespace ArtGallery.Pages
 {
 	public partial class AllGallery : System.Web.UI.Page
 	{
-		
+		int pageNo;
 		protected void Page_Load(object sender, EventArgs e)
 		{
 			 int offsetAmt = 0;
 			int itemLimit = 9; // How many items per page
 
 
-			int pageNo = 0;
-				bool hasError = false;
+			bool hasError = false;
 
-				// Convert page into number
-				try
-				{
-					pageNo = Convert.ToInt32(Request.QueryString["page"].ToString());
-				}
-				catch (Exception ex)
-				{
-					 hasError = true;
-				}
-
-			// If the querystring is simply entered, show default
-			if (!hasError)
+			// Convert page into number
+			try
 			{
-				pageNo--;
-				offsetAmt = pageNo * itemLimit + 1;
+				pageNo = Convert.ToInt32(Request.QueryString["page"].ToString());
+				LoadButtons(itemLimit);
 			}
+			catch (Exception ex)
+			{
+				
+				Net.Redirect("~/Pages/AllGallery.aspx?page=1");
+			}
+			
+			if(pageNo<1)
+				Net.Redirect("~/Pages/AllGallery.aspx?page=1");
+
+			offsetAmt = CalculateOffset(itemLimit);
+
+			GallerySource.SelectParameters.Clear();
 
 			GallerySource.SelectCommand = "SELECT ARTPIECE.TITLE, ARTPIECE.IMAGELINK AS URL, ARTIST.Username, ARTIST.DisplayName FROM ARTPIECE INNER JOIN ARTIST ON ARTPIECE.ARTISTID = ARTIST.ARTISTID WHERE (ARTPIECE.ISPUBLIC = 1) ORDER BY ARTPIECE.ARTPIECEID DESC OFFSET @OFFSETAMT ROWS FETCH NEXT @ITEMLIMIT ROWS ONLY";
 			GallerySource.SelectParameters.Add("offsetAmt", System.Data.DbType.Int32, offsetAmt + "");
@@ -45,6 +46,41 @@ namespace ArtGallery.Pages
 			ArtRepeater.DataSource = GallerySource;
 			ArtRepeater.DataBind();
 
+		}
+		protected void LoadButtons(int ItemLimit)
+		{
+			if (pageNo == 1)
+				PrevPage.Visible = false;
+			else
+				PrevPage.Visible = true;
+
+			// Get no of records in selected table
+			DBUtil DBUtil = new DBUtil();
+			SqlCommand Cmd = DBUtil.GenerateSql("SELECT COUNT(*) FROM ARTPIECE INNER JOIN ARTIST ON ARTPIECE.ARTISTID = ARTIST.ARTISTID WHERE (ARTPIECE.ISPUBLIC = 1)");
+			int NoOfRecords = Convert.ToInt32(Cmd.ExecuteScalar());
+
+
+			if (pageNo * ItemLimit < NoOfRecords)
+				NextPage.Visible = true;
+			else
+				NextPage.Visible = false;
+		}
+
+		protected void PrevPage_Click(object sender, EventArgs e)
+		{
+			pageNo--;
+			Net.Redirect("~/Pages/AllGallery.aspx?page=" + pageNo);
+		}
+
+		protected void NextPage_Click(object sender, EventArgs e)
+		{
+			pageNo++;
+			Net.Redirect("~/Pages/AllGallery.aspx?page=" + pageNo);
+		}
+
+		protected int CalculateOffset(int ItemLimit)
+		{
+			return (pageNo - 1) * ItemLimit;
 		}
 	}
 }

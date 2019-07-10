@@ -93,12 +93,13 @@
 			</ItemTemplate>
 			<FooterTemplate>
 				</table>
-                <div class="arrows">
-                    <a href="#"><</a>
-                    <a href="#">></a>
-                </div>
 			</FooterTemplate>
 		</asp:Repeater>
+
+			<div class="arrows">
+                    <asp:Button Text="<" runat="server" ID="PrevPage" OnClick="PrevPage_Click" style="width: 22px"></asp:Button>
+                    <asp:Button Text=">" runat="server" ID="NextPage" OnClick="NextPage_Click"></asp:Button>
+                </div>
 
 		<asp:SqlDataSource ID="GallerySource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"></asp:SqlDataSource>
 

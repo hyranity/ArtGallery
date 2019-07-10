@@ -41,5 +41,17 @@ namespace ArtGallery.Util
 		{
 			Con.Close();
 		}
+
+		public static int CountRecords(string Query)
+		{
+			DBUtil DBUtil = new DBUtil();
+
+			// Get no of records in selected table
+			SqlCommand Cmd = DBUtil.GenerateSql(Query);
+
+			DBUtil.Disconnect();
+
+			return Convert.ToInt32(Cmd.ExecuteScalar());
+		}
 	}
 }

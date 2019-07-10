@@ -59,11 +59,76 @@ namespace ArtGallery.Util
 			return queryStr;
 		}
 
+		
 		public static void RefreshPage()
 		{
 			// Code is possible thanks to chris @ https://stackoverflow.com/questions/1206507/how-do-i-refresh-the-page-in-asp-net-let-it-reload-itself-by-code
 
 			HttpContext.Current.Response.Redirect(HttpContext.Current.Request.RawUrl);
+		}
+
+		
+		//EXPERIMENTAL
+		private static void GoNextPage()
+		{
+			bool hasError = false;
+
+			//Get pageNo from URL
+			string pageStr = GetQueryStr("page");
+
+			int pageNo = 1;
+
+			// Attempt to get page number
+			try
+			{
+				pageNo = Convert.ToInt32(pageStr);
+			}
+			catch (Exception ex)
+			{
+				pageNo = 1;
+				hasError = true;
+				
+			}
+
+			string url = HttpContext.Current.Request.RawUrl;
+
+			//Cut out page part if got page as parameter
+			if(pageStr != null)
+				url = url.Substring(url.IndexOf("&page"), url.Length - url.IndexOf("&page"));
+
+
+			Redirect(url + "&page=" + (pageNo + 1));
+		}
+
+		//EXPERIMENTAL
+		private static void GoPrevPage()
+		{
+			bool hasError = false;
+
+			//Get pageNo from URL
+			string pageStr = GetQueryStr("page");
+
+			int pageNo = 1;
+
+			// Attempt to get page number
+			try
+			{
+				pageNo = Convert.ToInt32(pageStr);
+			}
+			catch (Exception ex)
+			{
+				pageNo = 1;
+				hasError = true;
+			}
+
+			string url = HttpContext.Current.Request.RawUrl;
+
+			//Cut out page part if got page as parameter
+			if (!hasError)
+				url = url.Substring(url.IndexOf("&page"), url.Length - url.IndexOf("&page"));
+
+
+			Redirect(url + "&page=" + (pageNo - 1));
 		}
 
 	}

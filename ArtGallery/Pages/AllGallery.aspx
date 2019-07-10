@@ -78,10 +78,10 @@
 		<asp:SqlDataSource ID="GallerySource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>">
 		</asp:SqlDataSource>
 		
-        <div class="arrows">
-            <a href="#"><</a>
-            <a href="#">></a>
-        </div>
+			<div class="arrows">
+                    <asp:Button Text="<" runat="server" ID="PrevPage" OnClick="PrevPage_Click"></asp:Button>
+                    <asp:Button Text=">" runat="server" ID="NextPage" OnClick="NextPage_Click"></asp:Button>
+                </div>
 
 		<div class='footer'>
 			<a href='#' class='link'>ABOUT</a>

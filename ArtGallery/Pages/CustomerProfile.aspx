@@ -98,7 +98,7 @@
 
 			<div class="arrows">
                     <asp:Button Text="<" runat="server" ID="PrevPage" OnClick="PrevPage_Click"></asp:Button>
-                    <asp:Button Text=">" runat="server" ID="NextPage"></asp:Button>
+                    <asp:Button Text=">" runat="server" ID="NextPage" OnClick="NextPage_Click"></asp:Button>
                 </div>
 
 		<asp:SqlDataSource ID="GallerySource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"></asp:SqlDataSource>
