@@ -18,6 +18,13 @@ namespace ArtGallery.Classes
 		{
 		}
 
+        public Order(string CustomerId, double TotalPrice)
+        {
+            OrderId = GenerateLocalId();
+            this.CustomerId = CustomerId;
+            this.TotalPrice = TotalPrice;
+        }
+
 		public Order(string OrderId, string CustomerId, double TotalPrice)
 		{
 			this.OrderId = OrderId;
@@ -43,5 +50,11 @@ namespace ArtGallery.Classes
 			return order;
 		}
 
-	}
+        public string GenerateLocalId()
+        {
+            // For generating a local, temporary index (holding in session before adding to database)
+            return "O1"; // Only one order in session at any given moment
+        }
+
+    }
 }

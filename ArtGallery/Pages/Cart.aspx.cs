@@ -1,4 +1,6 @@
 ﻿using ArtGallery.Classes;
+using ArtGallery.Daos;
+using ArtGallery.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,30 +12,48 @@ namespace ArtGallery.Pages
 {
     public partial class Cart : System.Web.UI.Page
     {
-		public List<Order_Artwork> oaList;
-
 		protected void Page_Load(object sender, EventArgs e)
         {
-			// Check if there is an active cart
-			Order order = (Order) Session["order"];
+            /* ----------------------------------------------------------------------------------------------------
+             * Get session attributes to manipulate
+             * ---------------------------------------------------------------------------------------------------- */
+            Customer customer = (Customer)Net.GetSession("customer");
+            List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
 
-			if (order == null) // if there’s currently no cart
-			{
-				// Display empty cart message 
-			}
-			else // if there’s an active cart
-			{
-				// Get items from session
-				oaList = (List<Order_Artwork>)Session["oaList"];
-				
+            /* ----------------------------------------------------------------------------------------------------
+             * Check if customer logged in
+             * ---------------------------------------------------------------------------------------------------- */
+            if (customer == null)
+            {
+                Response.Redirect("~/Pages/LoginRegister.aspx");
+            }
 
-				foreach (Order_Artwork oa in oaList)
-				{
-					// Display items
+            /* ----------------------------------------------------------------------------------------------------
+             * Initialise daos to use
+             * ---------------------------------------------------------------------------------------------------- */
+            ArtpieceDao artpieceDao = new ArtpieceDao();
 
-				}
-			}
+            /* ----------------------------------------------------------------------------------------------------
+             * Calculate and display number of items and total price of oaList
+             * ---------------------------------------------------------------------------------------------------- */
+            int noOfItems = 0;
+            double totalPrice = 0;
+            foreach (Order_Artwork orderArtwork in oaList)
+            {
+                noOfItems += orderArtwork.Quantity;
 
-		}
-	}
+                ArtGallery.Classes.Artpiece artpiece = artpieceDao.Get("ArtpieceId", orderArtwork.ArtpieceId);
+                totalPrice += (artpiece.Price * (double)orderArtwork.Quantity);
+            }
+            lblItems.Text = Convert.ToString(noOfItems);
+            lblPrice.Text = "RM " + Convert.ToString(totalPrice);
+
+            /* ----------------------------------------------------------------------------------------------------
+             * Calculate and display number of items and total price of oaList
+             * ---------------------------------------------------------------------------------------------------- */
+            
+            // TBC
+
+        }
+    }
 }

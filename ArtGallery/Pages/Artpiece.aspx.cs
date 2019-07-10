@@ -167,5 +167,48 @@ namespace ArtGallery.Pages
 			}
 
 		}
-	}
+
+        protected void btnAddToCart_Click(object sender, EventArgs e) // TESTING!
+        {
+            /* ----------------------------------------------------------------------------------------------------
+            * Get session attributes to manipulate
+            * ---------------------------------------------------------------------------------------------------- */
+            Customer customer = (Customer)Net.GetSession("customer");
+            Order order = (Order)Net.GetSession("order");
+            List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
+
+            /* ----------------------------------------------------------------------------------------------------
+            * Initialise daos to use
+            * ---------------------------------------------------------------------------------------------------- */
+            ArtpieceDao artpieceDao = new ArtpieceDao();
+
+            /* ----------------------------------------------------------------------------------------------------
+            * Get artpiece
+            * ---------------------------------------------------------------------------------------------------- */
+            String artpieceId = Net.GetQueryStr("ArtpieceId");
+            ArtGallery.Classes.Artpiece artpiece = artpieceDao.Get("ArtpieceId", artpieceId);
+
+            /* ----------------------------------------------------------------------------------------------------
+            * Add/remove artpiece from oaList
+            * ---------------------------------------------------------------------------------------------------- */
+            string buttonStr = (sender as Button).Text;
+
+            // Adding artpiece to oaList
+            if (buttonStr.ToLower().Equals("add to cart"))
+            {
+                Order_Artwork orderArtwork = new Order_Artwork(order.OrderId, artpieceId, 1, oaList); // Set default quantity to 1
+                oaList.Add(orderArtwork);
+
+                (sender as Button).Text = "ADDED TO CART";
+            }
+
+            // Removing artpiece from oaList
+            else if (buttonStr.ToLower().Equals("added to cart"))
+            {
+                oaList.RemoveAll(orderArtwork => orderArtwork.ArtpieceId == artpieceId); // Thanks to Jon Skeet - https://stackoverflow.com/a/853551
+
+                (sender as Button).Text = "ADDED TO CART";
+            }
+        }
+    }
 }

@@ -72,6 +72,8 @@ namespace ArtGallery.Pages
 						//Login successful
 						Quick.Print("Customer logged in.");
 						Session["customer"] = cust;
+                        Session["order"] = new Order();
+                        Session["oaList"] = new List<Order_Artwork>(); // for cart
 						Response.Redirect("~/Pages/CustomerAccount.aspx", false);
 					}
 					else

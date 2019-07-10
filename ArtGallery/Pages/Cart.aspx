@@ -31,11 +31,11 @@
             <div id='centre'>
               <div>
                 <a class='stat'>ITEMS</a>
-                <a class='value'>6 PCS</a>
+                <asp:Label ID="lblItems" runat="server" Text="0 PCS" CssClass="label value"></asp:Label>
               </div>
               <div>
                 <a class='stat'>TOTAL</a>
-                <a class='value'>RM 231</a>
+                <asp:Label ID="lblPrice" runat="server" Text="RM 0" CssClass="label value"></asp:Label>
               </div>
             </div>
 
