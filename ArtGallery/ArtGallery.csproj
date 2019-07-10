@@ -75,6 +75,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Pages\AllGallery.aspx" />
     <Content Include="Pages\ArtistAccount.aspx" />
+    <Content Include="Pages\CustomerProfile.aspx" />
     <Content Include="Pages\ArtistProfile.aspx" />
     <Content Include="Pages\Artpiece.aspx" />
     <Content Include="Pages\ArtpiecePreview.aspx" />
@@ -132,6 +133,13 @@
     </Compile>
     <Compile Include="Pages\ArtistAccount.aspx.designer.cs">
       <DependentUpon>ArtistAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CustomerProfile.aspx.cs">
+      <DependentUpon>CustomerProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\CustomerProfile.aspx.designer.cs">
+      <DependentUpon>CustomerProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ArtistProfile.aspx.cs">
       <DependentUpon>ArtistProfile.aspx</DependentUpon>

@@ -59,5 +59,12 @@ namespace ArtGallery.Util
 			return queryStr;
 		}
 
+		public static void RefreshPage()
+		{
+			// Code is possible thanks to chris @ https://stackoverflow.com/questions/1206507/how-do-i-refresh-the-page-in-asp-net-let-it-reload-itself-by-code
+
+			HttpContext.Current.Response.Redirect(HttpContext.Current.Request.RawUrl);
+		}
+
 	}
 }
