@@ -229,6 +229,12 @@ namespace ArtGallery.Pages
 			int itemCount = oaList.Count;
 			double total = 0;
 
+			// Create order
+			Order order = (Order)Net.GetSession("order");
+			IdGen IdGen = new IdGen();
+			order.OrderId = IdGen.GenerateId("Order");
+			
+
 			foreach (Order_Artwork oa in oaList)
 			{
 				// Cumulate price
@@ -238,13 +244,32 @@ namespace ArtGallery.Pages
 				total += oa.Quantity * artpiece.Price;
 
 				oa.Index = null; // ID is auto generated in DB
+
+				// Set Foreign Keys
+				oa.ArtpieceId = artpiece.ArtpieceId;
+				oa.OrderId = order.OrderId;
 			}
 
-			// Process order
-			Order order = (Order) Net.GetSession("order");
-			IdGen IdGen = new IdGen();
-			order.OrderId = IdGen.GenerateId("Order");
-			
+			// Set cumulated price as total price
+			order.TotalPrice = total;
+
+			// Insert order
+			CustorderDao custorderDao = new CustorderDao();
+			custorderDao.Add(order);
+
+			// Insert OrderArtwork
+			foreach (Order_Artwork oa in oaList)
+			{
+				OrderArtworkDao orderArtworkDao = new OrderArtworkDao();
+				orderArtworkDao.Add(oa);
+			}
+
+			// Clear cart
+			Net.SetSession("order", new Order());
+			Net.SetSession("oaList", new List<Order_Artwork>());
+
+			// Redirect
+			Net.Redirect("Home.aspx");
 		}
 	}
 }
