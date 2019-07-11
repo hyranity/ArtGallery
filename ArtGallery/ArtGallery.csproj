@@ -77,6 +77,7 @@
     <Content Include="Pages\ArtistAccount.aspx" />
     <Content Include="Pages\CSS\Home.css" />
     <Content Include="Pages\CSS\PaymentHistory.css" />
+    <Content Include="Pages\CSS\UnderConstruction.css" />
     <Content Include="Pages\CustomerProfile.aspx" />
     <Content Include="Pages\ArtistProfile.aspx" />
     <Content Include="Pages\Artpiece.aspx" />
@@ -97,6 +98,7 @@
     <Content Include="Pages\LoginRegister.aspx" />
     <Content Include="Pages\Logout.aspx" />
     <Content Include="Pages\PaymentHistory.aspx" />
+    <Content Include="Pages\UnderConstruction.aspx" />
     <Content Include="Pages\Upload.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="RegisterDone.aspx" />
@@ -216,6 +218,13 @@
     </Compile>
     <Compile Include="Pages\PaymentHistory.aspx.designer.cs">
       <DependentUpon>PaymentHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UnderConstruction.aspx.cs">
+      <DependentUpon>UnderConstruction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UnderConstruction.aspx.designer.cs">
+      <DependentUpon>UnderConstruction.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Upload.aspx.cs">
       <DependentUpon>Upload.aspx</DependentUpon>
