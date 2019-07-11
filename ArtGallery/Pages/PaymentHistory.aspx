@@ -15,7 +15,7 @@
     <div class='header'>
       <a href='#' class='title'>ART-X</a>
       <a href='#' class='link'>WORKS</a>
-      <a href='#' class='link'>ACCOUNT</a>
+      <a href='ArtistProfile.aspx?username=session' class='link'>ACCOUNT</a>
     </div>
 
     <div class='heading'>
@@ -90,9 +90,9 @@
     </div>
 
     <div class='footer'>
-      <a href='#' class='link'>ABOUT</a>
-      <a href='#' class='text'>ART-X 2019</a>
-      <a href='#' class='link'>FAQ</a>
+      <a href='UnderConstruction.aspx' class='link'>ABOUT</a>
+      <a href='Home.aspx' class='text'>ART-X 2019</a>
+      <a href='UnderConstruction.aspx' class='link'>FAQ</a>
     <div>
     </form>
 </body>

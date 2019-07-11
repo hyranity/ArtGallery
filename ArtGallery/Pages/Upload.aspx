@@ -13,9 +13,9 @@
 <body>
     <form id="form1" runat="server">
 		<div class='header'>
-      <a href='#' class='title'>ART-X</a>
-      <a href='#' class='link'>WORKS</a>
-      <a href='#' class='link'>ACCOUNT</a>
+      <a href='Home.aspx' class='title'>ART-X</a>
+      <a href='AllGallery.aspx' class='link'>WORKS</a>
+      <a href='ArtistProfile.aspx?username=session' class='link'>ACCOUNT</a>
 		</div>
 
 		<div class='container'>
@@ -62,9 +62,9 @@
 		</div>
 
     <div class='footer'>
-      <a href='#' class='link'>ABOUT</a>
-      <a href='#' class='text'>ART-X 2019</a>
-      <a href='#' class='link'>FAQ</a>
+      <a href='UnderConstruction.aspx' class='link'>ABOUT</a>
+      <a href='Home.aspx' class='text'>ART-X 2019</a>
+      <a href='UnderConstruction.aspx' class='link'>FAQ</a>
     <div>
     </form>
 </body>
