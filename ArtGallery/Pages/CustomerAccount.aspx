@@ -52,7 +52,7 @@
 						<asp:Button ID="btnEdit" runat="server" Text="UPDATE DETAILS" OnClick="btnEdit_Click" />
 					</div>
 					<div id='right'>
-						<a href='#' class='text'>LOGOUT</a>
+						<a href='Logout.aspx' class='text'>LOGOUT</a>
 						<asp:TextBox ID="password" TextMode="Password" Placeholder="new password" runat="server"></asp:TextBox>
 						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
 						<asp:TextBox ID="email" Placeholder="email" runat="server"></asp:TextBox>

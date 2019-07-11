@@ -95,6 +95,7 @@
     <Content Include="Pages\JavaScript\Cart.js" />
     <Content Include="Pages\JavaScript\LoginRegister.js" />
     <Content Include="Pages\LoginRegister.aspx" />
+    <Content Include="Pages\Logout.aspx" />
     <Content Include="Pages\PaymentHistory.aspx" />
     <Content Include="Pages\Upload.aspx" />
     <Content Include="Register.aspx" />
@@ -201,6 +202,13 @@
     </Compile>
     <Compile Include="Pages\LoginRegister.aspx.designer.cs">
       <DependentUpon>LoginRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\PaymentHistory.aspx.cs">
       <DependentUpon>PaymentHistory.aspx</DependentUpon>

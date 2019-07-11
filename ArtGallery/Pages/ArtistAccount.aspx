@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ArtistAccount.aspx.cs" Inherits="ArtGallery.Pages.ArtistAccount" %>
 
+<%@ Import Namespace="ArtGallery.Classes" %>
+<%@ Import Namespace="ArtGallery.Util" %> 
+
 <!DOCTYPE html>
 <html>
 <head runat="server">
@@ -15,6 +18,21 @@
 			<a href='Home.aspx' class='title'>ART-X</a>
 			<a href='AllGallery.aspx' class='link'>WORKS</a>
 			<a href='ArtistProfile.aspx?username=session' class='link'>ACCOUNT</a>
+            
+            <%
+                List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
+                int noOfItems = 0;
+                if (oaList != null)
+                {
+                    noOfItems = oaList.Count;
+                }
+                else
+                {
+                    noOfItems = 0;
+                }
+            %>
+
+            <a href='Cart.aspx' class='link'>CART <sup><%= noOfItems %></sup></a>
 		</div>
 
 		<div class='card'>
@@ -74,7 +92,7 @@
 						<asp:Button ID="btnEdit" runat="server" Text="UPDATE DETAILS" OnClick="btnEdit_Click" />
 					</div>
 					<div id='right'>
-						<a href='#' class='text'>LOGOUT</a>
+						<a href='Logout.aspx' class='text'>LOGOUT</a>
 						<asp:TextBox ID="password" TextMode="Password" Placeholder="new password" runat="server"></asp:TextBox>
 						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
 						<asp:TextBox ID="email" Placeholder="email" runat="server"></asp:TextBox>

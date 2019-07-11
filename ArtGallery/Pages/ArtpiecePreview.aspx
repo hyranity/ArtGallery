@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ArtpiecePreview.aspx.cs" Inherits="ArtGallery.Pages.ArtpiecePreview" %>
 
+<%@ Import Namespace="ArtGallery.Classes" %>
+<%@ Import Namespace="ArtGallery.Util" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -20,6 +23,21 @@
 			    <a href='#' class='title'>ART-X</a>
 			    <a href='#' class='link'>WORKS</a>
 			    <a href='#' class='link'>ACCOUNT</a>
+                
+                <%
+                    List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
+                    int noOfItems = 0;
+                    if (oaList != null)
+                    {
+                        noOfItems = oaList.Count;
+                    }
+                    else
+                    {
+                        noOfItems = 0;
+                    }
+                %>
+
+                <a href='Cart.aspx' class='link'>CART <sup><%= noOfItems %></sup></a>
 		    </div>
 
 		    <div class='container'>
