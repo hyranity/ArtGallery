@@ -35,16 +35,42 @@ namespace ArtGallery.Pages
             // Display orders
             Control container = this.FindControl("container");
 
+
+
+
+            // DEBUG BOI
+            /*List<Order> orders = new List<Order>();
+            orders.Add(new Order("CU0000000003", 1500));*/
+
+
+
+
+
+
+
+
+
             if (orders == null || orders.Count == 0)
             {
 
             }
             else
             {
+                int loopCounter = 0;
                 foreach (Order order in orders)
                 {
                     // Get oaList of order
                     List<Order_Artwork> oaList = orderArtworkDao.GetList("OrderId", order.OrderId);
+
+
+
+                    // DEBUG BOI
+                    /*List<Order_Artwork> oaList = new List<Order_Artwork>();
+                    oaList.Add(new Order_Artwork(order.OrderId, "AP0000000007", 3, oaList));
+                    oaList.Add(new Order_Artwork(order.OrderId, "MILO", 2, oaList));*/
+
+
+                    loopCounter++;
 
                     // Calculate no of items and total price of order
                     int totalItems = 0;
@@ -61,19 +87,19 @@ namespace ArtGallery.Pages
                         "<div class='box'>" +
                             "<div class='details'>" +
                                 "<div>" +
-                                    "<a class='label'>ORDER ID</a>" +
+                                    "<a class='text'>ORDER ID</a>" +
                                     "<a class='value'>" + order.OrderId + "</a>" +
                                 "</div>" +
                                 "<div>" +
-                                    "<a class='label'>DATE</a>" +
+                                    "<a class='text'>DATE</a>" +
                                     "<a class='value'>" + /* order.Date.ToString("dd/MMM/yyyy") + */ "</a>" + // havent stored order date
                                 "</div>" +
                                 "<div>" +
-                                    "<a class='label'>ITEMS</a>" +
+                                    "<a class='text'>ITEMS</a>" +
                                     "<a class='value'>" + totalItems + " PCS</a>" +
                                 "</div>" +
                                 "<div>" +
-                                    "<a class='label'>TOTAL</a>" +
+                                    "<a class='text'>TOTAL</a>" +
                                     "<a class='value'>RM " + totalPrice + "</a>" +
                                 "</div>" +
                             "</div>" +
@@ -88,8 +114,15 @@ namespace ArtGallery.Pages
 
                         container.Controls.Add(new LiteralControl("" +
                                 "<div class='artpiece'>" +
-                                    "<div class='left'>" +
-                                        "<img src='" + artpiece.ImageLink + "'>" +
+                                    "<div class='left'>"));
+
+                        Image image = new Image();
+                        image.ID = "img" + loopCounter.ToString();
+                        image.ImageUrl = artpiece.ImageLink;
+
+                        container.Controls.Add(image);
+
+                        container.Controls.Add(new LiteralControl("" +
                                     "</div>" +
                                     "<div class='right'>" +
                                         "<a class='title'>" + artpiece.Title + "</a>" +
@@ -97,12 +130,14 @@ namespace ArtGallery.Pages
                                         "<a class='quantity'>" + orderArtwork.Quantity + " PCS</a>" +
                                         "<a class='subtotal'><span>SUBTOTAL</span> RM" + (artpiece.Price * (double)orderArtwork.Quantity) + "</a>" +
                                     "</div>" +
-                                "</div>" +
-                            "</div>" +
-                        "</div>"));
+                                "</div>"));
+
+                        loopCounter++;
                     }
 
-                    container.Controls.Add(new LiteralControl("</div>"));
+                    container.Controls.Add(new LiteralControl("" +
+                            "</div>" +
+                        "</div>"));
                 }
             }
 

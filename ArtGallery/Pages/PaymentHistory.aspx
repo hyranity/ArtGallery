@@ -23,24 +23,24 @@
     	<img src='https://i.imgur.com/DXquOBN.png'>
     </div>
 
-    <div class='container'>
+    <div class='container' id="container" runat="server">
 
       <div class='box'>
         <div class='details'>
           <div>
-            <a class='label'>ORDER ID</a>
+            <a class='text'>ORDER ID</a>
             <a class='value'>OR00013</a>
           </div>
           <div>
-            <a class='label'>DATE</a>
+            <a class='text'>DATE</a>
             <a class='value'>22 Mar 2019</a>
           </div>
           <div>
-            <a class='label'>ITEMS</a>
+            <a class='text'>ITEMS</a>
             <a class='value'>6 PCS</a>
           </div>
           <div>
-            <a class='label'>TOTAL</a>
+            <a class='text'>TOTAL</a>
             <a class='value'>RM 231</a>
           </div>
         </div>
