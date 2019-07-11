@@ -24,6 +24,7 @@ namespace ArtGallery.Pages
 				Net.Redirect("~/Pages/LoginRegister.aspx"); // Redirect if not logged in as customer
 
 			List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
+			Order order = (Order) Net.GetSession("order");
 
             /* FOR DEBUG PURPOSES */
             //oaList = new List<Order_Artwork>();
@@ -163,27 +164,34 @@ namespace ArtGallery.Pages
 					gallery.Controls.Add(btnIncrement);*/
 
                     gallery.Controls.Add(new LiteralControl("<input type='button' id='btnIncrement" + (loopCounter + 1).ToString() + "' class='increment' value='+'>"));
+					
+					// ---
 
-                    // ---
-
-                    gallery.Controls.Add(new LiteralControl("" +
+					gallery.Controls.Add(new LiteralControl("" +
 									"</div>" +
 									"<div class='subtotal'>" +
 										"<a class='caption'>SUBTOTAL</a>"));
 
 					// ---
+					Label priceHidden = new Label();
+					priceHidden.ID = "priceHidden" + (loopCounter + 1).ToString();
+					priceHidden.Text = Convert.ToString(artpiece.Price);
+					priceHidden.CssClass = "label value";
+					priceHidden.Visible = false;
+					gallery.Controls.Add(priceHidden);
 
-					Label lblPrice = new Label();
-					lblPrice.ID = "lblPrice" + (loopCounter + 1).ToString();
-					lblPrice.Text = "RM " + Convert.ToString(artpiece.Price);
-					lblPrice.CssClass = "label value";
-					lblPrice.Visible = false;
+					HiddenField quantityHidden = new HiddenField();
+
+					quantityHidden.ID = "quantityHidden" + (loopCounter + 1).ToString();
+					quantityHidden.Value = Convert.ToString(orderArtwork.Quantity);
+
+					gallery.Controls.Add(quantityHidden);
+					gallery.Controls.Add(new LiteralControl("<input type='hidden' class='value' value='" + artpiece.Price + "' id='hiddenPriceHTML" + (loopCounter + 1).ToString() + "'/>"));
 
 					string priceStr = (artpiece.Price * (double)orderArtwork.Quantity).ToString();
 					gallery.Controls.Add(new LiteralControl("<a class='value' id='subtotal" + (loopCounter + 1).ToString() + "'>RM " + priceStr + "</a>"));
+					
 
-
-					gallery.Controls.Add(lblPrice);
 
 					// ---
 
@@ -204,6 +212,9 @@ namespace ArtGallery.Pages
 				}
 
 				gallery.Controls.Add(new LiteralControl("</table>"));
+
+				// Set total price
+				lblPrice.Text = "RM " + order.TotalPrice;
 			}
 		}
 
@@ -224,6 +235,9 @@ namespace ArtGallery.Pages
 
 		protected void checkoutBt_Click(object sender, EventArgs e)
 		{
+			// Get customer details
+			Customer customer = (Customer) Net.GetSession("customer");
+
 			// Get count
 			List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
 			int itemCount = oaList.Count;
@@ -232,7 +246,10 @@ namespace ArtGallery.Pages
 			// Create order
 			Order order = (Order)Net.GetSession("order");
 			IdGen IdGen = new IdGen();
-			order.OrderId = IdGen.GenerateId("Order");
+			order.OrderId = IdGen.GenerateId("custorder");
+			order.OrderDate = DateTime.Now;
+			order.IsCanceled = false;
+			order.CustomerId = customer.Id;
 			
 
 			foreach (Order_Artwork oa in oaList)
@@ -248,6 +265,13 @@ namespace ArtGallery.Pages
 				// Set Foreign Keys
 				oa.ArtpieceId = artpiece.ArtpieceId;
 				oa.OrderId = order.OrderId;
+
+				// Update stocks
+				artpiece.Stocks = artpiece.Stocks - oa.Quantity;
+
+				// Update artpiece 
+				ArtpieceDao artpieceDao = new ArtpieceDao();
+				artpieceDao.Update(artpiece);
 			}
 
 			// Set cumulated price as total price
@@ -270,6 +294,43 @@ namespace ArtGallery.Pages
 
 			// Redirect
 			Net.Redirect("Home.aspx");
+		}
+
+		protected void saveBt_Click(object sender, EventArgs e)
+		{
+			// Get count
+			List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
+			Order order = (Order) Net.GetSession("order");
+
+			int itemCount = oaList.Count;
+			double total = 0;
+
+			for (int i = 1; i <= itemCount; i++)
+			{
+				// Get quantity and price labels of artpiece order
+				HiddenField lblQuantity = new HiddenField();
+				lblQuantity = (HiddenField)gallery.FindControl("quantityHidden" + i);
+				Label lblPrice = new Label();
+				lblPrice = (Label)gallery.FindControl("priceHidden" + i);
+
+				// Get the string value
+				string quantityStr = lblQuantity.Value;
+				string priceStr = lblPrice.Text;
+				total += Convert.ToDouble(priceStr) * Convert.ToInt32(quantityStr);
+
+				// Save to oa object
+				oaList[i - 1].Quantity = Convert.ToInt32(quantityStr);
+				
+			}
+			
+			lblPrice.Text = "RM " + total;
+
+			//Update order total price
+			order.TotalPrice = total;
+
+			// Save to session
+			Net.SetSession("oaList", oaList);
+			Net.SetSession("order", order);
 		}
 	}
 }

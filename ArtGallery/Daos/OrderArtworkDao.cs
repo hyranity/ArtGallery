@@ -19,11 +19,11 @@ namespace ArtGallery.Daos
         // crud functions
         public void Add(Order_Artwork Order_Artwork)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Order_Artwork(Index, OrderId, ArtpieceId, Quantity)"
-                                + "VALUES(@Index, @OrderId, @ArtpieceId, @Quantity)");
-            Cmd.Parameters.AddWithValue("@Index", Order_Artwork.Index);
+            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Order_Artwork(OrderId, ArtpieceId, Quantity)"
+                                + "VALUES(@OrderId, @ArtpieceId, @Quantity)");
+           // Cmd.Parameters.AddWithValue("@Index", Order_Artwork.Index); Auto generated hence no need to insert
             Cmd.Parameters.AddWithValue("@OrderId", Order_Artwork.OrderId);
-            Cmd.Parameters.AddWithValue("@ArtpeiceId", Order_Artwork.ArtpieceId);
+            Cmd.Parameters.AddWithValue("@ArtpieceId", Order_Artwork.ArtpieceId);
             Cmd.Parameters.AddWithValue("@Quantity", Order_Artwork.Quantity);
 
             Cmd.ExecuteNonQuery();

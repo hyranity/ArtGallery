@@ -19,13 +19,15 @@ namespace ArtGallery.Daos
         // crud functions
         public void Add(Order Custorder)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Custorder(OrderId, CustomerId, TotalPrice)"
-                                + "VALUES(@OrderId, @CustomerId, @TotalPrice)");
-            Cmd.Parameters.AddWithValue("@CustomerId", Custorder.OrderId);
-            Cmd.Parameters.AddWithValue("@Username", Custorder.CustomerId);
-            Cmd.Parameters.AddWithValue("@DisplayName", Custorder.TotalPrice);
+            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Custorder(OrderId, CustId, TotalPrice, IsCanceled, OrderDate)"
+                                + "VALUES(@OrderId, @CustId, @TotalPrice, @IsCanceled, @OrderDate)");
+            Cmd.Parameters.AddWithValue("@OrderId", Custorder.OrderId);
+            Cmd.Parameters.AddWithValue("@CustId", Custorder.CustomerId);
+            Cmd.Parameters.AddWithValue("@TotalPrice", Custorder.TotalPrice);
+			Cmd.Parameters.AddWithValue("@IsCanceled", Custorder.IsCanceled);
+			Cmd.Parameters.AddWithValue("@OrderDate", Custorder.OrderDate);
 
-            Cmd.ExecuteNonQuery();
+			Cmd.ExecuteNonQuery();
 
             DBUtil.Disconnect();
         }
@@ -48,9 +50,11 @@ namespace ArtGallery.Daos
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
                     return new Order(
                         (string)Dr["OrderId"],
-                        (string)Dr["CustomerId"],
-                        (double)Dr["TotalPrice"]
-                    );
+                        (string)Dr["CustId"],
+                        (double)Dr["TotalPrice"],
+						(bool)Dr["IsCanceled"],
+						(DateTime)Dr["OrderDate"]
+					);
                 }
             }
 
@@ -76,10 +80,12 @@ namespace ArtGallery.Daos
 
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
                     Order.Add(new Order(
-                        (string)Dr["OrderId"],
-                        (string)Dr["CustomerId"],
-                        (double)Dr["TotalPrice"])
-                    );
+						(string)Dr["OrderId"],
+						(string)Dr["CustId"],
+						(double)Dr["TotalPrice"],
+						(bool)Dr["IsCanceled"],
+						(DateTime)Dr["OrderDate"]
+					));
                 }
 
                 if (Order.Any())
@@ -95,15 +101,19 @@ namespace ArtGallery.Daos
         {
             // SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Custorder SET ... WHERE ([OrderId] = @OrderId)");
             SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Custorder " +
-                "SET CustomerId = @CustomerId" +
+                "SET CustId = @CustId" +
                 ", TotalPrice = @TotalPrice" +
-                " WHERE OrderId = @OrderId"
+				", IsCanceled = @IsCanceled" +
+				", OrderDate = @OrderDate" +
+				" WHERE OrderId = @OrderId"
             );
             Cmd.Parameters.AddWithValue("@OrderId", Custorder.OrderId);
-            Cmd.Parameters.AddWithValue("@CustomerId", Custorder.CustomerId);
+            Cmd.Parameters.AddWithValue("@CustId", Custorder.CustomerId);
             Cmd.Parameters.AddWithValue("@TotalPrice", Custorder.TotalPrice);
+			Cmd.Parameters.AddWithValue("@IsCanceled", Custorder.IsCanceled);
+			Cmd.Parameters.AddWithValue("@OrderDate", Custorder.OrderDate);
 
-            Cmd.ExecuteNonQuery();
+			Cmd.ExecuteNonQuery();
 
             DBUtil.Disconnect();
         }

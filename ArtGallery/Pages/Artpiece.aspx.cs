@@ -116,7 +116,7 @@ namespace ArtGallery.Pages
 			// Get customer from session
 			Customer customer = (Customer)Net.GetSession("customer");
 
-			// Show the wish status (whether added or not to wishlist) to customer
+			// Show the buttons status
 			if (customer != null)
 			{
 				// Make buttons visible
@@ -133,6 +133,24 @@ namespace ArtGallery.Pages
 				{
 					btnAddToWishlist.Text = "ADDED TO WISHLIST";
 				}
+
+				bool found = false;
+
+				List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
+
+				// Loop through order list in session to see if this artpiece already added to cart
+				foreach (Order_Artwork oa in oaList)
+				{
+					if (oa.ArtpieceId.ToLower() == Net.GetQueryStr("id"))
+						found = true;
+
+				}
+
+				if (found)
+					btnAddToCart.Text = "ADDED TO CART";
+				else
+					btnAddToCart.Text = "ADD TO CART";
+
 			}
 
 		}
@@ -202,8 +220,12 @@ namespace ArtGallery.Pages
                 Order_Artwork orderArtwork = new Order_Artwork(order.OrderId, artpiece.ArtpieceId, 1, oaList); // Set default quantity to 1
                 oaList.Add(orderArtwork);
 
+				// Add order total price
+				order.TotalPrice += artpiece.Price;
+
 				// Update session
 				Net.SetSession("oaList",oaList);
+				Net.SetSession("order", order);
 
                 (sender as Button).Text = "ADDED TO CART";
             }
@@ -213,11 +235,17 @@ namespace ArtGallery.Pages
             {
                 oaList.RemoveAll(orderArtwork => orderArtwork.ArtpieceId == artpiece.ArtpieceId); // Thanks to Jon Skeet - https://stackoverflow.com/a/853551
 
+				// Refund order total price
+				order.TotalPrice = order.TotalPrice - artpiece.Price;
+
 				// Update session
 				Net.SetSession("oaList", oaList);
+				Net.SetSession("order", order);
 
 				(sender as Button).Text = "ADDED TO CART";
             }
+
+			
 
         }
     }

@@ -45,15 +45,15 @@
 
             <div id='right'>
               <div id='image'>
-              </div>
+              </div> 
               <div id='text'>
                 <asp:Button Text="CHECKOUT" runat="server" ID="checkoutBt" OnClick="checkoutBt_Click"></asp:Button>
                 <img src='https://i.imgur.com/DXquOBN.png'>
               </div>
+				<asp:Button runat="server" ID="saveBt" Text="Save Cart" OnClick="saveBt_Click" />
             </div>
 
           </div>
-
           <div id="gallery" runat="server">
 
           </div>

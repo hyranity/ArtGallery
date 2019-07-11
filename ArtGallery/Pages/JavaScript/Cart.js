@@ -15,16 +15,21 @@ $(document).ready(function () {
         }
     });
 
-    $(".increment").click(function () {
+	$(".increment").click(function () {
+		
         var btnId = $(this).attr('id').replace("btnIncrement", "");
 		var quantity = $("#quantity" + btnId).text().replace(" PCS", "");
+		$("#quantity" + btnId).text((parseInt(quantity) + parseInt(1)) + " PCS");
+		
+		var indvPrice = $('#hiddenPriceHTML' + btnId).val();
+		
+		quantity = $("#quantity" + btnId).text().replace(" PCS", ""); // Gets the updated quantity
+		$("input[id$=quantityHidden" + btnId + "]").val(quantity);
 
-		var indvPrice = document.getElementById("lblPrice" + btnId).text;
-		var subTotal = indvPrice * quantity;
+		var subTotal = parseFloat(indvPrice) * parseFloat(quantity);
 
 		$("#subtotal" + btnId).text("RM " + subTotal);
 
-        $("#quantity" + btnId).text((parseInt(quantity) + parseInt(1)) + " PCS");
 	});
 
 });

@@ -130,7 +130,7 @@ namespace ArtGallery.Daos
             Cmd.Parameters.AddWithValue("@ImageLink", Artpiece.ImageLink);
             Cmd.Parameters.AddWithValue("@Price", Artpiece.Price);
             Cmd.Parameters.AddWithValue("@Stocks", Artpiece.Stocks);
-            Cmd.Parameters.AddWithValue("@ForSale", Artpiece.IsForSale);
+            Cmd.Parameters.AddWithValue("@IsForSale", Artpiece.IsForSale);
             Cmd.Parameters.AddWithValue("@Tags", Artpiece.Tags);
             Cmd.Parameters.AddWithValue("@IsPublic", Artpiece.IsPublic);
 
