@@ -212,12 +212,12 @@ a, .label {
                     justify-content: center;
                 }
 
-                    .gallery tr td .details .of_order .quantity a, .gallery tr td .details .of_order .quantity .test {
+                    .gallery tr td .details .of_order .quantity a {
                         font-size: 35px;
                         color: #918D8D;
                     }
 
-                    .gallery tr td .details .of_order .quantity input[type='submit'] {
+                    .gallery tr td .details .of_order .quantity input[type='button'] {
                         background: transparent;
                         border: none;
                         font-size: 45px;
@@ -225,7 +225,7 @@ a, .label {
                         font-family: Roboto Condensed;
                     }
 
-                        .gallery tr td .details .of_order .quantity input[type='submit']:focus {
+                        .gallery tr td .details .of_order .quantity input[type='button']:focus {
                             outline: none;
                         }
 

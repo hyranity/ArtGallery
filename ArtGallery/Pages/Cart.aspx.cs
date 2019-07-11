@@ -21,24 +21,39 @@ namespace ArtGallery.Pages
 			Customer customer = (Customer)Net.GetSession("customer");
 			List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
 
-			/* ----------------------------------------------------------------------------------------------------
+
+
+
+            /* FOR DEBUG PURPOSES */
+            oaList = new List<Order_Artwork>();
+            oaList.Add(new Order_Artwork("testorder", "MILO", 1, oaList));
+            oaList.Add(new Order_Artwork("testorder", "LILO", 5, oaList));
+            /* END */
+
+
+
+            /* ----------------------------------------------------------------------------------------------------
              * Initialise daos to use
              * ---------------------------------------------------------------------------------------------------- */
-			ArtpieceDao artpieceDao = new ArtpieceDao();
+            ArtpieceDao artpieceDao = new ArtpieceDao();
 			ArtistDao artistDao = new ArtistDao();
 
-			/* ----------------------------------------------------------------------------------------------------
+            /* ----------------------------------------------------------------------------------------------------
+             * Display statics in page header
+             * ---------------------------------------------------------------------------------------------------- */
+
+            // TODO TODO TODO 
+            // TODO TODO TODO
+            // TODO TODO TODO
+            // TODO TODO TODO
+            // TODO TODO TODO
+
+            /* ----------------------------------------------------------------------------------------------------
              * Display items in cart
              * ---------------------------------------------------------------------------------------------------- */
-			Control gallery = this.FindControl("gallery");
+            Control gallery = this.FindControl("gallery");
 
 			int loopCounter = 0;
-
-			/* FOR DEBUG PURPOSES */
-			//oaList = new List<Order_Artwork>();
-			//oaList.Add(new Order_Artwork("testorder", "MILO", 1, oaList));
-			//oaList.Add(new Order_Artwork("testorder", "LILO", 5, oaList));
-			/* END */
 
 			// if cart is empty
 			if (oaList == null || oaList.Count == 0)
@@ -116,34 +131,41 @@ namespace ArtGallery.Pages
 								"<div class='of_order'>" +
 									"<div class='quantity'>"));
 
-					// ---
+                    // ---
 
-					Button btnDecrement = new Button();
-					btnDecrement.ID = "btnDecrement" + loopCounter.ToString();
+                    /*Button btnDecrement = new Button();
+					btnDecrement.ID = "btnDecrement" + (loopCounter + 1).ToString();
 					btnDecrement.Text = "-";
 					btnDecrement.CssClass = "decrement";
+                    //btnDecrement.Click += Decrement;
 
-					gallery.Controls.Add(btnDecrement);
+					gallery.Controls.Add(btnDecrement);*/
 
-					/*Label lblQuantity = new Label();
-					lblQuantity.ID = "lblQuantity" + loopCounter.ToString();
+                    gallery.Controls.Add(new LiteralControl("<input type='button' id='btnDecrement" + (loopCounter + 1).ToString() + "' class='decrement' value='-'>"));
+
+                    Label lblQuantity = new Label();
+					lblQuantity.ID = "lblQuantity" + (loopCounter + 1).ToString();
 					lblQuantity.Text = orderArtwork.Quantity.ToString() + " PCS";
-					lblQuantity.CssClass = "label";
+                    lblQuantity.CssClass = "label";
+                    lblQuantity.Visible = false;
 
-					gallery.Controls.Add(lblQuantity);*/
+					gallery.Controls.Add(lblQuantity);
 
-					gallery.Controls.Add(new LiteralControl("<a>" + orderArtwork.Quantity.ToString() + " PCS</a>"));
+					gallery.Controls.Add(new LiteralControl("<a id='quantity" + (loopCounter + 1).ToString() + "'>" + orderArtwork.Quantity.ToString() + " PCS</a>"));
 
-					Button btnIncrement = new Button();
-					btnIncrement.ID = "btnIncrement" + loopCounter.ToString();
+                    /*Button btnIncrement = new Button();
+					btnIncrement.ID = "btnIncrement" + (loopCounter + 1).ToString();
 					btnIncrement.Text = "+";
 					btnIncrement.CssClass = "increment";
+                    //btnIncrement.Click += Increment;
 
-					gallery.Controls.Add(btnIncrement);
+					gallery.Controls.Add(btnIncrement);*/
 
-					// ---
+                    gallery.Controls.Add(new LiteralControl("<input type='button' id='btnIncrement" + (loopCounter + 1).ToString() + "' class='increment' value='+'>"));
 
-					gallery.Controls.Add(new LiteralControl("" +
+                    // ---
+
+                    gallery.Controls.Add(new LiteralControl("" +
 									"</div>" +
 									"<div class='subtotal'>" +
 										"<a class='caption'>SUBTOTAL</a>"));
@@ -151,7 +173,7 @@ namespace ArtGallery.Pages
 					// ---
 
 					Label lblSubtotal = new Label();
-					lblSubtotal.ID = "lblSubtotal" + loopCounter.ToString();
+					lblSubtotal.ID = "lblSubtotal" + (loopCounter + 1).ToString();
 					lblSubtotal.Text = "RM " + Convert.ToString(artpiece.Price * (double)orderArtwork.Quantity);
 					lblSubtotal.CssClass = "label value";
 
@@ -178,5 +200,20 @@ namespace ArtGallery.Pages
 				gallery.Controls.Add(new LiteralControl("</table>"));
 			}
 		}
+
+        public void Decrement(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+
+            Quick.Print("hey this be a test");
+            // todo
+        }
+
+        public void Increment(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+
+            // todo
+        }
     }
 }

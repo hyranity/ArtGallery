@@ -113,7 +113,7 @@
           <a href='#' class='link'>ABOUT</a>
           <a href='#' class='text'>ART-X 2019</a>
           <a href='#' class='link'>FAQ</a>
-        <div>
+        </div>
     </form>
 </body>
 </html>
