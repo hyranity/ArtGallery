@@ -218,6 +218,7 @@ namespace ArtGallery.Pages
 
 				(sender as Button).Text = "ADDED TO CART";
             }
+
         }
     }
 }

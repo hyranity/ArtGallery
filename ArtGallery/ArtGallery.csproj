@@ -132,6 +132,13 @@
     <Compile Include="Pages\AllGallery.aspx.designer.cs">
       <DependentUpon>AllGallery.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ArtGallery.Master.cs">
+      <DependentUpon>ArtGallery.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ArtGallery.Master.designer.cs">
+      <DependentUpon>ArtGallery.Master</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ArtistAccount.aspx.cs">
       <DependentUpon>ArtistAccount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -254,6 +261,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Pages\ArtGallery.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

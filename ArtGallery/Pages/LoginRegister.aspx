@@ -28,7 +28,7 @@
           <div class='inputs' style='margin-left: -30px'>
             <asp:TextBox ID="txtLoginUsername" Placeholder="username" runat="server"></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
-            <asp:TextBox ID="txtLoginPassword" Placeholder="password" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtLoginPassword" Placeholder="password" runat="server" TextMode="Password"></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
           </div>
         </div>
@@ -46,7 +46,7 @@
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
             <asp:TextBox ID="txtRegisterEmail" Placeholder="email" runat="server"></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
-            <asp:TextBox ID="txtRegisterPassword" Placeholder="password" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtRegisterPassword" Placeholder="password" runat="server" TextMode="Password"></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
             <asp:TextBox ID="txtRegisterPosition" Placeholder="position" runat="server"></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>

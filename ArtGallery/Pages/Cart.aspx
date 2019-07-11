@@ -29,7 +29,7 @@
             <div id='left'>
               <a id='heading'>YOUR CART</a>
               <img src='https://i.imgur.com/DXquOBN.png'>
-              <a href='#' id='back'>CONTINUE BROWSING</a>
+              <a href="AllGallery.aspx" id='back'>CONTINUE BROWSING</a>
             </div>
 
             <div id='centre'>
@@ -47,7 +47,7 @@
               <div id='image'>
               </div>
               <div id='text'>
-                <a href='#'>CHECKOUT</a>
+                <asp:Button Text="CHECKOUT" runat="server" ID="checkoutBt" OnClick="checkoutBt_Click"></asp:Button>
                 <img src='https://i.imgur.com/DXquOBN.png'>
               </div>
             </div>

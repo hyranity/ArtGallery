@@ -2,6 +2,7 @@
     margin: 0px;
     padding: 0px;
     width: 1920px;
+	overflow-x: hidden;
 }
 
 body, #form1 {
@@ -60,7 +61,7 @@ body, #form1 {
 
 .profile {
     height: 300px;
-    width: 100%;
+    width: 1920px;
     background-color: #807187;
     margin-top: 100px;
     display: flex;
@@ -79,6 +80,7 @@ body, #form1 {
         flex-direction: row;
         align-items: center;
         justify-content: center;
+		margin-left: -150px;
     }
 
         .profile .card #left {

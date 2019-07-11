@@ -1,22 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CustomerAccount.aspx.cs" Inherits="ArtGallery.Pages.CustomerAccount" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Pages/ArtGallery.Master" CodeBehind="CustomerAccount.aspx.cs" Inherits="ArtGallery.Pages.CustomerAccount" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <title></title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script src="JavaScript/CustomerAccount.js"></script>
 	<link href="CSS/CustomerAccount.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
-</head>
-<body>
-	<form runat="server">
-		<div class='header'>
-			<a href='#' class='title'>ART-X</a>
-			<a href='#' class='link'>WORKS</a>
-			<a href='#' class='link'>ACCOUNT</a>
-		</div>
+
 
 		<div class='card'>
 			<asp:Label ID="lblUsername" runat="server" CssClass="handle labels"></asp:Label>
@@ -44,7 +34,7 @@
                     <asp:Label ID="lblStatArtpiecesWhitelisted" runat="server" CssClass="label stat">ARTPIECES<br />WHITELISTED</asp:Label>
 				</div>
 			</div>
-			<a href='#' class='back'>BACK TO PROFILE</a>
+			<asp:Button runat="server" href="CustomerProfile.aspx" Text="BACK TO PROFILE" ID="BackBt" CssClass='back' OnClick="BackBt_Click"></asp:Button>
 		</div>
 
 		<div class='purple'>
@@ -73,6 +63,4 @@
 				</div>
 			</div>
 		</div>
-	</form>
-</body>
-</html>
+</asp:Content>

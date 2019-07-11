@@ -68,5 +68,14 @@ namespace ArtGallery.Pages
 			Session["customer"] = newCustomer; // Update the one in the session
 			Response.Redirect(Request.RawUrl); // Refreshes the page
 		}
+
+		protected void BackBt_Click(object sender, EventArgs e)
+		{
+			// Get customer
+			Customer customer = (Customer) Util.Net.GetSession("customer");
+
+			// Redirect
+			Util.Net.Redirect("~/Pages/CustomerProfile.aspx?username="+customer.Username);
+		}
 	}
 }

@@ -1,23 +1,14 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AllGallery.aspx.cs" Inherits="ArtGallery.Pages.AllGallery" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AllGallery.aspx.cs" MasterPageFile="~/Pages/ArtGallery.Master" Inherits="ArtGallery.Pages.AllGallery" %>
 
-<!DOCTYPE html>
+<asp:Content ContentPlaceHolderID="MainContent" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
     <title>Art Gallery :: All Gallery</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script src="JavaScript/AllGallery.js"></script>
 	<link href="CSS/AllGallery.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
-</head>
 
-<body>
-	<form id="form1" runat="server">
-		<div class='header'>
-			<a href='#' class='title'>ART-X</a>
-			<a href='#' class='link'>WORKS</a>
-			<a href='#' class='link'>ACCOUNT</a>
-		</div>
+		
 		<table class='text'>
 			<tr>
 				<td id='title'>
@@ -72,8 +63,7 @@
 				</table>
 			</FooterTemplate>
 		</asp:Repeater>
-
-		
+	
 		<!-- Pagination -->
 		<asp:SqlDataSource ID="GallerySource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>">
 		</asp:SqlDataSource>
@@ -83,11 +73,4 @@
                     <asp:Button Text=">" runat="server" ID="NextPage" OnClick="NextPage_Click"></asp:Button>
                 </div>
 
-		<div class='footer'>
-			<a href='#' class='link'>ABOUT</a>
-			<a href='#' class='text'>ART-X 2019</a>
-			<a href='#' class='link'>FAQ</a>
-		</div>
-	</form>
-</body>
-</html>
+</asp:Content>

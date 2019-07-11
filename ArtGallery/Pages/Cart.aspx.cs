@@ -19,15 +19,16 @@ namespace ArtGallery.Pages
              * Get session attributes to manipulate
              * ---------------------------------------------------------------------------------------------------- */
 			Customer customer = (Customer)Net.GetSession("customer");
+
+			if (customer == null)
+				Net.Redirect("~/Pages/LoginRegister.aspx"); // Redirect if not logged in as customer
+
 			List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
 
-
-
-
             /* FOR DEBUG PURPOSES */
-            oaList = new List<Order_Artwork>();
-            oaList.Add(new Order_Artwork("testorder", "MILO", 1, oaList));
-            oaList.Add(new Order_Artwork("testorder", "LILO", 5, oaList));
+            //oaList = new List<Order_Artwork>();
+            //oaList.Add(new Order_Artwork("testorder", "MILO", 1, oaList));
+            //oaList.Add(new Order_Artwork("testorder", "LILO", 5, oaList));
             /* END */
 
 
@@ -68,7 +69,7 @@ namespace ArtGallery.Pages
 				foreach (Order_Artwork orderArtwork in oaList)
 				{
 					// Get corresponding artpiece and artist
-					ArtGallery.Classes.Artpiece artpiece = artpieceDao.Get("ArtpieceId", orderArtwork.ArtpieceId);
+					Classes.Artpiece artpiece = artpieceDao.Get("ArtpieceId", orderArtwork.ArtpieceId);
 					Artist artist = artistDao.Get("ArtistId", artpiece.ArtistId);
 
 					if (loopCounter % 3 == 0)
@@ -172,12 +173,17 @@ namespace ArtGallery.Pages
 
 					// ---
 
-					Label lblSubtotal = new Label();
-					lblSubtotal.ID = "lblSubtotal" + (loopCounter + 1).ToString();
-					lblSubtotal.Text = "RM " + Convert.ToString(artpiece.Price * (double)orderArtwork.Quantity);
-					lblSubtotal.CssClass = "label value";
+					Label lblPrice = new Label();
+					lblPrice.ID = "lblPrice" + (loopCounter + 1).ToString();
+					lblPrice.Text = "RM " + Convert.ToString(artpiece.Price);
+					lblPrice.CssClass = "label value";
+					lblPrice.Visible = false;
 
-					gallery.Controls.Add(lblSubtotal);
+					string priceStr = (artpiece.Price * (double)orderArtwork.Quantity).ToString();
+					gallery.Controls.Add(new LiteralControl("<a class='value' id='subtotal" + (loopCounter + 1).ToString() + "'>RM " + priceStr + "</a>"));
+
+
+					gallery.Controls.Add(lblPrice);
 
 					// ---
 
@@ -215,5 +221,30 @@ namespace ArtGallery.Pages
 
             // todo
         }
-    }
+
+		protected void checkoutBt_Click(object sender, EventArgs e)
+		{
+			// Get count
+			List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
+			int itemCount = oaList.Count;
+			double total = 0;
+
+			foreach (Order_Artwork oa in oaList)
+			{
+				// Cumulate price
+				ArtpieceDao dao = new ArtpieceDao();
+				Classes.Artpiece artpiece = dao.Get("ARTPIECEID", oa.ArtpieceId);
+
+				total += oa.Quantity * artpiece.Price;
+
+				oa.Index = null; // ID is auto generated in DB
+			}
+
+			// Process order
+			Order order = (Order) Net.GetSession("order");
+			IdGen IdGen = new IdGen();
+			order.OrderId = IdGen.GenerateId("Order");
+			
+		}
+	}
 }
