@@ -33,6 +33,7 @@
                     <asp:Label ID="lblDescription" runat="server" CssClass="label description"></asp:Label>
 				    <div class='tags'>
 					    <asp:Label runat="server" id="lblForSale" CssClass='sale'>FOR SALE</asp:Label>
+						
 					    <a href='#' class='tag'>ILLUSRATION</a>
 					    <a href='#' class='tag'>MODERN</a>
 					    <br>
@@ -54,6 +55,11 @@
                         </div>
 				    </div>
 				    <div class='stats'>
+						<div>
+                            <asp:Label ID="lblStocks" runat="server" CssClass="label number">14</asp:Label>
+                            <asp:Label ID="lblStats" runat="server" CssClass="label stat">PCS LEFT</asp:Label>
+					    </div>
+						<!--
 					    <div>
                             <asp:Label ID="lblNumberViews" runat="server" CssClass="label number">1.3k</asp:Label>
                             <asp:Label ID="lblStatViews" runat="server" CssClass="label stat">VIEWS</asp:Label>
@@ -66,6 +72,7 @@
                             <asp:Label ID="lblNumberSales" runat="server" CssClass="label number">42</asp:Label>
                             <asp:Label ID="lblStatSales" runat="server" CssClass="label stat">SALES</asp:Label>
 					    </div>
+						-->
 				    </div>
 			    </div>
 		    </div>
@@ -74,7 +81,7 @@
     	        <a href='#' class='link'>ABOUT</a>
      	        <a href='#' class='text'>ART-X 2019</a>
      	        <a href='#' class='link'>FAQ</a>
-            <div>
+            </div>
 
         </form>
 

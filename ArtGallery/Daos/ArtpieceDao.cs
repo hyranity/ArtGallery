@@ -19,14 +19,14 @@ namespace ArtGallery.Daos
         // crud functions
         public void Add(Artpiece Artpiece)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Artpiece(ArtpieceId, ArtistId, Title, About, ImageLink, Price, QuantityLeft, IsForSale, Tags, IsPublic)"
-                                + "VALUES(@ArtpieceId, @ArtistId, @Title, @About, @ImageLink, @Price, @QuantityLeft, @IsForSale, @Tags, @IsPublic)");
+            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Artpiece(ArtpieceId, ArtistId, Title, About, ImageLink, Price, Stocks, IsForSale, Tags, IsPublic)"
+                                + "VALUES(@ArtpieceId, @ArtistId, @Title, @About, @ImageLink, @Price, @Stocks, @IsForSale, @Tags, @IsPublic)");
             Cmd.Parameters.AddWithValue("@ArtpieceId", Artpiece.ArtpieceId);
             Cmd.Parameters.AddWithValue("@ArtistId", Artpiece.ArtistId);
             Cmd.Parameters.AddWithValue("@Title", Artpiece.Title);
             Cmd.Parameters.AddWithValue("@ImageLink", Artpiece.ImageLink);
             Cmd.Parameters.AddWithValue("@Price", Artpiece.Price);
-            Cmd.Parameters.AddWithValue("@QuantityLeft", Artpiece.QuantityLeft);
+            Cmd.Parameters.AddWithValue("@Stocks", Artpiece.Stocks);
             Cmd.Parameters.AddWithValue("@IsForSale", Artpiece.IsForSale);
             Cmd.Parameters.AddWithValue("@Tags", Artpiece.Tags);
             Cmd.Parameters.AddWithValue("@IsPublic", Artpiece.IsPublic);
@@ -59,7 +59,7 @@ namespace ArtGallery.Daos
 						(string)Dr["About"],
 						(string)Dr["ImageLink"],
                         Convert.ToDouble((decimal)Dr["Price"]),
-                        (int)Dr["QuantityLeft"],
+                        (int)Dr["Stocks"],
                         (bool)Dr["IsForSale"],
                         (string)Dr["Tags"],
                         (bool)Dr["IsPublic"]
@@ -94,7 +94,7 @@ namespace ArtGallery.Daos
 						(string)Dr["About"],
 						(string)Dr["ImageLink"],
                         Convert.ToDouble((decimal)Dr["Price"]),
-                        (int)Dr["QuantityLeft"],
+                        (int)Dr["Stocks"],
                         (bool)Dr["IsForSale"],
                         (string)Dr["Tags"],
                         (bool)Dr["IsPublic"]
@@ -118,7 +118,7 @@ namespace ArtGallery.Daos
                 ", Title = @Title" +
                 ", ImageLink = @ImageLink" +
                 ", Price = @Price" +
-                ", QuantityLeft = @QuantityLeft" +
+                ", Stocks = @Stocks" +
                 ", IsForSale = @IsForSale" +
                 ", Tags = @Tags" +
                 ", IsPublic = @IsPublic" +
@@ -129,7 +129,7 @@ namespace ArtGallery.Daos
             Cmd.Parameters.AddWithValue("@Title", Artpiece.Title);
             Cmd.Parameters.AddWithValue("@ImageLink", Artpiece.ImageLink);
             Cmd.Parameters.AddWithValue("@Price", Artpiece.Price);
-            Cmd.Parameters.AddWithValue("@QuantityLeft", Artpiece.QuantityLeft);
+            Cmd.Parameters.AddWithValue("@Stocks", Artpiece.Stocks);
             Cmd.Parameters.AddWithValue("@ForSale", Artpiece.IsForSale);
             Cmd.Parameters.AddWithValue("@Tags", Artpiece.Tags);
             Cmd.Parameters.AddWithValue("@IsPublic", Artpiece.IsPublic);

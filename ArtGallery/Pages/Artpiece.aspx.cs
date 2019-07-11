@@ -15,9 +15,12 @@ namespace ArtGallery.Pages
 
 		public Order_Artwork orderArtwork;
 		public WishedArt wish;
+		protected Classes.Artpiece artpiece;
 
 		protected void Page_Load(object sender, EventArgs e)
         {
+			artpiece = new Classes.Artpiece();
+
 			//Hide buttons first
 			btnAddToWishlist.Visible = false;
 			btnAddToCart.Visible = false;
@@ -37,7 +40,7 @@ namespace ArtGallery.Pages
 
 			// Get from DB
 			ArtpieceDao dao = new ArtpieceDao();
-			Classes.Artpiece artpiece = dao.Get("ARTPIECEID", artpieceId);
+			artpiece = dao.Get("ARTPIECEID", artpieceId);
 
 			// Validate artpiece ID
 			if (artpiece == null)
@@ -72,6 +75,7 @@ namespace ArtGallery.Pages
 						lblArtist.Text = artist.DisplayName;
 						lblDescription.Text = artpiece.About;
 						lblTitle.Text = artpiece.Title + "(PRIVATE ARTPIECE)";
+						lblStocks.Text = artpiece.Stocks + "";
 						artpieceImg.ImageUrl = artpiece.ImageLink;
 
 						if (!artpiece.IsForSale)
@@ -82,7 +86,7 @@ namespace ArtGallery.Pages
 					}
 					else // Show public artpiece
 					{
-						LoadWishlistBt();
+						LoadBt();
 
 						// Make buttons visible
 						btnViewArtist.Visible = true;
@@ -91,7 +95,10 @@ namespace ArtGallery.Pages
 						lblArtist.Text = artist.DisplayName;
 						lblDescription.Text = artpiece.About;
 						lblTitle.Text = artpiece.Title;
+						lblStocks.Text = artpiece.Stocks + "";
+
 						artpieceImg.ImageUrl = artpiece.ImageLink;
+						
 
 						if (!artpiece.IsForSale)
 						{
@@ -104,7 +111,7 @@ namespace ArtGallery.Pages
 
         }
 
-		private void LoadWishlistBt()
+		private void LoadBt()
 		{
 			// Get customer from session
 			Customer customer = (Customer)Net.GetSession("customer");
@@ -114,7 +121,9 @@ namespace ArtGallery.Pages
 			{
 				// Make buttons visible
 				btnAddToWishlist.Visible = true;
-				btnAddToCart.Visible = true;
+
+				if(artpiece.IsForSale)
+					btnAddToCart.Visible = true;
 
 				WishedArtDao dao = new WishedArtDao();
 				wish = dao.GetSpecific(customer.Id, Net.GetQueryStr("id"));
@@ -183,12 +192,6 @@ namespace ArtGallery.Pages
             ArtpieceDao artpieceDao = new ArtpieceDao();
 
             /* ----------------------------------------------------------------------------------------------------
-            * Get artpiece
-            * ---------------------------------------------------------------------------------------------------- */
-            String artpieceId = Net.GetQueryStr("ArtpieceId");
-            ArtGallery.Classes.Artpiece artpiece = artpieceDao.Get("ArtpieceId", artpieceId);
-
-            /* ----------------------------------------------------------------------------------------------------
             * Add/remove artpiece from oaList
             * ---------------------------------------------------------------------------------------------------- */
             string buttonStr = (sender as Button).Text;
@@ -196,8 +199,11 @@ namespace ArtGallery.Pages
             // Adding artpiece to oaList
             if (buttonStr.ToLower().Equals("add to cart"))
             {
-                Order_Artwork orderArtwork = new Order_Artwork(order.OrderId, artpieceId, 1, oaList); // Set default quantity to 1
+                Order_Artwork orderArtwork = new Order_Artwork(order.OrderId, artpiece.ArtpieceId, 1, oaList); // Set default quantity to 1
                 oaList.Add(orderArtwork);
+
+				// Update session
+				Net.SetSession("oaList",oaList);
 
                 (sender as Button).Text = "ADDED TO CART";
             }
@@ -205,9 +211,12 @@ namespace ArtGallery.Pages
             // Removing artpiece from oaList
             else if (buttonStr.ToLower().Equals("added to cart"))
             {
-                oaList.RemoveAll(orderArtwork => orderArtwork.ArtpieceId == artpieceId); // Thanks to Jon Skeet - https://stackoverflow.com/a/853551
+                oaList.RemoveAll(orderArtwork => orderArtwork.ArtpieceId == artpiece.ArtpieceId); // Thanks to Jon Skeet - https://stackoverflow.com/a/853551
 
-                (sender as Button).Text = "ADDED TO CART";
+				// Update session
+				Net.SetSession("oaList", oaList);
+
+				(sender as Button).Text = "ADDED TO CART";
             }
         }
     }

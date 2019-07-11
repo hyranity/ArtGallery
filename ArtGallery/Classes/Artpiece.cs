@@ -14,7 +14,7 @@ namespace ArtGallery.Classes
         public string About { get; set; }
         public string ImageLink { get; set; }
         public double Price { get; set; }
-        public int QuantityLeft { get; set; }
+        public int Stocks { get; set; }
         public Boolean IsForSale { get; set; }
         public string Tags { get; set; }
         public Boolean IsPublic { get; set; }
@@ -25,7 +25,7 @@ namespace ArtGallery.Classes
 
 		}
 
-		public Artpiece(string ArtpieceId, string ArtistId, string Title, string About, string ImageLink, double Price, int QuantityLeft, Boolean IsForSale, string Tags, Boolean IsPublic)
+		public Artpiece(string ArtpieceId, string ArtistId, string Title, string About, string ImageLink, double Price, int Stocks, Boolean IsForSale, string Tags, Boolean IsPublic)
 		{
 			this.ArtpieceId = ArtpieceId;
 			this.ArtistId = ArtistId;
@@ -33,7 +33,7 @@ namespace ArtGallery.Classes
 			this.About = About;
 			this.ImageLink = ImageLink;
             this.Price = Price;
-            this.QuantityLeft = QuantityLeft;
+            this.Stocks = Stocks;
             this.IsForSale = IsForSale;
             this.Tags = Tags;
             this.IsPublic = IsPublic;

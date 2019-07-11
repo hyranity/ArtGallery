@@ -37,7 +37,7 @@ namespace ArtGallery.Pages
 			artpiece.Title = txtTitle.Text;
 			artpiece.Price = Convert.ToDouble(txtPrice.Text);
 			
-			artpiece.QuantityLeft = Convert.ToInt32(txtStocks.Text);  // Need to validate        
+			artpiece.Stocks = Convert.ToInt32(txtStocks.Text);  // Need to validate        
 
 			// NOTE! NEED TO CHANGE TO DROPDOWNLIST
 			if (rblForSale.SelectedValue == "yes") // If the artpiece is for sale
