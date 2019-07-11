@@ -20,9 +20,24 @@ namespace ArtGallery.Pages
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			
-			// To ensure that a valid username is entered
-			try
+            // Redirects
+            if (Request.QueryString["username"] == null)
+            {
+                Net.Redirect("~/Pages/Home.aspx");
+            }
+
+            if (Request.QueryString["username"].ToString().Equals("session") && Net.GetSession("artist") == null && Net.GetSession("customer") == null)
+            {
+                Net.Redirect("~/Pages/LoginRegister.aspx");
+            }
+
+            if (Net.GetSession("customer") == null && Net.GetSession("artist") != null)
+            {
+                Net.Redirect("~/Pages/ArtistProfile.aspx?username=session");
+            }
+
+            // To ensure that a valid username is entered
+            try
 			{
 				username = Request.QueryString["username"].ToString();
 			}

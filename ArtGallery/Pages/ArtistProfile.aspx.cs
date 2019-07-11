@@ -15,10 +15,26 @@ namespace ArtGallery.Pages
     {
 
 		public int pageNo;
-		string username = "";
+		public string username = "";
 
 		protected void Page_Load(object sender, EventArgs e)
         {
+            // Redirects
+            if (Request.QueryString["username"] == null)
+            {
+                Net.Redirect("~/Pages/Home.aspx");
+            }
+
+            if (Request.QueryString["username"].ToString().Equals("session") && Net.GetSession("artist") == null && Net.GetSession("customer") == null)
+            {
+                Net.Redirect("~/Pages/LoginRegister.aspx");
+            }
+
+            if (Net.GetSession("artist") == null && Net.GetSession("customer") != null)
+            {
+                Net.Redirect("~/Pages/CustomerProfile.aspx?username=session");
+            }
+
 			// To ensure that a valid username is entered
 			
 			try
@@ -53,14 +69,22 @@ namespace ArtGallery.Pages
 			// Clear parameters
 			GallerySource.SelectParameters.Clear();
 
-			GallerySource.SelectCommand = "SELECT ARTPIECE.TITLE, ARTPIECE.IMAGELINK AS URL, ARTIST.USERNAME, ARTIST.DisplayName FROM ARTPIECE INNER JOIN ARTIST ON ARTPIECE.ARTISTID = ARTIST.ARTISTID WHERE (ARTPIECE.ISPUBLIC = 1) AND ARTIST.USERNAME = @USERNAME ORDER BY ARTPIECE.ARTPIECEID DESC OFFSET @OFFSETAMT ROWS FETCH NEXT @ItemLimit ROWS ONLY";
+			GallerySource.SelectCommand = "SELECT ARTPIECE.TITLE, ARTPIECE.IMAGELINK AS URL, ARTPIECE.ArtpieceId, ARTIST.USERNAME, ARTIST.DisplayName FROM ARTPIECE INNER JOIN ARTIST ON ARTPIECE.ARTISTID = ARTIST.ARTISTID WHERE (ARTPIECE.ISPUBLIC = 1) AND ARTIST.USERNAME = @USERNAME ORDER BY ARTPIECE.ARTPIECEID DESC OFFSET @OFFSETAMT ROWS FETCH NEXT @ItemLimit ROWS ONLY";
 			GallerySource.SelectParameters.Add("offsetAmt", System.Data.DbType.Int32, offsetAmt + "");
 			GallerySource.SelectParameters.Add("ItemLimit", System.Data.DbType.Int32, ItemLimit + "");
 			GallerySource.SelectParameters.Add("USERNAME", username);
 
-			//Fetch from DB
-			ArtistDao Dao = new ArtistDao();
-			Artist Artist = Dao.Get("username", username);
+            //Fetch from DB
+            Artist Artist = null;
+            if (username.Equals("session"))
+            {
+                Artist = (Artist) Net.GetSession("artist");
+            }
+            else
+            {
+                ArtistDao Dao = new ArtistDao();
+                Artist = Dao.Get("username", username);
+            }
 
 			if (Artist == null)
 			{

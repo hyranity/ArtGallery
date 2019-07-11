@@ -17,9 +17,9 @@
         <form id="form1" runat="server">
 
 		    <div class='header'>
-                <a href='#' class='title'>ART-X</a>
-                <a href='#' class='link'>WORKS</a>
-                <a href='#' class='link'>ACCOUNT</a>
+                <a href='Home.aspx' class='title'>ART-X</a>
+                <a href='AllGallery.aspx' class='link'>WORKS</a>
+                <a href='ArtistProfile.aspx?username=session' class='link'>ACCOUNT</a>
 		    </div>
 
 		    <div class='profile'>
@@ -28,21 +28,25 @@
 				    <div id='left'>
                         <asp:Label ID="lblHandle" runat="server" CssClass="label handle"></asp:Label>
 					    <div id='main'>
-						    <img src='https://pbs.twimg.com/profile_images/1055263632861343745/vIqzOHXj.jpg' >
+						    <!--<img src='https://pbs.twimg.com/profile_images/1055263632861343745/vIqzOHXj.jpg' -->
                             <asp:Label ID="lblName" runat="server" CssClass="label name"></asp:Label>
 					    </div>
-                        <asp:Label ID="lblLocation" runat="server" CssClass="label location"></asp:Label>
+                        <!--<asp:Label ID="lblLocation" runat="server" CssClass="label location"></asp:Label>-->
                         <asp:Label ID="lblBio" runat="server" CssClass="label bio"></asp:Label>
-					    <div id='tags'>
+					    <!--<div id='tags'>
 						    <a class='tag'>UI</a>
 						    <a class='tag'>UX</a>
 						    <a class='tag'>DESIGN</a>
 						    <a class='tag'>WEB</a>
 						    <a class='tag'>MOBILE</a>
-					    </div>
+					    </div>-->
+                        <% if (username != null && !username.Equals(""))
+                           { %>
+                            <a href="ArtistAccount.aspx" class="editLink">EDIT PROFILE</a>
+                        <% } %>
 				    </div>
 				
-				    <div id='right'>
+				    <!--<div id='right'>
 					    <div id='topstats'>
 						    <div>
                                 <asp:Label ID="lblNumberArtpiecesPosted" runat="server" CssClass="label number">23</asp:Label>
@@ -67,7 +71,7 @@
                                 <asp:Label ID="lblStatFollowing" runat="server" CssClass="label stat">FOLLOWING</asp:Label>
 						    </div>
 					    </div>
-				    </div>
+				    </div>-->
 
 			    </div>
 		    </div>
@@ -80,7 +84,7 @@
 				<!-- The following code is obtained from: Jeff Sternal @ https://stackoverflow.com/questions/1765942/how-do-you-show-x-items-per-row-in-a-repeater/1766379#1766379 -->
 				<%# (Container.ItemIndex + 3) % 3 == 0 ? "<tr>" : string.Empty %>
 				<td>
-					<a href='#'>
+					<a href='Artpiece.aspx?id=<%# Eval("ArtpieceId") %>'>
 						<asp:Image runat="server" ImageUrl='<%# Eval("URL") %>' />
 
 						<div class='box'>

@@ -15,9 +15,9 @@
     <form id="form1" runat="server">
       <div class='container'>
       <div class='top'>
-        <a class='title'>ART-X</a>
-        <a href='#' style='position: relative; top: -42px; left: 40px;'>WORKS</a>
-        <a href='#' style='position: relative; top: -8px; right: 56px;'>ACCOUNT</a>
+        <a href='Home.aspx' class='title'>ART-X</a>
+        <a href='AllGallery.aspx' style='position: relative; top: -42px; left: 40px;'>WORKS</a>
+        <a href='ArtistAccount.aspx' style='position: relative; top: -8px; right: 56px;'>ACCOUNT</a>
       </div>
 
       <div class='form' id='login'>
@@ -48,7 +48,11 @@
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
             <asp:TextBox ID="txtRegisterPassword" Placeholder="password" runat="server" TextMode="Password"></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
-            <asp:TextBox ID="txtRegisterPosition" Placeholder="position" runat="server"></asp:TextBox>
+            <!--<asp:TextBox ID="txtRegisterPosition" Placeholder="position" runat="server"></asp:TextBox>-->
+            <asp:DropDownList ID="ddlRegisterPosition" runat="server">
+                <asp:ListItem>Artist</asp:ListItem>
+                <asp:ListItem>Customer</asp:ListItem>
+              </asp:DropDownList>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
           </div>
         </div>

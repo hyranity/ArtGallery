@@ -22,13 +22,13 @@ namespace ArtGallery.Pages
             IdGen IdGen = new IdGen();
 
             // Should be changed to dropdownlist
-            if (txtRegisterPosition.Text == "customer")
+            if (ddlRegisterPosition.SelectedValue.Equals("Customer"))
             {
                 String Id = IdGen.GenerateId("Customer");
                 Customer.RegisterCustomer(Id, txtRegisterUsername.Text, txtRegisterDisplayName.Text, txtRegisterEmail.Text, txtRegisterPassword.Text, null);
             }
 
-            if (txtRegisterPosition.Text == "artist")
+            if (ddlRegisterPosition.SelectedValue.Equals("Artist"))
             {
                 String Id = IdGen.GenerateId("Artist");
                 Artist.RegisterArtist(Id, txtRegisterUsername.Text, txtRegisterDisplayName.Text, txtRegisterEmail.Text, txtRegisterPassword.Text);
@@ -39,7 +39,6 @@ namespace ArtGallery.Pages
 			txtRegisterPassword.Text = "";
 			txtRegisterPosition.Text = "";
 			txtRegisterUsername.Text = "";
-            Quick.Print("lol!");
         }
 
 		protected void btnLogin_Click(object sender, EventArgs e)

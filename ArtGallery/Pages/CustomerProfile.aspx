@@ -16,18 +16,18 @@
 					<img src='https://pbs.twimg.com/profile_images/1055263632861343745/vIqzOHXj.jpg'>
 					<asp:Label ID="lblName" runat="server" CssClass="label name"></asp:Label>
 				</div>
-				<asp:Label ID="lblLocation" runat="server" CssClass="label location"></asp:Label>
+				<!--<asp:Label ID="lblLocation" runat="server" CssClass="label location"></asp:Label>-->
 				<asp:Label ID="lblBio" runat="server" CssClass="label bio"></asp:Label>
-				<div id='tags'>
+				<!--div id='tags'>
 					<a class='tag'>UI</a>
 					<a class='tag'>UX</a>
 					<a class='tag'>DESIGN</a>
 					<a class='tag'>WEB</a>
 					<a class='tag'>MOBILE</a>
-				</div>
+				</!--div>-->
 			</div>
 
-			<div id='right'>
+			<!--<div id='right'>
 				<div id='topstats'>
 					<div>
 						<asp:Label ID="lblNumberArtpiecesPosted" runat="server" CssClass="label number">23</asp:Label>
@@ -52,7 +52,7 @@
 						<asp:Label ID="lblStatFollowing" runat="server" CssClass="label stat">FOLLOWING</asp:Label>
 					</div>
 				</div>
-			</div>
+			</div>-->
 
 		</div>
 	</div>

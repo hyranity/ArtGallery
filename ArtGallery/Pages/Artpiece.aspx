@@ -17,9 +17,9 @@
         <form id="form1" runat="server">
 
 		    <div class='header'>
-			    <a href='#' class='title'>ART-X</a>
-			    <a href='#' class='link'>WORKS</a>
-			    <a href='#' class='link'>ACCOUNT</a>
+			    <a href='Home.aspx' class='title'>ART-X</a>
+			    <a href='AllGallery.aspx' class='link'>WORKS</a>
+			    <a href='ArtistProfile.aspx?username=session' class='link'>ACCOUNT</a>
 		    </div>
 
 		    <div class='container'>

@@ -14,7 +14,7 @@
 				<img src='https://pbs.twimg.com/profile_images/1055263632861343745/vIqzOHXj.jpg'>
 				<asp:Label ID="lblName" runat="server" CssClass="name labels"></asp:Label>
 			</div>
-			<div id='topstats'>
+			<!--<div id='topstats'>
 				<div>
                     <asp:Label ID="lblNumberArtpiecesBought" runat="server" CssClass="label number">23</asp:Label>
                     <asp:Label ID="lblStatArtpiecesBought" runat="server" CssClass="label stat">ARTPIECES<br />BOUGHT</asp:Label>
@@ -33,7 +33,7 @@
                     <asp:Label ID="lblNumberArtpiecesWhitelisted" runat="server" CssClass="label number">74</asp:Label>
                     <asp:Label ID="lblStatArtpiecesWhitelisted" runat="server" CssClass="label stat">ARTPIECES<br />WHITELISTED</asp:Label>
 				</div>
-			</div>
+			</div>-->
 			<asp:Button runat="server" href="CustomerProfile.aspx" Text="BACK TO PROFILE" ID="BackBt" CssClass='back' OnClick="BackBt_Click"></asp:Button>
 		</div>
 

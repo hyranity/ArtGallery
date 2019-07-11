@@ -48,7 +48,7 @@
 				<!-- The following code is obtained from: Jeff Sternal @ https://stackoverflow.com/questions/1765942/how-do-you-show-x-items-per-row-in-a-repeater/1766379#1766379 -->
 				<%# (Container.ItemIndex + 3) % 3 == 0 ? "<tr>" : string.Empty %>
 				<td>
-					<a href='#'>
+					<a href='Artpiece.aspx?id=<%# Eval("ArtpieceId") %>'>
 						<asp:Image runat="server" ImageUrl='<%# Eval("URL") %>' />
 						
 						<div class='box'>
