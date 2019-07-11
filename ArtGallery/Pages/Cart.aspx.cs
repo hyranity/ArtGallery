@@ -316,21 +316,40 @@ namespace ArtGallery.Pages
 				// Get the string value
 				string quantityStr = lblQuantity.Value;
 				string priceStr = lblPrice.Text;
-				total += Convert.ToDouble(priceStr) * Convert.ToInt32(quantityStr);
 
-				// Save to oa object
-				oaList[i - 1].Quantity = Convert.ToInt32(quantityStr);
-				
+				//Get artpiece
+				ArtpieceDao artpieceDao = new ArtpieceDao();
+				Classes.Artpiece artpiece = artpieceDao.Get("ARTPIECEID", oaList[i - 1].ArtpieceId);
+
+				// Check for sufficient stocks
+				if (Convert.ToInt32(quantityStr) > artpiece.Stocks)
+				{
+					// Show insufficient stock message
+					Quick.Print("Insufficient stock! Ordering " + oaList[i-1].Quantity + " while Artpiece stock is " + artpiece.Stocks);
+				}
+				else
+				{
+					total += Convert.ToDouble(priceStr) * Convert.ToInt32(quantityStr);
+
+					// Save to oa object
+					oaList[i - 1].Quantity = Convert.ToInt32(quantityStr);
+					Quick.Print("Quantity ordered: " + oaList[i - 1].Quantity);
+				}
+
+				//Update order total price
+				order.TotalPrice += total;
 			}
 			
-			lblPrice.Text = "RM " + total;
+			lblPrice.Text = "RM " + order.TotalPrice;
 
-			//Update order total price
-			order.TotalPrice = total;
+			
 
 			// Save to session
 			Net.SetSession("oaList", oaList);
 			Net.SetSession("order", order);
+
+			//Refresh page
+			Net.RefreshPage();
 		}
 	}
 }
