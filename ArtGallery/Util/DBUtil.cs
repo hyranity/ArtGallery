@@ -18,11 +18,13 @@ namespace ArtGallery.Util
 		// Builds a connection to the database
 		public DBUtil()
 		{
+			ConnectStr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ArtGallery.mdf;Integrated Security=True";
+			Con = new SqlConnection(ConnectStr);
+
+			// Prevent opening too many connections
 			if (Con.State == System.Data.ConnectionState.Open)
 				Con.Close();
 
-			ConnectStr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ArtGallery.mdf;Integrated Security=True";
-			Con = new SqlConnection(ConnectStr);
 			Con.Open();
 		}
 
