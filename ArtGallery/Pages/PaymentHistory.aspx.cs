@@ -32,9 +32,9 @@ namespace ArtGallery.Pages
             // Get database attributes to manipulate
             List<Order> orders = orderDao.GetList("CUSTID", customer.Id);
             // Display orders
-            Control container = this.FindControl("container");
+            Control container = this.Master.FindControl("MainContent").FindControl("container");
 
-
+            if (container == null) { Quick.Print("ITS FUCKING NULL ITS FUCKING NULLITS FUCKING NULLITS FUCKING NULLITS FUCKING NULLITS FUCKING NULLITS FUCKING NULLITS FUCKING NULLITS FUCKING NULLITS FUCKING NULLITS FUCKING NULL"); }
 
 
             // DEBUG BOI

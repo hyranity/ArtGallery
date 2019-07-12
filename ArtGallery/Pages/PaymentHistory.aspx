@@ -16,7 +16,7 @@
 
     <div class='container' id="container" runat="server">
 
-      <div class='box'>
+      <!--<div class='box'>
         <div class='details'>
           <div>
             <a class='text'>ORDER ID</a>
@@ -76,7 +76,7 @@
 
         </div>
 
-      </div>
+      </div>-->
 
     </div>
 </asp:Content>

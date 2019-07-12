@@ -93,9 +93,10 @@ namespace ArtGallery.Pages
 			}
 			else
 			{
-				lblHandle.Text = Customer.Username;
+				lblHandle.Text =  "@" + Customer.Username;
 				lblName.Text = Customer.DisplayName;
-				lblBio.Text = "TBA";
+                //lblBio.Text = "TBA";
+                lblBio.Text = "<span style='font-size: 20px; color: grey;'>Viewing " + Customer.DisplayName + "'s wishlist.</span>";
 			}
 
 			ArtRepeater.DataSource = GallerySource;

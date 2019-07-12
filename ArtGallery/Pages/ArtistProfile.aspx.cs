@@ -92,9 +92,9 @@ namespace ArtGallery.Pages
 			}
 			else
 			{
-				lblHandle.Text = Artist.Username;
+				lblHandle.Text = "@" + Artist.Username;
 				lblName.Text = Artist.DisplayName;
-				lblBio.Text = Artist.Bio;
+				lblBio.Text = Artist.Bio + "<br><span style='font-size: 20px; color: grey;'>Viewing " + Artist.DisplayName + "'s artworks.</span>";
 			}
 
 			ArtRepeater.DataSource = GallerySource;

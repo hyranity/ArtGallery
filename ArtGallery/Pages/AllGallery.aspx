@@ -12,7 +12,7 @@
 		<table class='text'>
 			<tr>
 				<td id='title'>
-					<a>ILLUSTRATION</a>
+					<a>ARTPIECES</a>
 				</td>
 				<td id='quote'>
 					<a id='content'>"Painting is the silence of thought<br>
