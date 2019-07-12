@@ -40,13 +40,13 @@ namespace ArtGallery.Pages {
         protected global::System.Web.UI.WebControls.TextBox txtTags;
         
         /// <summary>
-        /// lblRegisterError control.
+        /// lblUploadError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRegisterError;
+        protected global::System.Web.UI.WebControls.Label lblUploadError;
         
         /// <summary>
         /// uploadBt control.

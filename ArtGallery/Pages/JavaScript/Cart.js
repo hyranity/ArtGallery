@@ -9,7 +9,7 @@ $(document).ready(function () {
 		var btnId = $(this).attr('id').replace("btnDecrement", "");
 		var quantity = $("#quantity" + btnId).text().replace(" PCS", "");
 
-		if (parseInt(quantity) > parseInt(0)) {
+		if (parseInt(quantity) > parseInt(1)) {
 			$("#quantity" + btnId).text((parseInt(quantity) - parseInt(1)) + " PCS");
 		}
 

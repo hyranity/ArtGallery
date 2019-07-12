@@ -22,7 +22,7 @@
 
 			<div id='center'>
                 <!-- ERROR MESSAGE -->
-                <asp:Label ID="lblRegisterError" runat="server" Text="error msg" CssClass="label errorMsg"></asp:Label>
+                <asp:Label ID="lblUploadError" runat="server" CssClass="label errorMsg"></asp:Label>
 				<asp:Button runat="server" ID="uploadBt" OnClick="uploadBt_Click" CssClass="upload" Text="UPLOAD"/>
                 <asp:FileUpload runat="server" ID="fileBt" CssClass="file" Text="select file"/>
 				<div id='category'>

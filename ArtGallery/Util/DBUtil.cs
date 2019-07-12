@@ -54,7 +54,7 @@ namespace ArtGallery.Util
 				Con.Close();
 		}
 
-		public static int CountRecords(string Query)
+		/*public static int CountRecords(string Query)
 		{
 			DBUtil DBUtil = new DBUtil();
 
@@ -64,6 +64,6 @@ namespace ArtGallery.Util
 			DBUtil.Disconnect();
 
 			return Convert.ToInt32(Cmd.ExecuteScalar());
-		}
+		}*/
 	}
 }
