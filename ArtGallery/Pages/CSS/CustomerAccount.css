@@ -175,7 +175,7 @@
     width: 1200px;
     transform: rotate(20deg);
     margin-left: 800px;
-    margin-top: -1000px;
+    margin-top: -800px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -203,6 +203,7 @@
                 border: none;
                 font-family: Roboto Condensed;
                 font-weight: bold;
+                animation: buttonAnimation 3s infinite;
             }
 
                 .purple .container #center input:focus {
@@ -266,7 +267,7 @@
             align-items: flex-start;
             justify-content: center;
             z-index: 1;
-            margin-left: -240px;
+            margin-left: -210px;
             margin-bottom: -200px;
         }
 
@@ -310,3 +311,22 @@
                 position: relative;
                 right: 45px;
             }
+
+@keyframes buttonAnimation {
+    0% { 
+        color: white; 
+    }
+
+    50% {
+        color: #d1b57d;
+    }
+
+    100% {
+        color: white;
+    }
+}
+
+.errorMsg {
+    color: #b04141;
+    font-size: 20px;
+}

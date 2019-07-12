@@ -24,6 +24,8 @@
       </div>
 
       <div class='form' id='login'>
+          <!-- ERROR MESSAGE -->
+            <asp:Label ID="Label1" runat="server" Text="error msg" CssClass="label errorMsg"></asp:Label>
         <div class="mainForm" style='display: flex; flex-direction: row;'>
           <div class='title' style='margin-top: 40px;'>
             <asp:Button ID="btnLogin" runat="server" Text="LOGIN" OnClick="btnLogin_Click" />
@@ -38,6 +40,8 @@
       </div>
 
       <div class='form' id='register'>
+          <!-- ERROR MESSAGE -->
+            <asp:Label ID="lblRegisterError" runat="server" Text="error msg" CssClass="label errorMsg"></asp:Label>
         <div class="mainForm">
           <div class='title' style='margin-top: 75px; margin-left: -30px;'>
             <asp:Button ID="btnRegister" runat="server" Text="REGISTER" OnClick="btnRegister_Click" />

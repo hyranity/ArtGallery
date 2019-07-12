@@ -10,7 +10,7 @@ body, #form1 {
     align-items: center;
 }
 
-a {
+a, .label {
     font-family: Roboto Condensed;
     text-decoration: none;
     color: #4B4848;
@@ -23,7 +23,7 @@ a {
     align-items: center;
     margin-top: 30px;
     margin-left: 50px;
-    margin-left: -1300px;
+    margin-left: -500px;
 }
 
     .header .title {
@@ -101,6 +101,7 @@ a {
             font-family: Roboto Condensed;
             font-weight: bold;
             text-align: center;
+            animation: buttonAnimation 3s infinite;
         }
 
         .container #center .file {
@@ -199,3 +200,22 @@ a {
         margin-left: 20px;
         margin-right: 20px;
     }
+
+@keyframes buttonAnimation {
+    0% {
+        color: #4B4848;
+    }
+
+    50% {
+        color: #d1b57d;
+    }
+
+    100% {
+        color: #4B4848;
+    }
+}
+
+.errorMsg {
+    color: #b04141;
+    font-size: 20px;
+}

@@ -140,6 +140,7 @@ a, .label {
                     text-decoration: none;
                     font-weight: bold;
                     margin-top: 10px;
+                    animation: buttonAnimation 3s infinite;
                 }
 
                 .container #details .buttons div .button:focus {
@@ -171,3 +172,17 @@ a, .label {
                 .container #details .stats div .stat {
                     font-size: 20px;
                 }
+
+@keyframes buttonAnimation {
+    0% {
+        color: #4B4848;
+    }
+
+    50% {
+        color: #d1b57d;
+    }
+
+    100% {
+        color: #4B4848;
+    }
+}

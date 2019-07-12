@@ -23,11 +23,10 @@
 				string link = "";
 
 				Customer customer = (Customer)Net.GetSession("customer");
+                Artist artist = (Artist)Net.GetSession("artist");
 
 				if (customer == null)
 				{
-					Artist artist = (Artist)Net.GetSession("artist");
-
 					if (artist != null)
 						link = "ArtistProfile.aspx?username=" + artist.Username;
 					else
@@ -44,8 +43,6 @@
 
 				if (customer == null)
 				{
-					Artist artist = (Artist)Net.GetSession("artist");
-
 					if (artist != null)
 					{
 						url = "ArtistAccount.aspx";
@@ -97,6 +94,15 @@
 
 			<a href="paymenthistory.aspx" class="link">PAYMENT HISTORY</a>
 			<%} %>
+
+            <%
+
+				if(artist != null)
+				{
+			%>
+
+			<a href="Upload.aspx" class="link">UPLOAD</a>
+			<%} %>
 		</div>
 
         <div class='container'>
@@ -133,7 +139,8 @@
 
           </div>
           <div id="gallery" runat="server">
-
+                 <!-- ERROR MESSAGE -->
+                <asp:Label ID="lblRegisterError" runat="server" Text="error msg" CssClass="label errorMsg"></asp:Label>
           </div>
 
           <!-- <table class='gallery'>

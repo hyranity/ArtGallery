@@ -21,11 +21,10 @@
 				string link = "";
 
 				Customer customer = (Customer)Net.GetSession("customer");
+                Artist artist = (Artist)Net.GetSession("artist");
 
 				if (customer == null)
 				{
-					Artist artist = (Artist)Net.GetSession("artist");
-
 					if (artist != null)
 						link = "ArtistProfile.aspx?username=" + artist.Username;
 					else
@@ -42,8 +41,6 @@
 
 				if (customer == null)
 				{
-					Artist artist = (Artist)Net.GetSession("artist");
-
 					if (artist != null)
 					{
 						url = "ArtistAccount.aspx";
@@ -94,6 +91,15 @@
 			%>
 
 			<a href="paymenthistory.aspx" class="link">PAYMENT HISTORY</a>
+			<%} %>
+
+            <%
+
+				if(artist != null)
+				{
+			%>
+
+			<a href="Upload.aspx" class="link">UPLOAD</a>
 			<%} %>
 		</div>
 		<div>

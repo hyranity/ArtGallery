@@ -9,6 +9,8 @@
 
 
 		<div class='card'>
+            <!-- ERROR MESSAGE -->
+            <asp:Label ID="lblRegisterError" runat="server" Text="error msg" CssClass="label errorMsg"></asp:Label>
 			<asp:Label ID="lblUsername" runat="server" CssClass="label handle"></asp:Label>
 			<div id='main'>
 				<!--<img src='https://pbs.twimg.com/profile_images/1055263632861343745/vIqzOHXj.jpg'>-->

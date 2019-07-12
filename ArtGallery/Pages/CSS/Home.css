@@ -152,7 +152,22 @@ a {
 
         .links div a {
             font-size: 40px;
+            animation: buttonAnimation 3s infinite;
         }
 
         .links div img {
         }
+
+@keyframes buttonAnimation {
+    0% {
+        color: #4B4848;
+    }
+
+    50% {
+        color: #d1b57d;
+    }
+
+    100% {
+        color: #4B4848;
+    }
+}
