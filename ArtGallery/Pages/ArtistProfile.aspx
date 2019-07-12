@@ -77,7 +77,7 @@
 
 						<div class='box'>
 							<a class='artpiece'><%# Eval("TITLE") %></a>
-							<a class='artist'><%# Eval("Username") %> <%# Eval("DisplayName") %></a>
+							<a class='artist'><%# Eval("DisplayName") %></a>
 						</div>
 					</a>
 				</td>

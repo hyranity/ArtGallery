@@ -14,30 +14,30 @@
 
       <a href='#'>
         <div id='one'>
-          <img src='https://cdn.dribbble.com/users/15687/screenshots/6517934/ancient-ruins.png'>
+          <img src='https://images.unsplash.com/photo-1524664399170-77e7118fdb6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'>
           <div>
-            <a class='title'>Ancient Ruins</a>
-            <a class='artist'>ROMAN KLCO</a>
+            <a class='title'>Art of the Paint</a>
+            <a class='artist'>JOHANN LEE</a>
           </div>
         </div>
       </a>
 
       <a href='#'>
         <div id='two'>
-          <img src='https://cdn.dribbble.com/users/15687/screenshots/6517934/ancient-ruins.png'>
+          <img src='https://images.unsplash.com/photo-1526304760382-3591d3840148?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'>
           <div>
-            <a class='title'>Ancient Ruins</a>
-            <a class='artist'>ROMAN KLCO</a>
+            <a class='title'>Hand of Pink</a>
+            <a class='artist'>JOHANN LEE</a>
           </div>
         </div>
       </a>
 
       <a href='#'>
         <div id='three'>
-          <img src='https://cdn.dribbble.com/users/15687/screenshots/6517934/ancient-ruins.png'>
+          <img src='https://images.unsplash.com/photo-1524664399170-77e7118fdb6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'>
           <div>
-            <a class='title'>Ancient Ruins</a>
-            <a class='artist'>ROMAN KLCO</a>
+            <a class='title'>Art of the Paint</a>
+            <a class='artist'>JOHANN LEE</a>
           </div>
         </div>
       </a>

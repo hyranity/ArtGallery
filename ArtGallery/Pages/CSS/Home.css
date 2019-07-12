@@ -78,11 +78,11 @@ a {
     }
 
     .featured #one, #three {
-        margin-top: 80px;
+        margin-top: 120px;
     }
 
     .featured #two {
-        margin-top: -80px;
+        margin-top: -120px;
     }
 
     .featured div img {
