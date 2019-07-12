@@ -1,7 +1,16 @@
-# ArtGallery
+This is an Art Gallery web application developed by a team of three members
+(Johann Lee, Kelvin Ng and Ryan Koroh) for the purposes of the 1st part of
+their RSD2 Semester 1 Web Application assignment.
 
-Dev notes! ~ by Ryan
-- When opening a project existing on PC using VS, open by 'Project/Solution' and select the .csproj file. It's usually in a sub-folder going by the same name as its parent. (You should do this after cloning as well.)
-- To create an SQL server, do Add Item > SQL Server. (Trying to create one through 'Connect to Database' will usually result in some bullshit Error 40 stuff.)
-- For instructions regarding syncing the repo with local versions, refer to Johann's message in the group.
-- Don't mess shit up lol
+This web application is designed to be an Art Gallery, which currently
+offers the following features:
+
+- Register an artist/customer account
+- Upload and sell artpieces as an artist
+- View artpieces
+- Buy artpieces as a customer
+
+In order to run this application, the user opens the project in Visual Studio,
+and selects to run it. The application will start up, and automatically redirect
+to the landing page (Home.aspx). From there the rest of the web application and
+its features that are currently in place can be accessed.
