@@ -17,7 +17,51 @@ a {
     font-weight: bold;
 }
 
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 30px;
+    margin-left: 50px;
+    /* margin-left: -1300px; */
+}
 
+    .header .title {
+        font-size: 100px;
+        margin-right: 50px;
+    }
+
+    .header .link {
+        font-size: 25px;
+        margin-right: 25px;
+    }
+
+    .header .link {
+        margin-left: 20px;
+        font-size: 20px;
+    }
+
+.footer {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 30px; /* weird div size stuff w/out this */
+}
+
+    .footer .link {
+        font-size: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .footer .text {
+        font-size: 25px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
 
 .text {
     margin-top: 100px;

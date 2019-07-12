@@ -16,25 +16,88 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class='header'>
-          <a href='Home.aspx' class='title'>ART-X</a>
-          <a href='AllGallery.aspx' class='link'>WORKS</a>
-          <a href='ArtistProfile.aspx?username=session' class='link'>ACCOUNT</a>
-            <%
-                List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
-                int noOfItems = 0;
-                if (oaList != null)
-                {
-                    noOfItems = oaList.Count;
-                }
-                else
-                {
-                    noOfItems = 0;
-                }
-            %>
+		<div class='header'>
+			<a href='Home.aspx' class='title'>ART-X</a>
+			<a href='AllGallery.aspx' class='link'>WORKS</a>
+			<%
+				string link = "";
 
-            <a href='Cart.aspx' class='link'>CART <sup><%= noOfItems %></sup></a>
-        </div>
+				Customer customer = (Customer)Net.GetSession("customer");
+
+				if (customer == null)
+				{
+					Artist artist = (Artist)Net.GetSession("artist");
+
+					if (artist != null)
+						link = "ArtistProfile.aspx?username=" + artist.Username;
+					else
+						link = "LoginRegister.aspx";
+				}
+				else
+					link = "CustomerProfile.aspx?username=" + customer.Username;
+			%>
+			<a href='<%= link %>' class='link'>PROFILE</a>
+
+			<%
+				string url = "";
+				bool isLoggedIn = false;
+
+				if (customer == null)
+				{
+					Artist artist = (Artist)Net.GetSession("artist");
+
+					if (artist != null)
+					{
+						url = "ArtistAccount.aspx";
+						isLoggedIn = true;
+					}
+					else
+						url = "LoginRegister.aspx";
+				}
+				else
+				{
+					url = "CustomerAccount.aspx";
+					isLoggedIn = true;
+				}
+
+				// Only show the following if logged in
+				if (isLoggedIn)
+				{
+			%>
+
+			<a href="<%= url %>" class="link">ACCOUNT DETAILS</a>
+
+			<%
+				}
+
+
+				if (customer != null)
+				{
+					List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
+					int noOfItems = 0;
+					if (oaList != null)
+					{
+						noOfItems = oaList.Count;
+					}
+					else
+					{
+						noOfItems = 0;
+					}
+
+			%>
+
+			<a href='Cart.aspx' class='link'>CART <sup style="color: darkred;"><%= noOfItems %></sup></a>
+			<%} %>
+
+			<%
+
+				if(customer != null)
+				{
+			%>
+
+			<a href="paymenthistory.aspx" class="link">PAYMENT HISTORY</a>
+			<%} %>
+		</div>
 
         <div class='container'>
 

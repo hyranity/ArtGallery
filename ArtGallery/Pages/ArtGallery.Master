@@ -67,6 +67,8 @@
 
 			<%
 				}
+
+
 				if (customer != null)
 				{
 					List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");

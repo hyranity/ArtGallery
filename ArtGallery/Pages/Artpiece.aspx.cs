@@ -16,14 +16,16 @@ namespace ArtGallery.Pages
 		public Order_Artwork orderArtwork;
 		public WishedArt wish;
 		protected Classes.Artpiece artpiece;
+        protected Classes.Artist artist;
 
-		protected void Page_Load(object sender, EventArgs e)
+
+        protected void Page_Load(object sender, EventArgs e)
         {
 			artpiece = new Classes.Artpiece();
 
-			//Hide buttons first
-			btnAddToWishlist.Visible = false;
-			btnAddToCart.Visible = false;
+            //Hide buttons first
+            btnAddToWishlist.Visible = false;
+            btnAddToCart.Visible = false;
 			btnViewArtist.Visible = false;
 			
 
@@ -49,7 +51,7 @@ namespace ArtGallery.Pages
 			{
 				// Get Artist info
 				ArtistDao artistDao = new ArtistDao();
-				Classes.Artist artist = artistDao.Get("ARTISTID", artpiece.ArtistId);
+				artist = artistDao.Get("ARTISTID", artpiece.ArtistId);
 
 				// Will be null if currently logged in user is not an artist
 				Artist currentArtist = (Artist)Session["Artist"];
@@ -250,6 +252,18 @@ namespace ArtGallery.Pages
 
 			
 
+        }
+
+        protected void btnViewArtist_Click(object sender, EventArgs e)
+        {
+            // Redirect to artist page
+            Net.Redirect("~/Pages/ArtistProfile.aspx?username=" + artist.Username);
+        }
+
+        protected void btnLike_Click(object sender, EventArgs e)
+        {
+            // 'Like' feature is under construction
+            Net.Redirect("~/Pages/UnderConstruction.aspx");
         }
     }
 }

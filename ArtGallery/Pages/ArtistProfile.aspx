@@ -28,7 +28,7 @@
 						    <a class='tag'>WEB</a>
 						    <a class='tag'>MOBILE</a>
 					    </div>-->
-                        <% if (username != null && !username.Equals(""))
+                        <% if (username != null && !username.Equals("") && Net.GetSession("artist") != null)
                            { %>
                             <a href="ArtistAccount.aspx" class="editLink">EDIT PROFILE</a>
                         <% } %>

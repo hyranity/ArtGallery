@@ -51,9 +51,4 @@
       </div>
     </div>
 
-    <div class='footer'>
-      <a href='UnderConstruction.aspx' class='link'>ABOUT</a>
-      <a href='Home.aspx' class='text'>ART-X 2019</a>
-      <a href='UnderConstruction.aspx' class='link'>FAQ</a>
-    <div>
 </asp:Content>

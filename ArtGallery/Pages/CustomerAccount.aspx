@@ -9,10 +9,10 @@
 
 
 		<div class='card'>
-			<asp:Label ID="lblUsername" runat="server" CssClass="handle labels"></asp:Label>
+			<asp:Label ID="lblUsername" runat="server" CssClass="label handle"></asp:Label>
 			<div id='main'>
-				<img src='https://pbs.twimg.com/profile_images/1055263632861343745/vIqzOHXj.jpg'>
-				<asp:Label ID="lblName" runat="server" CssClass="name labels"></asp:Label>
+				<!--<img src='https://pbs.twimg.com/profile_images/1055263632861343745/vIqzOHXj.jpg'>-->
+				<asp:Label ID="lblName" runat="server" CssClass="label name"></asp:Label>
 			</div>
 			<!--<div id='topstats'>
 				<div>
@@ -34,7 +34,8 @@
                     <asp:Label ID="lblStatArtpiecesWhitelisted" runat="server" CssClass="label stat">ARTPIECES<br />WHITELISTED</asp:Label>
 				</div>
 			</div>-->
-			<asp:Button runat="server" href="CustomerProfile.aspx" Text="BACK TO PROFILE" ID="BackBt" CssClass='back' OnClick="BackBt_Click"></asp:Button>
+			<!--<asp:Button runat="server" href="CustomerProfile.aspx" Text="BACK TO PROFILE" ID="BackBt" CssClass='back' OnClick="BackBt_Click"></asp:Button>-->
+            <a href='CustomerProfile.aspx?username=session' class='back'>BACK TO PROFILE</a>
 		</div>
 
 		<div class='purple'>

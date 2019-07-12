@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CustomerProfile.aspx.cs" MasterPageFile="~/Pages/ArtGallery.Master" Inherits="ArtGallery.Pages.CustomerProfile" %>
 
+<%@ Import Namespace="ArtGallery.Classes" %>
+<%@ Import Namespace="ArtGallery.Util" %> 
+
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
 	<title>Art Gallery :: Customer Profile</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -13,7 +16,7 @@
 			<div id='left'>
 				<asp:Label ID="lblHandle" runat="server" CssClass="label handle"></asp:Label>
 				<div id='main'>
-					<img src='https://pbs.twimg.com/profile_images/1055263632861343745/vIqzOHXj.jpg'>
+					<!--<img src='https://pbs.twimg.com/profile_images/1055263632861343745/vIqzOHXj.jpg'>-->
 					<asp:Label ID="lblName" runat="server" CssClass="label name"></asp:Label>
 				</div>
 				<!--<asp:Label ID="lblLocation" runat="server" CssClass="label location"></asp:Label>-->
@@ -25,6 +28,10 @@
 					<a class='tag'>WEB</a>
 					<a class='tag'>MOBILE</a>
 				</!--div>-->
+                <% if (username != null && !username.Equals("") && Net.GetSession("customer") != null)
+                    { %>
+                    <a href="CustomerAccount.aspx" class="editLink">EDIT PROFILE</a>
+                <% } %>
 			</div>
 
 			<!--<div id='right'>

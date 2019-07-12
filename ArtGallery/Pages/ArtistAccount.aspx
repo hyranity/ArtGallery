@@ -74,8 +74,8 @@
 						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
 						<asp:TextBox ID="email" Placeholder="email" runat="server"></asp:TextBox>
 						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
-						<asp:TextBox ID="skills" Placeholder="skills" runat="server"></asp:TextBox>
-						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
+						<!--<asp:TextBox ID="skills" Placeholder="skills" runat="server"></asp:TextBox>
+						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>-->
 						<asp:TextBox ID="bio" Placeholder="bio" runat="server"></asp:TextBox>
 						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
 					</div>

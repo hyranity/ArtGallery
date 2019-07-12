@@ -25,7 +25,7 @@
 					<a>Brawn, painted;<br>
 						blood, sweat and tears.</a>
 				</td>
-				<td id='stats'>
+				<!--<td id='stats'>
 					<div>
 						<a class='number'>95</a>
 						<a class='stat'>ARTPIECES<br>
@@ -36,7 +36,7 @@
 						<a class='stat'>ARTISTS<br>
 							THIS WEEK</a>
 					</div>
-				</td>
+				</td>-->
 			</tr>
 		</table>
 

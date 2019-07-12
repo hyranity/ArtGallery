@@ -4,6 +4,7 @@
 <%@ Import Namespace="ArtGallery.Util" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
+
 	<title>Art Gallery :: Artpiece</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script src="JavaScript/Artpiece.js"></script>
@@ -20,19 +21,19 @@
 				<asp:Label ID="lblArtist" runat="server" CssClass="label artist"></asp:Label>
 				<asp:Label ID="lblDescription" runat="server" CssClass="label description"></asp:Label>
 				<div class='tags'>
-					<asp:Label runat="server" ID="lblForSale" CssClass='sale'>FOR SALE</asp:Label>
+					<asp:Label runat="server" ID="lblForSale" CssClass='label sale'>FOR SALE</asp:Label>
 
-					<a href='#' class='tag'>ILLUSRATION</a>
+					<!--<a href='#' class='tag'>ILLUSRATION</a>
 					<a href='#' class='tag'>MODERN</a>
 					<br>
 					<a href='#' class='tag'>COLOUR</a>
-					<a href='#' class='tag'>ABSTRACT</a>
+					<a href='#' class='tag'>ABSTRACT</a>-->
 				</div>
 				<div class='buttons'>
 					<div>
-						<asp:Button ID="btnLike" runat="server" Text="LIKE" CssClass="button" />
-						<img src='https://i.imgur.com/DXquOBN.png'>
-						<asp:Button ID="btnViewArtist" runat="server" Text="VIEW ARTIST" CssClass="button" />
+						<asp:Button ID="btnLike" runat="server" Text="LIKE" CssClass="button" OnClick="btnLike_Click"/>
+						<img src='https://i.imgur.com/DXquOBN.png' />
+						<asp:Button ID="btnViewArtist" runat="server" Text="VIEW ARTIST" CssClass="button" OnClick="btnViewArtist_Click"/>
 						<img src='https://i.imgur.com/DXquOBN.png'>
 					</div>
 					<div>

@@ -15,7 +15,7 @@ namespace ArtGallery.Pages
 	{
 
 		public int pageNo;
-		string username = "";
+		public string username = "";
 
 
 		protected void Page_Load(object sender, EventArgs e)
@@ -31,10 +31,10 @@ namespace ArtGallery.Pages
                 Net.Redirect("~/Pages/LoginRegister.aspx");
             }
 
-            if (Net.GetSession("customer") == null && Net.GetSession("artist") != null)
+            /*if (Net.GetSession("customer") == null && Net.GetSession("artist") != null)
             {
                 Net.Redirect("~/Pages/ArtistProfile.aspx?username=session");
-            }
+            }*/
 
             // To ensure that a valid username is entered
             try
@@ -75,9 +75,17 @@ namespace ArtGallery.Pages
 			GallerySource.SelectParameters.Add("USERNAME", username);
 
 
-			//Fetch from DB
-			CustomerDao Dao = new CustomerDao();
-			Customer Customer = Dao.Get("username", username);
+            //Fetch from DB
+            Customer Customer = null;
+            if (username.Equals("session"))
+            {
+                Customer = (Customer)Net.GetSession("customer");
+            }
+            else
+            {
+                CustomerDao Dao = new CustomerDao();
+                Customer = Dao.Get("username", username);
+            }
 
 			if (Customer == null)
 			{
