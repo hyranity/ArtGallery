@@ -54,12 +54,12 @@ namespace ArtGallery.Daos
                     );
 
                     Dr.Close();
-
-                    return orderArtwork;
+					DBUtil.Disconnect();
+					return orderArtwork;
                 }
             }
-
-            return null;
+			DBUtil.Disconnect();
+			return null;
         }
 
         public List<Order_Artwork> GetList(string Field, string Value)
@@ -88,7 +88,7 @@ namespace ArtGallery.Daos
                 }
 
                 Dr.Close();
-
+				DBUtil.Disconnect();
 				if (oaList.Any())
 				{
 					return oaList;

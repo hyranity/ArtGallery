@@ -57,12 +57,12 @@ namespace ArtGallery.Daos
 					);
 
                     Dr.Close();
-
-                    return order;
+					DBUtil.Disconnect();
+					return order;
                 }
             }
-
-            return null;
+			DBUtil.Disconnect();
+			return null;
         }
 
         public List<Order> GetList(string Field, string Value)
@@ -94,8 +94,8 @@ namespace ArtGallery.Daos
                 }
 
                 Dr.Close();
-
-                if (Order.Any())
+				DBUtil.Disconnect();
+				if (Order.Any())
                 {
                     return Order;
                 }

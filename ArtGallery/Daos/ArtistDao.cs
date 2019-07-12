@@ -68,12 +68,12 @@ namespace ArtGallery.Daos
                     );
 
                     Dr.Close();
-
-                    return artist;
+					DBUtil.Disconnect();
+					return artist;
                 }
             }
-
-            return null;
+			DBUtil.Disconnect();
+			return null;
         }
 
         public List<Artist> GetList(string Type, string Value)
@@ -113,8 +113,8 @@ namespace ArtGallery.Daos
                 }
 
                 Dr.Close();
-
-                if (Artists.Any())
+				DBUtil.Disconnect();
+				if (Artists.Any())
                 {
                     return Artists;
                 }

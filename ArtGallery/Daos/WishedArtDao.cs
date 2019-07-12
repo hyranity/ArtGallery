@@ -51,12 +51,12 @@ namespace ArtGallery.Daos
                     );
 
                     Dr.Close();
-
-                    return wishedArt;
+					DBUtil.Disconnect();
+					return wishedArt;
                 }
             }
-
-            return null;
+			DBUtil.Disconnect();
+			return null;
         }
 
 		public WishedArt GetSpecific(string custId, string artpieceId)
@@ -82,11 +82,11 @@ namespace ArtGallery.Daos
 					);
 
                     Dr.Close();
-
-                    return wishedArt;
+					DBUtil.Disconnect();
+					return wishedArt;
 				}
 			}
-
+			DBUtil.Disconnect();
 			return null;
 		}
 
@@ -115,8 +115,8 @@ namespace ArtGallery.Daos
                 }
 
                 Dr.Close();
-
-                if (WishedArt.Any())
+				DBUtil.Disconnect();
+				if (WishedArt.Any())
                 {
                     return WishedArt;
                 }

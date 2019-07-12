@@ -72,13 +72,13 @@ namespace ArtGallery.Daos
                     );
 
                     Dr.Close();
-
-                    return customer;
+					DBUtil.Disconnect();
+					return customer;
 
                 }
             }
-
-            return null;
+			DBUtil.Disconnect();
+			return null;
         }
 
         public List<Customer> GetList(string Field, string Value)
@@ -118,8 +118,8 @@ namespace ArtGallery.Daos
                 }
 
                 Dr.Close();
-
-                if (Customer.Any())
+				DBUtil.Disconnect();
+				if (Customer.Any())
                 {
                     return Customer;
                 }

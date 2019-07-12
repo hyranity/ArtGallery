@@ -66,12 +66,14 @@ namespace ArtGallery.Daos
                     );
 
                     Dr.Close();
-
-                    return artpiece;
+					DBUtil.Disconnect();
+					return artpiece;
                 }
             }
 
-            return null;
+
+			DBUtil.Disconnect();
+			return null;
         }
 
         public List<Artpiece> GetList(string Field, string Value)
@@ -106,6 +108,7 @@ namespace ArtGallery.Daos
 				}
 
                 Dr.Close();
+				DBUtil.Disconnect();
 
 				if (Artpiece.Any())
                 {
