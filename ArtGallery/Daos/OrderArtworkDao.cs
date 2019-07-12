@@ -47,7 +47,7 @@ namespace ArtGallery.Daos
 
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
                     return new Order_Artwork(
-                        (string)Dr["Index"],
+                        (int)Dr["Index"],
                         (string)Dr["OrderId"],
                         (string)Dr["ArtpieceId"],
                         (int)Dr["Quantity"]
@@ -66,29 +66,28 @@ namespace ArtGallery.Daos
 
             using (SqlDataReader Dr = Cmd.ExecuteReader())
             {
-                List<Order_Artwork> Customer = new List<Order_Artwork>();
+                List<Order_Artwork> oaList = new List<Order_Artwork>();
 
                 while (Dr.Read())
                 {
-                    /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
-                    // int i = 0;
-                    //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
+					/* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
+					// int i = 0;
+					//return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
 
-                    // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-                    /*Order_Artwork.Add(new Order_Artwork(
-                        (string)Dr["Index"],
+					// method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
+					oaList.Add(new Order_Artwork(
+                        (int)Dr["Index"],
                         (string)Dr["OrderId"],
                         (string)Dr["ArtpieceId"],
-                        (int)Dr["Quantity"])
-                    );*/
+                        (int)Dr["Quantity"]
+                    ));
                 }
-
-                /*if (Order_Artwork.Any())
-                {
-                    return Order_Artwork;
-                }*/
-
-                return null;
+				if (oaList.Any())
+				{
+					return oaList;
+				}
+				else
+					return null;
             }
         }
         public void Update(Order_Artwork Order_Artwork)

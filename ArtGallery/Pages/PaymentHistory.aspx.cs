@@ -30,8 +30,7 @@ namespace ArtGallery.Pages
             OrderArtworkDao orderArtworkDao = new OrderArtworkDao();
 
             // Get database attributes to manipulate
-            List<Order> orders = orderDao.GetList("CustomerId", customer.Id);
-
+            List<Order> orders = orderDao.GetList("CUSTID", customer.Id);
             // Display orders
             Control container = this.FindControl("container");
 
@@ -62,15 +61,13 @@ namespace ArtGallery.Pages
                     // Get oaList of order
                     List<Order_Artwork> oaList = orderArtworkDao.GetList("OrderId", order.OrderId);
 
-
-
-                    // DEBUG BOI
-                    /*List<Order_Artwork> oaList = new List<Order_Artwork>();
+					// DEBUG BOI
+					/*List<Order_Artwork> oaList = new List<Order_Artwork>();
                     oaList.Add(new Order_Artwork(order.OrderId, "AP0000000007", 3, oaList));
                     oaList.Add(new Order_Artwork(order.OrderId, "MILO", 2, oaList));*/
 
 
-                    loopCounter++;
+					loopCounter++;
 
                     // Calculate no of items and total price of order
                     int totalItems = 0;

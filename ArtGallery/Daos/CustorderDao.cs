@@ -65,7 +65,7 @@ namespace ArtGallery.Daos
         {
             SqlCommand Cmd;
 
-            Cmd = DBUtil.GenerateSql("SELECT * FROM Customer WHERE ([" + Field + "] = @Value)");
+            Cmd = DBUtil.GenerateSql("SELECT * FROM Custorder WHERE ([" + Field + "] = @Value)");
             Cmd.Parameters.AddWithValue("@Value", Value);
 
             using (SqlDataReader Dr = Cmd.ExecuteReader())
@@ -74,15 +74,16 @@ namespace ArtGallery.Daos
 
                 while (Dr.Read())
                 {
-                    /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
-                    // int i = 0;
-                    //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
 
-                    // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-                    Order.Add(new Order(
+					/* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
+					// int i = 0;
+					//return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
+
+					// method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
+					Order.Add(new Order(
 						(string)Dr["OrderId"],
 						(string)Dr["CustId"],
-						(double)Dr["TotalPrice"],
+						Convert.ToDouble((decimal)Dr["TotalPrice"]),
 						(bool)Dr["IsCanceled"],
 						(DateTime)Dr["OrderDate"]
 					));

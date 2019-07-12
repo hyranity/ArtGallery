@@ -15,6 +15,15 @@ namespace ArtGallery.Pages
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
+			bool cartSaved = false;
+
+			if(Net.GetSession("cartSaved") == null)
+				checkoutBt.Visible = false;
+			else
+				cartSaved = (bool)Net.GetSession("cartSaved");
+
+			if (!cartSaved)
+				checkoutBt.Visible = false;
 			/* ----------------------------------------------------------------------------------------------------
              * Get session attributes to manipulate
              * ---------------------------------------------------------------------------------------------------- */
@@ -64,7 +73,7 @@ namespace ArtGallery.Pages
 			}
 			else
 			{
-
+				lblItems.Text = oaList.Count + "";
 				gallery.Controls.Add(new LiteralControl("<table class='gallery'>"));
 
 				foreach (Order_Artwork orderArtwork in oaList)
@@ -188,8 +197,8 @@ namespace ArtGallery.Pages
 					gallery.Controls.Add(quantityHidden);
 					gallery.Controls.Add(new LiteralControl("<input type='hidden' class='value' value='" + artpiece.Price + "' id='hiddenPriceHTML" + (loopCounter + 1).ToString() + "'/>"));
 
-					string priceStr = (artpiece.Price * (double)orderArtwork.Quantity).ToString();
-					gallery.Controls.Add(new LiteralControl("<a class='value' id='subtotal" + (loopCounter + 1).ToString() + "'>RM " + priceStr + "</a>"));
+					//string priceStr = (artpiece.Price * (double)orderArtwork.Quantity).ToString();
+					gallery.Controls.Add(new LiteralControl("<a class='value' id='subtotal" + (loopCounter + 1).ToString() + "'>RM " + Quick.FormatPrice((artpiece.Price * (double)orderArtwork.Quantity)) + "</a>"));
 					
 
 
@@ -214,7 +223,7 @@ namespace ArtGallery.Pages
 				gallery.Controls.Add(new LiteralControl("</table>"));
 
 				// Set total price
-				lblPrice.Text = "RM " + order.TotalPrice;
+				lblPrice.Text = "RM " + Quick.FormatPrice(order.TotalPrice);
 			}
 		}
 
@@ -260,7 +269,6 @@ namespace ArtGallery.Pages
 
 				total += oa.Quantity * artpiece.Price;
 
-				oa.Index = null; // ID is auto generated in DB
 
 				// Set Foreign Keys
 				oa.ArtpieceId = artpiece.ArtpieceId;
@@ -291,6 +299,7 @@ namespace ArtGallery.Pages
 			// Clear cart
 			Net.SetSession("order", new Order());
 			Net.SetSession("oaList", new List<Order_Artwork>());
+			Net.SetSession("cartSaved", false);
 
 			// Redirect
 			Net.Redirect("Home.aspx");
@@ -301,9 +310,8 @@ namespace ArtGallery.Pages
 			// Get count
 			List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
 			Order order = (Order) Net.GetSession("order");
-
+			order.TotalPrice = 0; // Clear first
 			int itemCount = oaList.Count;
-			double total = 0;
 
 			for (int i = 1; i <= itemCount; i++)
 			{
@@ -329,24 +337,23 @@ namespace ArtGallery.Pages
 				}
 				else
 				{
-					total += Convert.ToDouble(priceStr) * Convert.ToInt32(quantityStr);
+					order.TotalPrice += Convert.ToDouble(priceStr) * Convert.ToInt32(quantityStr);
 
 					// Save to oa object
 					oaList[i - 1].Quantity = Convert.ToInt32(quantityStr);
 					Quick.Print("Quantity ordered: " + oaList[i - 1].Quantity);
 				}
-
-				//Update order total price
-				order.TotalPrice += total;
 			}
-			
-			lblPrice.Text = "RM " + order.TotalPrice;
 
-			
+			lblPrice.Text = "RM " + Quick.FormatPrice(order.TotalPrice);
 
 			// Save to session
 			Net.SetSession("oaList", oaList);
 			Net.SetSession("order", order);
+
+			// Show that cart is saved
+			if(oaList.Count > 0)
+				Net.SetSession("cartSaved", true);
 
 			//Refresh page
 			Net.RefreshPage();

@@ -77,6 +77,7 @@ namespace ArtGallery.Pages
 						lblTitle.Text = artpiece.Title + "(PRIVATE ARTPIECE)";
 						lblStocks.Text = artpiece.Stocks + "";
 						artpieceImg.ImageUrl = artpiece.ImageLink;
+						lblArtpiecePrice.Text = Quick.FormatPrice(artpiece.Price);
 
 						if (!artpiece.IsForSale)
 						{
@@ -96,7 +97,7 @@ namespace ArtGallery.Pages
 						lblDescription.Text = artpiece.About;
 						lblTitle.Text = artpiece.Title;
 						lblStocks.Text = artpiece.Stocks + "";
-
+						lblArtpiecePrice.Text = Quick.FormatPrice(artpiece.Price);
 						artpieceImg.ImageUrl = artpiece.ImageLink;
 						
 
@@ -138,14 +139,16 @@ namespace ArtGallery.Pages
 
 				List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
 
-				// Loop through order list in session to see if this artpiece already added to cart
-				foreach (Order_Artwork oa in oaList)
+				if (oaList != null)
 				{
-					if (oa.ArtpieceId.ToLower() == Net.GetQueryStr("id"))
-						found = true;
-
+					// Loop through order list in session to see if this artpiece already added to cart
+					foreach (Order_Artwork oa in oaList)
+					{
+						if (oa.ArtpieceId.ToLower() == Net.GetQueryStr("id").ToLower())
+							found = true;
+						Quick.Print(oa.ArtpieceId.ToLower() + " == " + Net.GetQueryStr("id"));
+					}
 				}
-
 				if (found)
 					btnAddToCart.Text = "ADDED TO CART";
 				else
@@ -242,7 +245,7 @@ namespace ArtGallery.Pages
 				Net.SetSession("oaList", oaList);
 				Net.SetSession("order", order);
 
-				(sender as Button).Text = "ADDED TO CART";
+				(sender as Button).Text = "ADD TO CART";
             }
 
 			

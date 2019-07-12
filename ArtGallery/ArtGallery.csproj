@@ -76,6 +76,7 @@
     <Content Include="Pages\AllGallery.aspx" />
     <Content Include="Pages\ArtistAccount.aspx" />
     <Content Include="Pages\CSS\Home.css" />
+    <Content Include="Pages\CSS\MasterCss.css" />
     <Content Include="Pages\CSS\PaymentHistory.css" />
     <Content Include="Pages\CSS\UnderConstruction.css" />
     <Content Include="Pages\CustomerProfile.aspx" />

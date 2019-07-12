@@ -64,7 +64,7 @@
                 <asp:Button Text="CHECKOUT" runat="server" ID="checkoutBt" OnClick="checkoutBt_Click"></asp:Button>
                 <img src='https://i.imgur.com/DXquOBN.png'>
               </div>
-				<asp:Button runat="server" ID="saveBt" Text="Save Cart" OnClick="saveBt_Click" />
+				<asp:Button runat="server" ID="saveBt" Text="CONFIRM CART" OnClick="saveBt_Click" />
             </div>
 
           </div>

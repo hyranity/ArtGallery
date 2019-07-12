@@ -1,44 +1,14 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ArtistProfile.aspx.cs" Inherits="ArtGallery.Pages.ArtistProfile" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ArtistProfile.aspx.cs" MasterPageFile="~/Pages/ArtGallery.Master" Inherits="ArtGallery.Pages.ArtistProfile" %>
 
 <%@ Import Namespace="ArtGallery.Classes" %>
 <%@ Import Namespace="ArtGallery.Util" %> 
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head runat="server">
+<asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <title>Art Gallery :: Artist Profile</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script src="JavaScript/ArtistProfile.js"></script>
 	<link href="CSS/ArtistProfile.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
-</head>
-
-	<body>
-
-        <form id="form1" runat="server">
-
-		    <div class='header'>
-                <a href='Home.aspx' class='title'>ART-X</a>
-                <a href='AllGallery.aspx' class='link'>WORKS</a>
-                <a href='ArtistProfile.aspx?username=session' class='link'>ACCOUNT</a>
-                
-                <%
-                    List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
-                    int noOfItems = 0;
-                    if (oaList != null)
-                    {
-                        noOfItems = oaList.Count;
-                    }
-                    else
-                    {
-                        noOfItems = 0;
-                    }
-                %>
-
-                <a href='Cart.aspx' class='link'>CART <sup><%= noOfItems %></sup></a>
-		    </div>
 
 		    <div class='profile'>
 			    <div class='card'>
@@ -125,14 +95,4 @@
 
 		<asp:SqlDataSource ID="GallerySource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"></asp:SqlDataSource>
 
-            <div class='footer'>
-              <a href='#' class='link'>ABOUT</a>
-              <a href='#' class='text'>ART-X 2019</a>
-              <a href='#' class='link'>FAQ</a>
-            </div>
-
-        </form>
-
-	</body>
-
-</html>
+</asp:Content>

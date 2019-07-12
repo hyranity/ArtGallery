@@ -20,7 +20,7 @@ $(document).ready(function () {
 
 		var subTotal = parseFloat(indvPrice) * parseFloat(quantity);
 
-		$("#subtotal" + btnId).text("RM " + subTotal);
+		$("#subtotal" + btnId).text("RM " + subTotal.toFixed(2));
     });
 
 	$(".increment").click(function () {
@@ -36,7 +36,8 @@ $(document).ready(function () {
 
 		var subTotal = parseFloat(indvPrice) * parseFloat(quantity);
 
-		$("#subtotal" + btnId).text("RM " + subTotal);
+
+		$("#subtotal" + btnId).text("RM " + subTotal.toFixed(2));
 
 	});
 

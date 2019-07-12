@@ -26,6 +26,11 @@ namespace ArtGallery.Util
 				Value = num
 			};
 		}
+
+		public static string FormatPrice(double price)
+		{
+			return String.Format("{0:0.00}", price);
+		}
 		
 	}
 }

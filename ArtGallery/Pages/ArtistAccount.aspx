@@ -1,39 +1,16 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ArtistAccount.aspx.cs" Inherits="ArtGallery.Pages.ArtistAccount" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ArtistAccount.aspx.cs" MasterPageFile="~/Pages/ArtGallery.Master" Inherits="ArtGallery.Pages.ArtistAccount" %>
 
 <%@ Import Namespace="ArtGallery.Classes" %>
 <%@ Import Namespace="ArtGallery.Util" %> 
 
-<!DOCTYPE html>
-<html>
-<head runat="server">
+<asp:Content ContentPlaceHolderID="MainContent" runat="server">
+
     <title>Art Gallery :: Artist Account</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script src="JavaScript/CustomerAccount.js"></script>
 	<link href="CSS/CustomerAccount.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet"/>
-</head>
-<body>
-	<form runat="server">
-		<div class='header'>
-			<a href='Home.aspx' class='title'>ART-X</a>
-			<a href='AllGallery.aspx' class='link'>WORKS</a>
-			<a href='ArtistProfile.aspx?username=session' class='link'>ACCOUNT</a>
-            
-            <%
-                List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
-                int noOfItems = 0;
-                if (oaList != null)
-                {
-                    noOfItems = oaList.Count;
-                }
-                else
-                {
-                    noOfItems = 0;
-                }
-            %>
 
-            <a href='Cart.aspx' class='link'>CART <sup><%= noOfItems %></sup></a>
-		</div>
 
 		<div class='card'>
 			<asp:Label ID="lblUsername" runat="server" CssClass="label handle"></asp:Label>
@@ -105,8 +82,5 @@
 				</div>
 			</div>
 		</div>
-	</form>
-</body>
-
-</html>
+</asp:Content>
 

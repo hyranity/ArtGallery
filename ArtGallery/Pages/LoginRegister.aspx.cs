@@ -73,7 +73,7 @@ namespace ArtGallery.Pages
 						Session["customer"] = cust;
                         Session["order"] = new Order();
                         Session["oaList"] = new List<Order_Artwork>(); // for cart
-						Response.Redirect("~/Pages/CustomerAccount.aspx", false);
+						Net.Redirect("~/Pages/CustomerProfile.aspx?username=" + cust.Username);
 					}
 					else
 					{
@@ -87,7 +87,7 @@ namespace ArtGallery.Pages
 					{
 						Quick.Print("Artist logged in.");
 						Session["artist"] = artist;
-						Response.Redirect("~/Pages/ArtistAccount.aspx", false);
+						Net.Redirect("~/Pages/ArtistProfile.aspx?username=" + artist.Username);
 					}
 					else
 					{

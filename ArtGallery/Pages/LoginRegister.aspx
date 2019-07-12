@@ -20,7 +20,7 @@
       <div class='top'>
         <a href='Home.aspx' class='title'>ART-X</a>
         <a href='AllGallery.aspx' style='position: relative; top: -42px; left: 40px;'>WORKS</a>
-        <a href='ArtistProfile.aspx?username=session' style='position: relative; top: -8px; right: 56px;'>ACCOUNT</a>
+        <!--<a href='ArtistProfile.aspx?username=session' style='position: relative; top: -8px; right: 56px;'>ACCOUNT</a>-->
       </div>
 
       <div class='form' id='login'>
