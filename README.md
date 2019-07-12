@@ -12,5 +12,7 @@ offers the following features:
 
 In order to run this application, the user opens the project in Visual Studio,
 and selects to run it. The application will start up, and automatically redirect
-to the landing page (Home.aspx). From there the rest of the web application and
+to the landing page (Home.aspx). (If this the redirect is not automatic, right-click
+the project, select the 'Web' option, and under 'Start Action', select 'Specific
+Page' and enter 'Pages/Home.aspx'.) From there the rest of the web application and
 its features that are currently in place can be accessed.
