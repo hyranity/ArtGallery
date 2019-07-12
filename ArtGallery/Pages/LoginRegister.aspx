@@ -25,7 +25,7 @@
 
       <div class='form' id='login'>
           <!-- ERROR MESSAGE -->
-            <asp:Label ID="Label1" runat="server" Text="error msg" CssClass="label errorMsg"></asp:Label>
+            <asp:Label ID="lblLoginError" runat="server" Text="error msg" CssClass="label errorMsg"></asp:Label>
         <div class="mainForm" style='display: flex; flex-direction: row;'>
           <div class='title' style='margin-top: 40px;'>
             <asp:Button ID="btnLogin" runat="server" Text="LOGIN" OnClick="btnLogin_Click" />

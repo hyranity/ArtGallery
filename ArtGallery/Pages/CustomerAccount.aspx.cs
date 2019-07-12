@@ -13,10 +13,14 @@ namespace ArtGallery.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
 			if (Session["customer"] == null)
 				Response.Redirect("~/Pages/LoginRegister.aspx");
 			else
 			{
+				// Clear error message
+				lblEditError.Text = "";
+
 				if (!IsPostBack)
 				{
 					CustomerDao dao = new CustomerDao();
@@ -40,33 +44,86 @@ namespace ArtGallery.Pages
 			}
 		}
 
+		private bool ErrorInEdit(Customer cust)
+		{
+			bool hasError = false;
+
+			// Check for existing username from both tables
+			CustomerDao custUsernameDao = new CustomerDao();
+			Customer checkCust = custUsernameDao.Get("USERNAME", username.Text);
+			ArtistDao artistUsernameDao = new ArtistDao();
+			Artist checkArtist = artistUsernameDao.Get("USERNAME", username.Text);
+
+			if (checkCust != null)
+			{
+				if (checkCust.Username == cust.Username)
+					checkCust = null;
+			}
+
+			if (checkCust != null || checkArtist != null)
+			{
+				// There is an existing username
+				lblEditError.Text = "An account with this username already exists.";
+				hasError = true;
+			}
+
+			// Reset values
+			checkCust = null;
+			checkArtist = null;
+
+			// Check for existing email
+			CustomerDao custEmailDao = new CustomerDao();
+			checkCust = custEmailDao.Get("EMAIL", email.Text);
+			ArtistDao artistEmailDao = new ArtistDao();
+			checkArtist = artistEmailDao.Get("EMAIL", email.Text);
+
+			if (checkCust != null)
+			{
+				if (checkCust.Email == cust.Email)
+					checkCust = null;
+			}
+
+			if (checkCust != null || checkArtist != null)
+			{
+				// There is an existing email
+				lblEditError.Text = "An account with this email already exists.";
+				hasError = true;
+			}
+
+			return hasError;
+		}
+
 		protected void btnEdit_Click(object sender, EventArgs e)
 		{
 			Customer OldCustomer = (Customer)Session["customer"];
-			string NewPass = OldCustomer.Passwd;
-			byte[] NewSalt = OldCustomer.PasswordSalt;
 
-			// If password is not empty
-			if (password.Text != String.Empty)
+			if (!ErrorInEdit(OldCustomer))
 			{
-				Hasher hash = new Hasher(password.Text);
-				NewPass = hash.GetHashedPassword();
-				NewSalt = hash.GetSalt();
+				string NewPass = OldCustomer.Passwd;
+				byte[] NewSalt = OldCustomer.PasswordSalt;
+
+				// If password is not empty
+				if (password.Text != String.Empty)
+				{
+					Hasher hash = new Hasher(password.Text);
+					NewPass = hash.GetHashedPassword();
+					NewSalt = hash.GetSalt();
+				}
+
+				string cardNoStr = "";
+
+				// If no card number is inserted, make the data null
+				if (cardNo.Text == String.Empty)
+					cardNoStr = "not given";
+				else
+					cardNoStr = cardNo.Text;
+
+				Customer newCustomer = new Customer(OldCustomer.Id, username.Text, displayName.Text, email.Text, NewPass, NewSalt, cardNoStr);
+				CustomerDao dao = new CustomerDao();
+				dao.Update(newCustomer, OldCustomer.Id); //Update the record based on original ID
+				Session["customer"] = newCustomer; // Update the one in the session
+				Response.Redirect(Request.RawUrl); // Refreshes the page
 			}
-
-			string cardNoStr = "";
-
-			// If no card number is inserted, make the data null
-			if (cardNo.Text == String.Empty)
-				cardNoStr = "not given";
-			else
-				cardNoStr = cardNo.Text;
-
-			Customer newCustomer = new Customer(OldCustomer.Id, username.Text, displayName.Text, email.Text, NewPass, NewSalt, cardNoStr);
-			CustomerDao dao = new CustomerDao();
-			dao.Update(newCustomer, OldCustomer.Id); //Update the record based on original ID
-			Session["customer"] = newCustomer; // Update the one in the session
-			Response.Redirect(Request.RawUrl); // Refreshes the page
 		}
 
 		protected void BackBt_Click(object sender, EventArgs e)

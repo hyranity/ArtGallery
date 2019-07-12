@@ -15,9 +15,15 @@ namespace ArtGallery.Pages
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
+			// Check for out of stock error if any
+			string errorMsg = (string)Net.GetSession("cartOutOfStocks");
+
+			if (errorMsg != null)
+				lblErrorMsg.Text = errorMsg;
+
 			bool cartSaved = false;
 
-			if(Net.GetSession("cartSaved") == null)
+			if (Net.GetSession("cartSaved") == null || errorMsg != null)
 				checkoutBt.Visible = false;
 			else
 				cartSaved = (bool)Net.GetSession("cartSaved");
@@ -307,6 +313,7 @@ namespace ArtGallery.Pages
 
 		protected void saveBt_Click(object sender, EventArgs e)
 		{
+			bool outOfStocksError = false;
 			// Get count
 			List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
 			Order order = (Order) Net.GetSession("order");
@@ -334,6 +341,9 @@ namespace ArtGallery.Pages
 				{
 					// Show insufficient stock message
 					Quick.Print("Insufficient stock! Ordering " + oaList[i-1].Quantity + " while Artpiece stock is " + artpiece.Stocks);
+					string error = "Not enough stocks for artpiece \"" + artpiece.Title + "\"";
+					Net.SetSession("cartOutOfStocks", error);
+					outOfStocksError = true;
 				}
 				else
 				{
@@ -344,6 +354,10 @@ namespace ArtGallery.Pages
 					Quick.Print("Quantity ordered: " + oaList[i - 1].Quantity);
 				}
 			}
+
+			// Clear error if no error
+			if(!outOfStocksError)
+				Net.SetSession("cartOutOfStocks", null);
 
 			lblPrice.Text = "RM " + Quick.FormatPrice(order.TotalPrice);
 

@@ -14,7 +14,46 @@ namespace ArtGallery.Pages
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			
+			lblRegisterError.Text = "";
+			lblLoginError.Text = "";
+		}
+
+		private bool ErrorInReg()
+		{
+			bool hasError = false;
+
+			// Check for existing username from both tables
+			CustomerDao custUsernameDao = new CustomerDao();
+			Customer checkCust = custUsernameDao.Get("USERNAME", txtRegisterUsername.Text);
+			ArtistDao artistUsernameDao = new ArtistDao();
+			Artist checkArtist = artistUsernameDao.Get("USERNAME", txtRegisterUsername.Text);
+
+
+			if (checkCust != null || checkArtist != null)
+			{
+				// There is an existing username
+				lblRegisterError.Text = "An account with this username already exists.";
+				hasError = true;
+			}
+
+			// Reset values
+			checkCust = null;
+			checkArtist = null;
+
+			// Check for existing email
+			CustomerDao custEmailDao = new CustomerDao();
+			checkCust = custEmailDao.Get("EMAIL", txtRegisterEmail.Text);
+			ArtistDao artistEmailDao = new ArtistDao();
+			checkArtist = artistEmailDao.Get("EMAIL", txtRegisterEmail.Text);
+
+			if (checkCust != null || checkArtist != null)
+			{
+				// There is an existing email
+				lblRegisterError.Text = "An account with this email already exists.";
+				hasError = true;
+			}
+
+			return hasError;
 		}
 
         protected void btnRegister_Click(object sender, EventArgs e)
@@ -24,14 +63,23 @@ namespace ArtGallery.Pages
             // Should be changed to dropdownlist
             if (ddlRegisterPosition.SelectedValue.Equals("Customer"))
             {
-                String Id = IdGen.GenerateId("Customer");
-                Customer.RegisterCustomer(Id, txtRegisterUsername.Text, txtRegisterDisplayName.Text, txtRegisterEmail.Text, txtRegisterPassword.Text, null);
+
+				// Register only if there's no error
+				if (!ErrorInReg())
+				{
+					String Id = IdGen.GenerateId("Customer");
+					Customer.RegisterCustomer(Id, txtRegisterUsername.Text, txtRegisterDisplayName.Text, txtRegisterEmail.Text, txtRegisterPassword.Text, null);
+				}
             }
 
             if (ddlRegisterPosition.SelectedValue.Equals("Artist"))
             {
-                String Id = IdGen.GenerateId("Artist");
-                Artist.RegisterArtist(Id, txtRegisterUsername.Text, txtRegisterDisplayName.Text, txtRegisterEmail.Text, txtRegisterPassword.Text);
+				// Register only if there's no error
+				if (!ErrorInReg())
+				{
+					String Id = IdGen.GenerateId("Artist");
+					Artist.RegisterArtist(Id, txtRegisterUsername.Text, txtRegisterDisplayName.Text, txtRegisterEmail.Text, txtRegisterPassword.Text);
+				}
             }
 
 			txtRegisterEmail.Text = "";
@@ -53,14 +101,14 @@ namespace ArtGallery.Pages
 			ArtistDao artistDao = new ArtistDao();
 			Artist artist = artistDao.Get("USERNAME", txtLoginUsername.Text);
 
-			if (cust == null)			// If no customer has that ID
-				if (artist == null)		// If no artist has that ID
-					hasError = true;	// Then no user has that ID
+			if (cust == null)			// If no customer has that username
+				if (artist == null)     // If no artist has that username
+					hasError = true;    // Then no user has that username
 				else
-					isCust = false;		// An artist has that ID
+					isCust = false;     // An artist has that username
 
 			if (hasError) // If ID is invalidd
-				Quick.Print("Invalid ID!");
+				lblLoginError.Text = "Your username and/or password is invalid.";
 			else
 			{
 				if (isCust) // If the ID belongs to a customer
@@ -78,6 +126,7 @@ namespace ArtGallery.Pages
 					else
 					{
 						Quick.Print("Invalid password");
+						lblLoginError.Text = "Your username and/or password is invalid.";
 					}
 				}
 				else // If the ID belongs to an artist
@@ -92,6 +141,7 @@ namespace ArtGallery.Pages
 					else
 					{
 						Quick.Print("Invalid password");
+						lblLoginError.Text = "Your username and/or password is invalid.";
 					}
 				}
 			}

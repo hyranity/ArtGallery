@@ -21,6 +21,8 @@ $(document).ready(function () {
 		var subTotal = parseFloat(indvPrice) * parseFloat(quantity);
 
 		$("#subtotal" + btnId).text("RM " + subTotal.toFixed(2));
+
+		$("#checkoutBt").css("display", "none");
     });
 
 	$(".increment").click(function () {
@@ -39,6 +41,7 @@ $(document).ready(function () {
 
 		$("#subtotal" + btnId).text("RM " + subTotal.toFixed(2));
 
+		$("#checkoutBt").css("display", "none");
 	});
 
 });

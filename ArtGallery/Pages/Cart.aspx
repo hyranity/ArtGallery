@@ -140,7 +140,7 @@
           </div>
           <div id="gallery" runat="server">
                  <!-- ERROR MESSAGE -->
-                <asp:Label ID="lblRegisterError" runat="server" Text="error msg" CssClass="label errorMsg"></asp:Label>
+                <asp:Label ID="lblErrorMsg" runat="server" CssClass="label errorMsg"></asp:Label>
           </div>
 
           <!-- <table class='gallery'>
