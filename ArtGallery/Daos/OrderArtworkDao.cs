@@ -46,12 +46,16 @@ namespace ArtGallery.Daos
                     //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
 
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-                    return new Order_Artwork(
+                    Order_Artwork orderArtwork = new Order_Artwork(
                         (int)Dr["Index"],
                         (string)Dr["OrderId"],
                         (string)Dr["ArtpieceId"],
                         (int)Dr["Quantity"]
                     );
+
+                    Dr.Close();
+
+                    return orderArtwork;
                 }
             }
 
@@ -82,6 +86,9 @@ namespace ArtGallery.Daos
                         (int)Dr["Quantity"]
                     ));
                 }
+
+                Dr.Close();
+
 				if (oaList.Any())
 				{
 					return oaList;

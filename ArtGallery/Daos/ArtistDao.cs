@@ -57,7 +57,7 @@ namespace ArtGallery.Daos
                     //return new Artist(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
 
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-                    return new Artist(
+                    Artist artist = new Artist(
                         (string) Dr["ArtistId"],
                         (string) Dr["Username"],
                         (string) Dr["DisplayName"],
@@ -66,6 +66,10 @@ namespace ArtGallery.Daos
                         (byte[]) Dr["PasswordSalt"],
                         (string) Dr["Bio"]
                     );
+
+                    Dr.Close();
+
+                    return artist;
                 }
             }
 
@@ -108,11 +112,13 @@ namespace ArtGallery.Daos
                     );
                 }
 
+                Dr.Close();
+
                 if (Artists.Any())
                 {
                     return Artists;
                 }
-                
+
                 return null;
             }
         }

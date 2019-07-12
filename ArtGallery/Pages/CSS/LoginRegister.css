@@ -66,6 +66,7 @@ a {
 			font-family: Roboto Condensed;
 			font-weight: bold;
 			transition: color 0.3s;
+            animation: buttonAnimation 0.5s infinite;
 		}
 
 			.form .mainForm .title input[type='submit']:hover {
@@ -132,4 +133,10 @@ a {
 #login {
 	transition: 0.5s;
 	height: 200px;
+}
+
+@keyframes buttonAnimation {
+    0% { opacity: 1; }
+    50% { opacity: 0.2; }
+    100% { opacity: 1; }
 }

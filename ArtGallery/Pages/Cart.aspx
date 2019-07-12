@@ -124,10 +124,11 @@
               <div id='image'>
               </div> 
               <div id='text'>
-                <asp:Button Text="CHECKOUT" runat="server" ID="checkoutBt" OnClick="checkoutBt_Click"></asp:Button>
+                <asp:Button Text="CHECKOUT" runat="server" ID="checkoutBt" OnClick="checkoutBt_Click" />
+                <img src='https://i.imgur.com/DXquOBN.png'>
+                <asp:Button runat="server" ID="saveBt" Text="CONFIRM CART" OnClick="saveBt_Click" style="margin-top: 10px;" />
                 <img src='https://i.imgur.com/DXquOBN.png'>
               </div>
-				<asp:Button runat="server" ID="saveBt" Text="CONFIRM CART" OnClick="saveBt_Click" />
             </div>
 
           </div>

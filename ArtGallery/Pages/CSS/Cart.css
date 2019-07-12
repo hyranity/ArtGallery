@@ -150,9 +150,18 @@ a, .label {
                 justify-content: center;
             }
 
-                .container .purple #right #text a {
+                .container .purple #right #text input {
                     font-size: 50px;
+                    font-family: Roboto Condensed;
+                    font-weight: bold;
+                    margin-left: -10px;
                     color: white;
+                    background: transparent;
+                    border: none;
+                }
+
+                .container .purple #right #text input:focus {
+                    outline: none;
                 }
 
                 .container .purple #right #text img {

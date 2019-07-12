@@ -48,13 +48,17 @@ namespace ArtGallery.Daos
                     //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
 
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-                    return new Order(
+                    Order order = new Order(
                         (string)Dr["OrderId"],
                         (string)Dr["CustId"],
                         (double)Dr["TotalPrice"],
 						(bool)Dr["IsCanceled"],
 						(DateTime)Dr["OrderDate"]
 					);
+
+                    Dr.Close();
+
+                    return order;
                 }
             }
 
@@ -88,6 +92,8 @@ namespace ArtGallery.Daos
 						(DateTime)Dr["OrderDate"]
 					));
                 }
+
+                Dr.Close();
 
                 if (Order.Any())
                 {

@@ -61,7 +61,7 @@ namespace ArtGallery.Daos
                     //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
 
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-                    return new Customer(
+                    Customer customer = new Customer(
                         (string) Dr["CustID"],
                         (string) Dr["Username"],
                         (string) Dr["DisplayName"],
@@ -70,6 +70,11 @@ namespace ArtGallery.Daos
                         (byte[]) Dr["PasswordSalt"],
                         (string) Dr["CreditCardNo"]
                     );
+
+                    Dr.Close();
+
+                    return customer;
+
                 }
             }
 
@@ -111,6 +116,8 @@ namespace ArtGallery.Daos
                         (string) Dr["CreditCardNo"])
                     );
                 }
+
+                Dr.Close();
 
                 if (Customer.Any())
                 {

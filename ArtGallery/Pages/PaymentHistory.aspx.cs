@@ -89,7 +89,7 @@ namespace ArtGallery.Pages
                                 "</div>" +
                                 "<div>" +
                                     "<a class='text'>DATE</a>" +
-                                    "<a class='value'>" + /* order.Date.ToString("dd/MMM/yyyy") + */ "</a>" + // havent stored order date
+                                    "<a class='value'>" + order.OrderDate.ToString("dd MMM yyyy") + "</a>" +
                                 "</div>" +
                                 "<div>" +
                                     "<a class='text'>ITEMS</a>" +

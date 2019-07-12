@@ -44,11 +44,15 @@ namespace ArtGallery.Daos
                     //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
 
                     // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-                    return new WishedArt(
+                    WishedArt wishedArt = new WishedArt(
                         (int)Dr["WishIndex"],
                         (string)Dr["ArtpieceId"],
                         (string)Dr["CustId"]
                     );
+
+                    Dr.Close();
+
+                    return wishedArt;
                 }
             }
 
@@ -66,16 +70,20 @@ namespace ArtGallery.Daos
 			{
 				if (Dr.Read())
 				{
-					/* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
-					// int i = 0;
-					//return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
+                    /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
+                    // int i = 0;
+                    //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
 
 					// method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-					return new WishedArt(
+					WishedArt wishedArt = new WishedArt(
 						(int)Dr["WishIndex"],
 						(string)Dr["ArtpieceId"],
 						(string)Dr["CustId"]
 					);
+
+                    Dr.Close();
+
+                    return wishedArt;
 				}
 			}
 
@@ -105,6 +113,8 @@ namespace ArtGallery.Daos
                         (string)Dr["CustId"])
                     );
                 }
+
+                Dr.Close();
 
                 if (WishedArt.Any())
                 {
