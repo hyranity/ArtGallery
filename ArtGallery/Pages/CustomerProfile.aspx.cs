@@ -123,6 +123,7 @@ namespace ArtGallery.Pages
 			// Get no of records in selected table
 			DBUtil DBUtil = new DBUtil();
 			SqlCommand Cmd = DBUtil.GenerateSql("SELECT COUNT(*) FROM ARTPIECE INNER JOIN ARTIST ON ARTPIECE.ARTISTID = ARTIST.ARTISTID INNER JOIN WISHEDART ON WISHEDART.ARTPIECEID = ARTPIECE.ARTPIECEID INNER JOIN CUSTOMER ON CUSTOMER.CUSTID = WISHEDART.CUSTID WHERE CUSTOMER.USERNAME = @USERNAME ");
+			DBUtil.CheckConnect();
 			Cmd.Parameters.AddWithValue("@USERNAME", username);
 			int NoOfRecords = Convert.ToInt32(Cmd.ExecuteScalar());
 
@@ -130,6 +131,8 @@ namespace ArtGallery.Pages
 				NextPage.Visible = true;
 			else
 				NextPage.Visible = false;
+
+			DBUtil.Disconnect();
 		}
 
 		protected void PrevPage_Click(object sender, EventArgs e)

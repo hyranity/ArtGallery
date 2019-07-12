@@ -21,7 +21,8 @@ namespace ArtGallery.Daos
         {
             SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Customer(CustId, Username, DisplayName, Email, Passwd, PasswordSalt, CreditCardNo)"
 								+ "VALUES(@CustID, @Username, @DisplayName, @Email, @Passwd, @PasswordSalt, @CreditCardNo)");
-            Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
+			DBUtil.CheckConnect();
+			Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
             Cmd.Parameters.AddWithValue("@Username", Customer.Username);
             Cmd.Parameters.AddWithValue("@DisplayName", Customer.DisplayName);
             Cmd.Parameters.AddWithValue("@Email", Customer.Email);
@@ -45,7 +46,8 @@ namespace ArtGallery.Daos
             if (!Field.Equals("Passwd") && !Field.Equals("PasswordSalt"))
             {
                 Cmd = DBUtil.GenerateSql("SELECT * FROM Customer WHERE ([" + Field + "] = @Value)");
-                Cmd.Parameters.AddWithValue("@Value", Value);
+				DBUtil.CheckConnect();
+				Cmd.Parameters.AddWithValue("@Value", Value);
             }
             else
             {
@@ -88,7 +90,8 @@ namespace ArtGallery.Daos
             if (!Field.Equals("Passwd") && !Field.Equals("PasswordSalt"))
             {
                 Cmd = DBUtil.GenerateSql("SELECT * FROM Customer WHERE ([" + Field + "] = @Value)");
-                Cmd.Parameters.AddWithValue("@Value", Value);
+				DBUtil.CheckConnect();
+				Cmd.Parameters.AddWithValue("@Value", Value);
             }
             else
             {
@@ -140,7 +143,8 @@ namespace ArtGallery.Daos
                 ", CreditCardNo = @CreditCardNo" +
                 " WHERE CustID = @CustID"
             );
-            Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
+			DBUtil.CheckConnect();
+			Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
             Cmd.Parameters.AddWithValue("@Username", Customer.Username);
             Cmd.Parameters.AddWithValue("@DisplayName", Customer.DisplayName);
             Cmd.Parameters.AddWithValue("@Email", Customer.Email);
@@ -165,6 +169,7 @@ namespace ArtGallery.Daos
 				", CreditCardNo = @CreditCardNo" +
 				" WHERE CustID = @OriginalCustID"
 			);
+			DBUtil.CheckConnect();
 			Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
 			Cmd.Parameters.AddWithValue("@OriginalCustID", OriginalID);
 			Cmd.Parameters.AddWithValue("@Username", Customer.Username);
@@ -182,7 +187,8 @@ namespace ArtGallery.Daos
 		public void Delete(Customer Customer)
         {
             SqlCommand Cmd = DBUtil.GenerateSql("DELETE FROM Customer WHERE CustID = @CustID");
-            Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
+			DBUtil.CheckConnect();
+			Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
 
             Cmd.ExecuteNonQuery();
 

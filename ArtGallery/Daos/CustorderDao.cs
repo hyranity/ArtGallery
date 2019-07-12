@@ -21,7 +21,8 @@ namespace ArtGallery.Daos
         {
             SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Custorder(OrderId, CustId, TotalPrice, IsCanceled, OrderDate)"
                                 + "VALUES(@OrderId, @CustId, @TotalPrice, @IsCanceled, @OrderDate)");
-            Cmd.Parameters.AddWithValue("@OrderId", Custorder.OrderId);
+			DBUtil.CheckConnect();
+			Cmd.Parameters.AddWithValue("@OrderId", Custorder.OrderId);
             Cmd.Parameters.AddWithValue("@CustId", Custorder.CustomerId);
             Cmd.Parameters.AddWithValue("@TotalPrice", Custorder.TotalPrice);
 			Cmd.Parameters.AddWithValue("@IsCanceled", Custorder.IsCanceled);
@@ -37,7 +38,8 @@ namespace ArtGallery.Daos
             SqlCommand Cmd;
 
             Cmd = DBUtil.GenerateSql("SELECT * FROM Custorder WHERE ([" + Field + "] = @Value)");
-            Cmd.Parameters.AddWithValue("@Value", Value);
+			DBUtil.CheckConnect();
+			Cmd.Parameters.AddWithValue("@Value", Value);
 
             using (SqlDataReader Dr = Cmd.ExecuteReader())
             {
@@ -70,7 +72,8 @@ namespace ArtGallery.Daos
             SqlCommand Cmd;
 
             Cmd = DBUtil.GenerateSql("SELECT * FROM Custorder WHERE ([" + Field + "] = @Value)");
-            Cmd.Parameters.AddWithValue("@Value", Value);
+			DBUtil.CheckConnect();
+			Cmd.Parameters.AddWithValue("@Value", Value);
 
             using (SqlDataReader Dr = Cmd.ExecuteReader())
             {
@@ -114,7 +117,8 @@ namespace ArtGallery.Daos
 				", OrderDate = @OrderDate" +
 				" WHERE OrderId = @OrderId"
             );
-            Cmd.Parameters.AddWithValue("@OrderId", Custorder.OrderId);
+			DBUtil.CheckConnect();
+			Cmd.Parameters.AddWithValue("@OrderId", Custorder.OrderId);
             Cmd.Parameters.AddWithValue("@CustId", Custorder.CustomerId);
             Cmd.Parameters.AddWithValue("@TotalPrice", Custorder.TotalPrice);
 			Cmd.Parameters.AddWithValue("@IsCanceled", Custorder.IsCanceled);
@@ -128,7 +132,8 @@ namespace ArtGallery.Daos
         public void Delete(Order Custorder)
         {
             SqlCommand Cmd = DBUtil.GenerateSql("DELETE FROM Custorder WHERE OrderId = @OrderId");
-            Cmd.Parameters.AddWithValue("@OrderId", Custorder.OrderId);
+			DBUtil.CheckConnect();
+			Cmd.Parameters.AddWithValue("@OrderId", Custorder.OrderId);
 
             Cmd.ExecuteNonQuery();
 

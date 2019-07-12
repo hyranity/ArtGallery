@@ -21,7 +21,8 @@ namespace ArtGallery.Daos
         {
             SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Artpiece(ArtpieceId, ArtistId, Title, About, ImageLink, Price, Stocks, IsForSale, Tags, IsPublic)"
                                 + "VALUES(@ArtpieceId, @ArtistId, @Title, @About, @ImageLink, @Price, @Stocks, @IsForSale, @Tags, @IsPublic)");
-            Cmd.Parameters.AddWithValue("@ArtpieceId", Artpiece.ArtpieceId);
+			DBUtil.CheckConnect();
+			Cmd.Parameters.AddWithValue("@ArtpieceId", Artpiece.ArtpieceId);
             Cmd.Parameters.AddWithValue("@ArtistId", Artpiece.ArtistId);
             Cmd.Parameters.AddWithValue("@Title", Artpiece.Title);
             Cmd.Parameters.AddWithValue("@ImageLink", Artpiece.ImageLink);
@@ -42,6 +43,8 @@ namespace ArtGallery.Daos
             SqlCommand Cmd;
                 Cmd = DBUtil.GenerateSql("SELECT * FROM Artpiece WHERE ([" + Field + "] = @Value)");
                 Cmd.Parameters.AddWithValue("@Value", Value);
+
+			DBUtil.CheckConnect();
 
             using (SqlDataReader Dr = Cmd.ExecuteReader())
             {
@@ -80,7 +83,8 @@ namespace ArtGallery.Daos
         {
             SqlCommand Cmd;
                 Cmd = DBUtil.GenerateSql("SELECT * FROM Artpiece WHERE ([" + Field + "] = @Value)");
-                Cmd.Parameters.AddWithValue("@Value", Value);
+			DBUtil.CheckConnect();
+			Cmd.Parameters.AddWithValue("@Value", Value);
 
             using (SqlDataReader Dr = Cmd.ExecuteReader())
             {
@@ -133,7 +137,8 @@ namespace ArtGallery.Daos
                 ", IsPublic = @IsPublic" +
                 " WHERE ArtpieceId = @ArtpieceId"
             );
-            Cmd.Parameters.AddWithValue("@ArtpieceId", Artpiece.ArtpieceId);
+			DBUtil.CheckConnect();
+			Cmd.Parameters.AddWithValue("@ArtpieceId", Artpiece.ArtpieceId);
             Cmd.Parameters.AddWithValue("@ArtistId", Artpiece.ArtistId);
             Cmd.Parameters.AddWithValue("@Title", Artpiece.Title);
             Cmd.Parameters.AddWithValue("@ImageLink", Artpiece.ImageLink);
@@ -151,7 +156,8 @@ namespace ArtGallery.Daos
         public void Delete(Artpiece Artpiece)
         {
             SqlCommand Cmd = DBUtil.GenerateSql("DELETE FROM Artpiece WHERE ArtpieceId = @ArtpieceId");
-            Cmd.Parameters.AddWithValue("@ArtpieceId", Artpiece.ArtpieceId);
+			DBUtil.CheckConnect();
+			Cmd.Parameters.AddWithValue("@ArtpieceId", Artpiece.ArtpieceId);
 
             Cmd.ExecuteNonQuery();
 

@@ -22,6 +22,12 @@ namespace ArtGallery.Util
 			Con = new SqlConnection(ConnectStr);
 			Con.Open();
 		}
+
+		public void CheckConnect()
+		{
+			if (Con.State == System.Data.ConnectionState.Closed)
+				Con.Open();
+		}
         
 		// Generates an SQL 
 		public SqlCommand GenerateSql(String query)
@@ -39,7 +45,8 @@ namespace ArtGallery.Util
 		// Closes DB connection
 		public void Disconnect()
 		{
-			Con.Close();
+			
+				Con.Close();
 		}
 
 		public static int CountRecords(string Query)
@@ -48,7 +55,7 @@ namespace ArtGallery.Util
 
 			// Get no of records in selected table
 			SqlCommand Cmd = DBUtil.GenerateSql(Query);
-
+			DBUtil.CheckConnect();
 			DBUtil.Disconnect();
 
 			return Convert.ToInt32(Cmd.ExecuteScalar());

@@ -21,8 +21,9 @@ namespace ArtGallery.Daos
         {
             SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Order_Artwork(OrderId, ArtpieceId, Quantity)"
                                 + "VALUES(@OrderId, @ArtpieceId, @Quantity)");
-           // Cmd.Parameters.AddWithValue("@Index", Order_Artwork.Index); Auto generated hence no need to insert
-            Cmd.Parameters.AddWithValue("@OrderId", Order_Artwork.OrderId);
+			DBUtil.CheckConnect();
+			// Cmd.Parameters.AddWithValue("@Index", Order_Artwork.Index); Auto generated hence no need to insert
+			Cmd.Parameters.AddWithValue("@OrderId", Order_Artwork.OrderId);
             Cmd.Parameters.AddWithValue("@ArtpieceId", Order_Artwork.ArtpieceId);
             Cmd.Parameters.AddWithValue("@Quantity", Order_Artwork.Quantity);
 
@@ -35,7 +36,8 @@ namespace ArtGallery.Daos
         {
             SqlCommand Cmd;
                 Cmd = DBUtil.GenerateSql("SELECT * FROM Order_Artwork WHERE ([" + Field + "] = @Value)");
-                Cmd.Parameters.AddWithValue("@Value", Value);
+			DBUtil.CheckConnect();
+			Cmd.Parameters.AddWithValue("@Value", Value);
 
             using (SqlDataReader Dr = Cmd.ExecuteReader())
             {
@@ -66,7 +68,8 @@ namespace ArtGallery.Daos
         {
             SqlCommand Cmd;
                 Cmd = DBUtil.GenerateSql("SELECT * FROM Order_Artwork WHERE ([" + Field + "] = @Value)");
-                Cmd.Parameters.AddWithValue("@Value", Value);
+			DBUtil.CheckConnect();
+			Cmd.Parameters.AddWithValue("@Value", Value);
 
             using (SqlDataReader Dr = Cmd.ExecuteReader())
             {
@@ -106,7 +109,8 @@ namespace ArtGallery.Daos
                 ", Quantity = @Quantity" +
                 " WHERE Index = @Index"
             );
-            Cmd.Parameters.AddWithValue("@Index", Order_Artwork.Index);
+			DBUtil.CheckConnect();
+			Cmd.Parameters.AddWithValue("@Index", Order_Artwork.Index);
             Cmd.Parameters.AddWithValue("@OrderId", Order_Artwork.OrderId);
             Cmd.Parameters.AddWithValue("@ArtpeiceId", Order_Artwork.ArtpieceId);
             Cmd.Parameters.AddWithValue("@Quantity", Order_Artwork.Quantity);
@@ -119,7 +123,8 @@ namespace ArtGallery.Daos
         public void Delete(Order_Artwork Order_Artwork)
         {
             SqlCommand Cmd = DBUtil.GenerateSql("DELETE FROM Order_Artwork WHERE Index = @Index");
-            Cmd.Parameters.AddWithValue("@CustomerId", Order_Artwork.Index);
+			DBUtil.CheckConnect();
+			Cmd.Parameters.AddWithValue("@CustomerId", Order_Artwork.Index);
 
             Cmd.ExecuteNonQuery();
 

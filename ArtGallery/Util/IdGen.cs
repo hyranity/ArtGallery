@@ -37,7 +37,8 @@ namespace ArtGallery.Util
 
             // Get no of records in selected table
             SqlCommand Cmd = DBUtil.GenerateSql("SELECT COUNT(*) FROM " + Type + "");
-            int NoOfRecords = Convert.ToInt32(Cmd.ExecuteScalar());
+			DBUtil.CheckConnect();
+			int NoOfRecords = Convert.ToInt32(Cmd.ExecuteScalar());
 
             // Create Id based on no of records
             NoOfRecords++;
@@ -46,6 +47,8 @@ namespace ArtGallery.Util
                 Id += "0";
             }
             Id += NoOfRecords.ToString();
+
+			DBUtil.Disconnect();
 
             // Return generated Id
             return Id;
