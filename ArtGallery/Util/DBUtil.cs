@@ -12,26 +12,34 @@ namespace ArtGallery.Util
 {
 	public class DBUtil
 	{
-		string ConnectStr;
+		string ConnectStr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ArtGallery.mdf;Integrated Security=True";
 		SqlConnection Con;
 
 		// Builds a connection to the database
 		public DBUtil()
 		{
-			ConnectStr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ArtGallery.mdf;Integrated Security=True";
-			Con = new SqlConnection(ConnectStr);
+			
+			/*Con = new SqlConnection(ConnectStr);
 
 			// Prevent opening too many connections
 			if (Con.State == System.Data.ConnectionState.Open)
 				Con.Close();
 
-			Con.Open();
+			Con.Open();*/
+		}
+
+		public static SqlConnection BuildConnection()
+		{
+			string ConnectStr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ArtGallery.mdf;Integrated Security=True";
+			return new SqlConnection(ConnectStr);
 		}
 
 		public void CheckConnect()
 		{
+			Con = new SqlConnection(ConnectStr);
+
 			if (Con.State == System.Data.ConnectionState.Closed)
-				Con.Open();
+				Connect();
 		}
         
 		// Generates an SQL 
@@ -41,9 +49,10 @@ namespace ArtGallery.Util
 			return cmd;
 		}
 
-		// Connects to DB (this is automatically done during object construction)
+		// Connects to DB
 		public void Connect()
 		{
+			Con = new SqlConnection(ConnectStr);
 			Con.Open();
 		}
 
@@ -65,5 +74,5 @@ namespace ArtGallery.Util
 
 			return Convert.ToInt32(Cmd.ExecuteScalar());
 		}*/
+		}
 	}
-}
