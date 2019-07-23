@@ -20,7 +20,6 @@ namespace ArtGallery.Util
         public String GenerateId(string Type)
         {
             // Initialise variables
-            DBUtil DBUtil = new DBUtil();
             String Id = "";
 
             // Set opening letter set for Id based on selected type
@@ -35,20 +34,24 @@ namespace ArtGallery.Util
                 default: return null;
             }
 
-            // Get no of records in selected table
-            SqlCommand Cmd = DBUtil.GenerateSql("SELECT COUNT(*) FROM " + Type + "");
-			DBUtil.CheckConnect();
-			int NoOfRecords = Convert.ToInt32(Cmd.ExecuteScalar());
+			// Get no of records in selected table
+			using (SqlConnection con = DBUtil.BuildConnection())
+			{
+				con.Open();
+				SqlCommand Cmd = new SqlCommand("SELECT COUNT(*) FROM " + Type + "", con);
 
-            // Create Id based on no of records
-            NoOfRecords++;
-            for (int i = 0; i < 10 - NoOfRecords.ToString().Length; i++)
-            {
-                Id += "0";
-            }
-            Id += NoOfRecords.ToString();
+				int NoOfRecords = Convert.ToInt32(Cmd.ExecuteScalar());
 
-			DBUtil.Disconnect();
+				// Create Id based on no of records
+				NoOfRecords++;
+				for (int i = 0; i < 10 - NoOfRecords.ToString().Length; i++)
+				{
+					Id += "0";
+				}
+				Id += NoOfRecords.ToString();
+
+				con.Close();
+			}
 
             // Return generated Id
             return Id;
