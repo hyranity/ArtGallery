@@ -13,131 +13,146 @@ namespace ArtGallery.Daos
     {
         public CustorderDao()
         {
-            DBUtil = new DBUtil();
+            
         }
 
         // crud functions
         public void Add(Order Custorder)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Custorder(OrderId, CustId, TotalPrice, IsCanceled, OrderDate)"
-                                + "VALUES(@OrderId, @CustId, @TotalPrice, @IsCanceled, @OrderDate)");
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@OrderId", Custorder.OrderId);
-            Cmd.Parameters.AddWithValue("@CustId", Custorder.CustomerId);
-            Cmd.Parameters.AddWithValue("@TotalPrice", Custorder.TotalPrice);
-			Cmd.Parameters.AddWithValue("@IsCanceled", Custorder.IsCanceled);
-			Cmd.Parameters.AddWithValue("@OrderDate", Custorder.OrderDate);
+            using (SqlConnection con = DBUtil.BuildConnection())
+            {
+                con.Open();
+                SqlCommand Cmd = new SqlCommand("INSERT INTO Custorder(OrderId, CustId, TotalPrice, IsCanceled, OrderDate)"
+                                + "VALUES(@OrderId, @CustId, @TotalPrice, @IsCanceled, @OrderDate)", con);
+                Cmd.Parameters.AddWithValue("@OrderId", Custorder.OrderId);
+                Cmd.Parameters.AddWithValue("@CustId", Custorder.CustomerId);
+                Cmd.Parameters.AddWithValue("@TotalPrice", Custorder.TotalPrice);
+                Cmd.Parameters.AddWithValue("@IsCanceled", Custorder.IsCanceled);
+                Cmd.Parameters.AddWithValue("@OrderDate", Custorder.OrderDate);
 
-			Cmd.ExecuteNonQuery();
+                Cmd.ExecuteNonQuery();
 
-            DBUtil.Disconnect();
+                con.Close();
+            }
         }
 
         public Order Get(string Field, string Value)
         {
-            SqlCommand Cmd;
-
-            Cmd = DBUtil.GenerateSql("SELECT * FROM Custorder WHERE ([" + Field + "] = @Value)");
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@Value", Value);
-
-            using (SqlDataReader Dr = Cmd.ExecuteReader())
+            using (SqlConnection con = DBUtil.BuildConnection())
             {
-                if (Dr.Read())
+                con.Open();
+                SqlCommand Cmd;
+                Cmd = new SqlCommand("SELECT * FROM Custorder WHERE ([" + Field + "] = @Value)", con);
+                Cmd.Parameters.AddWithValue("@Value", Value);
+
+                using (SqlDataReader Dr = Cmd.ExecuteReader())
                 {
-                    /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
-                    // int i = 0;
-                    //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
+                    if (Dr.Read())
+                    {
+                        /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
+                        // int i = 0;
+                        //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
 
-                    // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-                    Order order = new Order(
-                        (string)Dr["OrderId"],
-                        (string)Dr["CustId"],
-                        (double)Dr["TotalPrice"],
-						(bool)Dr["IsCanceled"],
-						(DateTime)Dr["OrderDate"]
-					);
+                        // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
+                        Order order = new Order(
+                            (string)Dr["OrderId"],
+                            (string)Dr["CustId"],
+                            (double)Dr["TotalPrice"],
+                            (bool)Dr["IsCanceled"],
+                            (DateTime)Dr["OrderDate"]
+                        );
 
-                    Dr.Close();
-					DBUtil.Disconnect();
-					return order;
+                        Dr.Close();
+                        con.Close();
+                        return order;
+                    }
                 }
+                con.Close();
+                return null;
             }
-			DBUtil.Disconnect();
-			return null;
         }
 
         public List<Order> GetList(string Field, string Value)
         {
-            SqlCommand Cmd;
-
-            Cmd = DBUtil.GenerateSql("SELECT * FROM Custorder WHERE ([" + Field + "] = @Value)");
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@Value", Value);
-
-            using (SqlDataReader Dr = Cmd.ExecuteReader())
+            using (SqlConnection con = DBUtil.BuildConnection())
             {
-                List<Order> Order = new List<Order>();
+                con.Open();
+                SqlCommand Cmd;
+                Cmd = new SqlCommand("SELECT * FROM Custorder WHERE ([" + Field + "] = @Value)", con);
+                
+                Cmd.Parameters.AddWithValue("@Value", Value);
 
-                while (Dr.Read())
+                using (SqlDataReader Dr = Cmd.ExecuteReader())
                 {
+                    List<Order> Order = new List<Order>();
 
-					/* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
-					// int i = 0;
-					//return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
+                    while (Dr.Read())
+                    {
 
-					// method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-					Order.Add(new Order(
-						(string)Dr["OrderId"],
-						(string)Dr["CustId"],
-						Convert.ToDouble((decimal)Dr["TotalPrice"]),
-						(bool)Dr["IsCanceled"],
-						(DateTime)Dr["OrderDate"]
-					));
+                        /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
+                        // int i = 0;
+                        //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
+
+                        // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
+                        Order.Add(new Order(
+                            (string)Dr["OrderId"],
+                            (string)Dr["CustId"],
+                            Convert.ToDouble((decimal)Dr["TotalPrice"]),
+                            (bool)Dr["IsCanceled"],
+                            (DateTime)Dr["OrderDate"]
+                        ));
+                    }
+
+                    Dr.Close();
+                    con.Close();
+                    if (Order.Any())
+                    {
+                        return Order;
+                    }
+
+                    return null;
                 }
-
-                Dr.Close();
-				DBUtil.Disconnect();
-				if (Order.Any())
-                {
-                    return Order;
-                }
-
-                return null;
             }
         }
 
         public void Update(Order Custorder)
         {
-            // SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Custorder SET ... WHERE ([OrderId] = @OrderId)");
-            SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Custorder " +
+            using (SqlConnection con = DBUtil.BuildConnection())
+            {
+                // SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Custorder SET ... WHERE ([OrderId] = @OrderId)");
+                SqlCommand Cmd = new SqlCommand("UPDATE Custorder " +
                 "SET CustId = @CustId" +
                 ", TotalPrice = @TotalPrice" +
-				", IsCanceled = @IsCanceled" +
-				", OrderDate = @OrderDate" +
-				" WHERE OrderId = @OrderId"
+                ", IsCanceled = @IsCanceled" +
+                ", OrderDate = @OrderDate" +
+                " WHERE OrderId = @OrderId", con
             );
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@OrderId", Custorder.OrderId);
-            Cmd.Parameters.AddWithValue("@CustId", Custorder.CustomerId);
-            Cmd.Parameters.AddWithValue("@TotalPrice", Custorder.TotalPrice);
-			Cmd.Parameters.AddWithValue("@IsCanceled", Custorder.IsCanceled);
-			Cmd.Parameters.AddWithValue("@OrderDate", Custorder.OrderDate);
+                con.Open();
+                Cmd.Parameters.AddWithValue("@OrderId", Custorder.OrderId);
+                Cmd.Parameters.AddWithValue("@CustId", Custorder.CustomerId);
+                Cmd.Parameters.AddWithValue("@TotalPrice", Custorder.TotalPrice);
+                Cmd.Parameters.AddWithValue("@IsCanceled", Custorder.IsCanceled);
+                Cmd.Parameters.AddWithValue("@OrderDate", Custorder.OrderDate);
 
-			Cmd.ExecuteNonQuery();
+                Cmd.ExecuteNonQuery();
 
-            DBUtil.Disconnect();
+                con.Close();
+            }
         }
 
         public void Delete(Order Custorder)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("DELETE FROM Custorder WHERE OrderId = @OrderId");
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@OrderId", Custorder.OrderId);
+            using (SqlConnection con = DBUtil.BuildConnection())
+            {
+                con.Open();
+                SqlCommand Cmd = new SqlCommand("DELETE FROM Custorder WHERE OrderId = @OrderId", con);
+                
+                Cmd.Parameters.AddWithValue("@OrderId", Custorder.OrderId);
 
-            Cmd.ExecuteNonQuery();
+                Cmd.ExecuteNonQuery();
 
-            DBUtil.Disconnect();
+                con.Close();
+            }
         }
     }
 }

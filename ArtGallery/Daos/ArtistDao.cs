@@ -94,8 +94,9 @@ namespace ArtGallery.Daos
 
 				if (!Type.Equals("Passwd") && !Type.Equals("PasswordSalt"))
 				{
-					Cmd = new SqlCommand("SELECT * FROM Artist WHERE ([" + Type + "] = @Value)");
-					con.Open();
+                    con.Open();
+                    Cmd = new SqlCommand("SELECT * FROM Artist WHERE ([" + Type + "] = @Value)", con);
+					
 					Cmd.Parameters.AddWithValue("@Value", Value);
 				}
 				else
@@ -202,8 +203,9 @@ namespace ArtGallery.Daos
         {
 			using (SqlConnection con = DBUtil.BuildConnection())
 			{
-				SqlCommand Cmd = new SqlCommand("DELETE FROM Artist WHERE ArtistId = @ArtistId");
-				con.Open();
+                con.Open();
+                SqlCommand Cmd = new SqlCommand("DELETE FROM Artist WHERE ArtistId = @ArtistId", con);
+				
 				Cmd.Parameters.AddWithValue("@ArtistId", Artist.Id);
 
 				Cmd.ExecuteNonQuery();

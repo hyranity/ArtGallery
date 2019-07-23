@@ -13,122 +13,137 @@ namespace ArtGallery.Daos
     {
         public OrderArtworkDao()
         {
-            DBUtil = new DBUtil();
+            
         }
 
         // crud functions
         public void Add(Order_Artwork Order_Artwork)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Order_Artwork(OrderId, ArtpieceId, Quantity)"
-                                + "VALUES(@OrderId, @ArtpieceId, @Quantity)");
-			DBUtil.CheckConnect();
-			// Cmd.Parameters.AddWithValue("@Index", Order_Artwork.Index); Auto generated hence no need to insert
-			Cmd.Parameters.AddWithValue("@OrderId", Order_Artwork.OrderId);
-            Cmd.Parameters.AddWithValue("@ArtpieceId", Order_Artwork.ArtpieceId);
-            Cmd.Parameters.AddWithValue("@Quantity", Order_Artwork.Quantity);
+            using (SqlConnection con = DBUtil.BuildConnection())
+            {
+                con.Open();
+                SqlCommand Cmd = new SqlCommand("INSERT INTO Order_Artwork(OrderId, ArtpieceId, Quantity)"
+                                + "VALUES(@OrderId, @ArtpieceId, @Quantity)", con);
+                // Cmd.Parameters.AddWithValue("@Index", Order_Artwork.Index); Auto generated hence no need to insert
+                Cmd.Parameters.AddWithValue("@OrderId", Order_Artwork.OrderId);
+                Cmd.Parameters.AddWithValue("@ArtpieceId", Order_Artwork.ArtpieceId);
+                Cmd.Parameters.AddWithValue("@Quantity", Order_Artwork.Quantity);
 
-            Cmd.ExecuteNonQuery();
+                Cmd.ExecuteNonQuery();
 
-            DBUtil.Disconnect();
+                con.Close();
+            }
         }
 
         public Order_Artwork Get(string Field, string Value)
         {
-            SqlCommand Cmd;
-                Cmd = DBUtil.GenerateSql("SELECT * FROM Order_Artwork WHERE ([" + Field + "] = @Value)");
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@Value", Value);
-
-            using (SqlDataReader Dr = Cmd.ExecuteReader())
+            using (SqlConnection con = DBUtil.BuildConnection())
             {
-                if (Dr.Read())
+                con.Open();
+                SqlCommand Cmd;
+                Cmd = new SqlCommand("SELECT * FROM Order_Artwork WHERE ([" + Field + "] = @Value)", con);
+                Cmd.Parameters.AddWithValue("@Value", Value);
+
+                using (SqlDataReader Dr = Cmd.ExecuteReader())
                 {
-                    /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
-                    // int i = 0;
-                    //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
+                    if (Dr.Read())
+                    {
+                        /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
+                        // int i = 0;
+                        //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
 
-                    // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-                    Order_Artwork orderArtwork = new Order_Artwork(
-                        (int)Dr["Index"],
-                        (string)Dr["OrderId"],
-                        (string)Dr["ArtpieceId"],
-                        (int)Dr["Quantity"]
-                    );
+                        // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
+                        Order_Artwork orderArtwork = new Order_Artwork(
+                            (int)Dr["Index"],
+                            (string)Dr["OrderId"],
+                            (string)Dr["ArtpieceId"],
+                            (int)Dr["Quantity"]
+                        );
 
-                    Dr.Close();
-					DBUtil.Disconnect();
-					return orderArtwork;
+                        Dr.Close();
+                        con.Close();
+                        return orderArtwork;
+                    }
                 }
+                con.Close();
+                return null;
             }
-			DBUtil.Disconnect();
-			return null;
         }
 
         public List<Order_Artwork> GetList(string Field, string Value)
         {
-            SqlCommand Cmd;
-                Cmd = DBUtil.GenerateSql("SELECT * FROM Order_Artwork WHERE ([" + Field + "] = @Value)");
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@Value", Value);
-
-            using (SqlDataReader Dr = Cmd.ExecuteReader())
+            using (SqlConnection con = DBUtil.BuildConnection())
             {
-                List<Order_Artwork> oaList = new List<Order_Artwork>();
+                con.Open();
+                SqlCommand Cmd;
+                Cmd = new SqlCommand("SELECT * FROM Order_Artwork WHERE ([" + Field + "] = @Value)", con);
+                Cmd.Parameters.AddWithValue("@Value", Value);
 
-                while (Dr.Read())
+                using (SqlDataReader Dr = Cmd.ExecuteReader())
                 {
-					/* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
-					// int i = 0;
-					//return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
+                    List<Order_Artwork> oaList = new List<Order_Artwork>();
 
-					// method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-					oaList.Add(new Order_Artwork(
-                        (int)Dr["Index"],
-                        (string)Dr["OrderId"],
-                        (string)Dr["ArtpieceId"],
-                        (int)Dr["Quantity"]
-                    ));
+                    while (Dr.Read())
+                    {
+                        /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
+                        // int i = 0;
+                        //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
+
+                        // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
+                        oaList.Add(new Order_Artwork(
+                            (int)Dr["Index"],
+                            (string)Dr["OrderId"],
+                            (string)Dr["ArtpieceId"],
+                            (int)Dr["Quantity"]
+                        ));
+                    }
+
+                    Dr.Close();
+                    con.Close();
+                    if (oaList.Any())
+                    {
+                        return oaList;
+                    }
+                    else
+                        return null;
                 }
-
-                Dr.Close();
-				DBUtil.Disconnect();
-				if (oaList.Any())
-				{
-					return oaList;
-				}
-				else
-					return null;
             }
         }
         public void Update(Order_Artwork Order_Artwork)
         {
-            // SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Order_Artwork SET ... WHERE ([Index] = @Index)");
-            SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Order_Artwork " +
+            using (SqlConnection con = DBUtil.BuildConnection())
+            {
+                // SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Order_Artwork SET ... WHERE ([Index] = @Index)");
+                SqlCommand Cmd = new SqlCommand("UPDATE Order_Artwork " +
                 "SET OrderId = @OrderId" +
                 ", ArtpeiceId = @ArtpeiceId" +
                 ", Quantity = @Quantity" +
-                " WHERE Index = @Index"
+                " WHERE Index = @Index", con
             );
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@Index", Order_Artwork.Index);
-            Cmd.Parameters.AddWithValue("@OrderId", Order_Artwork.OrderId);
-            Cmd.Parameters.AddWithValue("@ArtpeiceId", Order_Artwork.ArtpieceId);
-            Cmd.Parameters.AddWithValue("@Quantity", Order_Artwork.Quantity);
+                con.Open();
+                Cmd.Parameters.AddWithValue("@Index", Order_Artwork.Index);
+                Cmd.Parameters.AddWithValue("@OrderId", Order_Artwork.OrderId);
+                Cmd.Parameters.AddWithValue("@ArtpeiceId", Order_Artwork.ArtpieceId);
+                Cmd.Parameters.AddWithValue("@Quantity", Order_Artwork.Quantity);
 
-            Cmd.ExecuteNonQuery();
+                Cmd.ExecuteNonQuery();
 
-            DBUtil.Disconnect();
+                con.Close();
+            }
         }
 
         public void Delete(Order_Artwork Order_Artwork)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("DELETE FROM Order_Artwork WHERE Index = @Index");
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@CustomerId", Order_Artwork.Index);
+            using (SqlConnection con = DBUtil.BuildConnection())
+            {
+                con.Open();
+                SqlCommand Cmd = new SqlCommand("DELETE FROM Order_Artwork WHERE Index = @Index", con);
+                Cmd.Parameters.AddWithValue("@CustomerId", Order_Artwork.Index);
 
-            Cmd.ExecuteNonQuery();
+                Cmd.ExecuteNonQuery();
 
-            DBUtil.Disconnect();
+                con.Close();
+            }
         }
 
     }

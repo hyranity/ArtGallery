@@ -13,186 +13,207 @@ namespace ArtGallery.Daos
     {
         public CustomerDao()
         {
-            DBUtil = new DBUtil();
+            
         }
 
         // crud functions
         public void Add(Customer Customer)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Customer(CustId, Username, DisplayName, Email, Passwd, PasswordSalt, CreditCardNo)"
-								+ "VALUES(@CustID, @Username, @DisplayName, @Email, @Passwd, @PasswordSalt, @CreditCardNo)");
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
-            Cmd.Parameters.AddWithValue("@Username", Customer.Username);
-            Cmd.Parameters.AddWithValue("@DisplayName", Customer.DisplayName);
-            Cmd.Parameters.AddWithValue("@Email", Customer.Email);
-            Cmd.Parameters.AddWithValue("@Passwd", Customer.Passwd);
-            Cmd.Parameters.AddWithValue("@PasswordSalt", Customer.PasswordSalt);
+            using (SqlConnection con = DBUtil.BuildConnection())
+            {
+                con.Open();
+                SqlCommand Cmd = new SqlCommand("INSERT INTO Customer(CustId, Username, DisplayName, Email, Passwd, PasswordSalt, CreditCardNo)"
+                                + "VALUES(@CustID, @Username, @DisplayName, @Email, @Passwd, @PasswordSalt, @CreditCardNo)", con);
+                Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
+                Cmd.Parameters.AddWithValue("@Username", Customer.Username);
+                Cmd.Parameters.AddWithValue("@DisplayName", Customer.DisplayName);
+                Cmd.Parameters.AddWithValue("@Email", Customer.Email);
+                Cmd.Parameters.AddWithValue("@Passwd", Customer.Passwd);
+                Cmd.Parameters.AddWithValue("@PasswordSalt", Customer.PasswordSalt);
 
-			if (Customer.CreditCardNo == null)
-				Customer.CreditCardNo = "not given";
+                if (Customer.CreditCardNo == null)
+                    Customer.CreditCardNo = "not given";
 
-            Cmd.Parameters.AddWithValue("@CreditCardNo", Customer.CreditCardNo);
+                Cmd.Parameters.AddWithValue("@CreditCardNo", Customer.CreditCardNo);
 
-            Cmd.ExecuteNonQuery();
+                Cmd.ExecuteNonQuery();
 
-            DBUtil.Disconnect();
+                con.Close();
+            }
         }
 
         public Customer Get(string Field, string Value)
         {
-            SqlCommand Cmd;
+            using (SqlConnection con = DBUtil.BuildConnection())
+            {
+                con.Open();
+                SqlCommand Cmd;
 
-            if (!Field.Equals("Passwd") && !Field.Equals("PasswordSalt"))
-            {
-                Cmd = DBUtil.GenerateSql("SELECT * FROM Customer WHERE ([" + Field + "] = @Value)");
-				DBUtil.CheckConnect();
-				Cmd.Parameters.AddWithValue("@Value", Value);
-            }
-            else
-            {
-                return new Customer();
-            }
-
-            using (SqlDataReader Dr = Cmd.ExecuteReader())
-            {
-                if (Dr.Read())
+                if (!Field.Equals("Passwd") && !Field.Equals("PasswordSalt"))
                 {
-                    /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
-                    // int i = 0;
-                    //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
-
-                    // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-                    Customer customer = new Customer(
-                        (string) Dr["CustID"],
-                        (string) Dr["Username"],
-                        (string) Dr["DisplayName"],
-                        (string) Dr["Email"],
-                        (string) Dr["Passwd"],
-                        (byte[]) Dr["PasswordSalt"],
-                        (string) Dr["CreditCardNo"]
-                    );
-
-                    Dr.Close();
-					DBUtil.Disconnect();
-					return customer;
-
+                    Cmd = new SqlCommand("SELECT * FROM Customer WHERE ([" + Field + "] = @Value)", con);
+                    Cmd.Parameters.AddWithValue("@Value", Value);
                 }
+                else
+                {
+                    con.Close();
+                    return new Customer();
+                }
+
+                using (SqlDataReader Dr = Cmd.ExecuteReader())
+                {
+                    if (Dr.Read())
+                    {
+                        /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
+                        // int i = 0;
+                        //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
+
+                        // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
+                        Customer customer = new Customer(
+                            (string)Dr["CustID"],
+                            (string)Dr["Username"],
+                            (string)Dr["DisplayName"],
+                            (string)Dr["Email"],
+                            (string)Dr["Passwd"],
+                            (byte[])Dr["PasswordSalt"],
+                            (string)Dr["CreditCardNo"]
+                        );
+
+                        Dr.Close();
+                        con.Close();
+                        return customer;
+
+                    }
+                }
+                con.Close();
+                return null;
             }
-			DBUtil.Disconnect();
-			return null;
         }
 
         public List<Customer> GetList(string Field, string Value)
         {
-            SqlCommand Cmd;
-
-            if (!Field.Equals("Passwd") && !Field.Equals("PasswordSalt"))
+            using (SqlConnection con = DBUtil.BuildConnection())
             {
-                Cmd = DBUtil.GenerateSql("SELECT * FROM Customer WHERE ([" + Field + "] = @Value)");
-				DBUtil.CheckConnect();
-				Cmd.Parameters.AddWithValue("@Value", Value);
-            }
-            else
-            {
-                return null;
-            }
+                SqlCommand Cmd;
 
-            using (SqlDataReader Dr = Cmd.ExecuteReader())
-            {
-                List<Customer> Customer = new List<Customer>();
-
-                while (Dr.Read())
+                if (!Field.Equals("Passwd") && !Field.Equals("PasswordSalt"))
                 {
-                    /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
-                    // int i = 0;
-                    //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
-
-                    // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-                    Customer.Add(new Customer(
-                        (string) Dr["CustID"],
-                        (string) Dr["Username"],
-                        (string) Dr["DisplayName"],
-                        (string) Dr["Email"],
-                        (string) Dr["Passwd"],
-                        (byte[]) Dr["PasswordSalt"],
-                        (string) Dr["CreditCardNo"])
-                    );
+                    con.Open();
+                    Cmd = new SqlCommand("SELECT * FROM Customer WHERE ([" + Field + "] = @Value)", con);
+                    
+                    Cmd.Parameters.AddWithValue("@Value", Value);
+                }
+                else
+                {
+                    return null;
                 }
 
-                Dr.Close();
-				DBUtil.Disconnect();
-				if (Customer.Any())
+                using (SqlDataReader Dr = Cmd.ExecuteReader())
                 {
-                    return Customer;
+                    List<Customer> Customer = new List<Customer>();
+
+                    while (Dr.Read())
+                    {
+                        /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
+                        // int i = 0;
+                        //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
+
+                        // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
+                        Customer.Add(new Customer(
+                            (string)Dr["CustID"],
+                            (string)Dr["Username"],
+                            (string)Dr["DisplayName"],
+                            (string)Dr["Email"],
+                            (string)Dr["Passwd"],
+                            (byte[])Dr["PasswordSalt"],
+                            (string)Dr["CreditCardNo"])
+                        );
+                    }
+
+                    Dr.Close();
+                    con.Close();
+                    if (Customer.Any())
+                    {
+                        return Customer;
+                    }
+
+                    return null;
                 }
-                
-                return null;
             }
         }
 
         public void Update(Customer Customer)
         {
-            // SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Customer SET ... WHERE ([CustID] = @CustID)");
-            SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Customer " +
+            using (SqlConnection con = DBUtil.BuildConnection())
+            {
+                // SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Customer SET ... WHERE ([CustID] = @CustID)");
+                SqlCommand Cmd = new SqlCommand("UPDATE Customer " +
                 "SET Username = @Username" +
                 ", DisplayName = @DisplayName" +
                 ", Email = @Email" +
-				", Passwd = @Passwd" +
+                ", Passwd = @Passwd" +
                 ", PasswordSalt = @PasswordSalt" +
                 ", CreditCardNo = @CreditCardNo" +
-                " WHERE CustID = @CustID"
+                " WHERE CustID = @CustID", con
             );
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
-            Cmd.Parameters.AddWithValue("@Username", Customer.Username);
-            Cmd.Parameters.AddWithValue("@DisplayName", Customer.DisplayName);
-            Cmd.Parameters.AddWithValue("@Email", Customer.Email);
-            Cmd.Parameters.AddWithValue("@Passwd", Customer.Passwd);
-            Cmd.Parameters.AddWithValue("@PasswordSalt", Customer.PasswordSalt);
-            Cmd.Parameters.AddWithValue("@CreditCardNo", Customer.CreditCardNo);
+                con.Open();
+                Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
+                Cmd.Parameters.AddWithValue("@Username", Customer.Username);
+                Cmd.Parameters.AddWithValue("@DisplayName", Customer.DisplayName);
+                Cmd.Parameters.AddWithValue("@Email", Customer.Email);
+                Cmd.Parameters.AddWithValue("@Passwd", Customer.Passwd);
+                Cmd.Parameters.AddWithValue("@PasswordSalt", Customer.PasswordSalt);
+                Cmd.Parameters.AddWithValue("@CreditCardNo", Customer.CreditCardNo);
 
-            Cmd.ExecuteNonQuery();
+                Cmd.ExecuteNonQuery();
 
-            DBUtil.Disconnect();
+                con.Close();
+            }
         }
 
 		public void Update(Customer Customer, string OriginalID)
 		{
-			// SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Customer SET ... WHERE ([CustID] = @CustID)");
-			SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Customer " +
-				"SET CustID = @CustID, Username = @Username" +
-				", DisplayName = @DisplayName" +
-				", Email = @Email" +
-				", Passwd = @Passwd" +
-				", PasswordSalt = @PasswordSalt" +
-				", CreditCardNo = @CreditCardNo" +
-				" WHERE CustID = @OriginalCustID"
-			);
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
-			Cmd.Parameters.AddWithValue("@OriginalCustID", OriginalID);
-			Cmd.Parameters.AddWithValue("@Username", Customer.Username);
-			Cmd.Parameters.AddWithValue("@DisplayName", Customer.DisplayName);
-			Cmd.Parameters.AddWithValue("@Email", Customer.Email);
-			Cmd.Parameters.AddWithValue("@Passwd", Customer.Passwd);
-			Cmd.Parameters.AddWithValue("@PasswordSalt", Customer.PasswordSalt);
-			Cmd.Parameters.AddWithValue("@CreditCardNo", Customer.CreditCardNo);
+            using (SqlConnection con = DBUtil.BuildConnection())
+            {
+                // SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Customer SET ... WHERE ([CustID] = @CustID)");
+                SqlCommand Cmd = new SqlCommand("UPDATE Customer " +
+                "SET CustID = @CustID, Username = @Username" +
+                ", DisplayName = @DisplayName" +
+                ", Email = @Email" +
+                ", Passwd = @Passwd" +
+                ", PasswordSalt = @PasswordSalt" +
+                ", CreditCardNo = @CreditCardNo" +
+                " WHERE CustID = @OriginalCustID", con
+            );
+                con.Open();
+                Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
+                Cmd.Parameters.AddWithValue("@OriginalCustID", OriginalID);
+                Cmd.Parameters.AddWithValue("@Username", Customer.Username);
+                Cmd.Parameters.AddWithValue("@DisplayName", Customer.DisplayName);
+                Cmd.Parameters.AddWithValue("@Email", Customer.Email);
+                Cmd.Parameters.AddWithValue("@Passwd", Customer.Passwd);
+                Cmd.Parameters.AddWithValue("@PasswordSalt", Customer.PasswordSalt);
+                Cmd.Parameters.AddWithValue("@CreditCardNo", Customer.CreditCardNo);
 
-			Cmd.ExecuteNonQuery();
+                Cmd.ExecuteNonQuery();
 
-			DBUtil.Disconnect();
+                con.Close();
+            }
 		}
 
 		public void Delete(Customer Customer)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("DELETE FROM Customer WHERE CustID = @CustID");
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
+            using (SqlConnection con = DBUtil.BuildConnection())
+            {
+                con.Open();
+                SqlCommand Cmd = new SqlCommand("DELETE FROM Customer WHERE CustID = @CustID", con);
+                
+                Cmd.Parameters.AddWithValue("@CustID", Customer.Id);
 
-            Cmd.ExecuteNonQuery();
+                Cmd.ExecuteNonQuery();
 
-            DBUtil.Disconnect();
+                con.Close();
+            }
         }
 
     }

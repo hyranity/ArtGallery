@@ -13,120 +13,128 @@ namespace ArtGallery.Daos
     {
         public ArtpieceDao()
         {
-            DBUtil = new DBUtil();
+            
         }
 
         // crud functions
         public void Add(Artpiece Artpiece)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO Artpiece(ArtpieceId, ArtistId, Title, About, ImageLink, Price, Stocks, IsForSale, Tags, IsPublic)"
-                                + "VALUES(@ArtpieceId, @ArtistId, @Title, @About, @ImageLink, @Price, @Stocks, @IsForSale, @Tags, @IsPublic)");
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@ArtpieceId", Artpiece.ArtpieceId);
-            Cmd.Parameters.AddWithValue("@ArtistId", Artpiece.ArtistId);
-            Cmd.Parameters.AddWithValue("@Title", Artpiece.Title);
-            Cmd.Parameters.AddWithValue("@ImageLink", Artpiece.ImageLink);
-            Cmd.Parameters.AddWithValue("@Price", Artpiece.Price);
-            Cmd.Parameters.AddWithValue("@Stocks", Artpiece.Stocks);
-            Cmd.Parameters.AddWithValue("@IsForSale", Artpiece.IsForSale);
-            Cmd.Parameters.AddWithValue("@Tags", Artpiece.Tags);
-            Cmd.Parameters.AddWithValue("@IsPublic", Artpiece.IsPublic);
-			Cmd.Parameters.AddWithValue("@About", Artpiece.About);
-			Cmd.ExecuteNonQuery();
+            // Prevent any connection leak
+            using (SqlConnection con = DBUtil.BuildConnection())
+            {
+                con.Open(); // Open connection to DB
+                SqlCommand Cmd = new SqlCommand("INSERT INTO Artpiece(ArtpieceId, ArtistId, Title, About, ImageLink, Price, Stocks, IsForSale, Tags, IsPublic)"
+                                    + "VALUES(@ArtpieceId, @ArtistId, @Title, @About, @ImageLink, @Price, @Stocks, @IsForSale, @Tags, @IsPublic)", con);
+                Cmd.Parameters.AddWithValue("@ArtpieceId", Artpiece.ArtpieceId);
+                Cmd.Parameters.AddWithValue("@ArtistId", Artpiece.ArtistId);
+                Cmd.Parameters.AddWithValue("@Title", Artpiece.Title);
+                Cmd.Parameters.AddWithValue("@ImageLink", Artpiece.ImageLink);
+                Cmd.Parameters.AddWithValue("@Price", Artpiece.Price);
+                Cmd.Parameters.AddWithValue("@Stocks", Artpiece.Stocks);
+                Cmd.Parameters.AddWithValue("@IsForSale", Artpiece.IsForSale);
+                Cmd.Parameters.AddWithValue("@Tags", Artpiece.Tags);
+                Cmd.Parameters.AddWithValue("@IsPublic", Artpiece.IsPublic);
+                Cmd.Parameters.AddWithValue("@About", Artpiece.About);
+                Cmd.ExecuteNonQuery();
 
-            DBUtil.Disconnect();
+                con.Close(); // Close connection to DB
+            }
         }
 
         public Artpiece Get(string Field, string Value)
         {
-			
-            SqlCommand Cmd;
-                Cmd = DBUtil.GenerateSql("SELECT * FROM Artpiece WHERE ([" + Field + "] = @Value)");
+            using (SqlConnection con = DBUtil.BuildConnection())
+            {
+                con.Open();
+                SqlCommand Cmd;
+                Cmd = new SqlCommand("SELECT * FROM Artpiece WHERE ([" + Field + "] = @Value)", con);
                 Cmd.Parameters.AddWithValue("@Value", Value);
 
-			DBUtil.CheckConnect();
-
-            using (SqlDataReader Dr = Cmd.ExecuteReader())
-            {
-                if (Dr.Read())
+                using (SqlDataReader Dr = Cmd.ExecuteReader())
                 {
-                    /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
-                    // int i = 0;
-                    //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
+                    if (Dr.Read())
+                    {
+                        /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
+                        // int i = 0;
+                        //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
 
-                    // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-                    Artpiece artpiece = new Artpiece(
-                        (string)Dr["ArtpieceId"],
-                        (string)Dr["ArtistId"],
-                        (string)Dr["Title"],
-						(string)Dr["About"],
-						(string)Dr["ImageLink"],
-                        Convert.ToDouble((decimal)Dr["Price"]),
-                        (int)Dr["Stocks"],
-                        (bool)Dr["IsForSale"],
-                        (string)Dr["Tags"],
-                        (bool)Dr["IsPublic"]
-                    );
+                        // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
+                        Artpiece artpiece = new Artpiece(
+                            (string)Dr["ArtpieceId"],
+                            (string)Dr["ArtistId"],
+                            (string)Dr["Title"],
+                            (string)Dr["About"],
+                            (string)Dr["ImageLink"],
+                            Convert.ToDouble((decimal)Dr["Price"]),
+                            (int)Dr["Stocks"],
+                            (bool)Dr["IsForSale"],
+                            (string)Dr["Tags"],
+                            (bool)Dr["IsPublic"]
+                        );
 
-                    Dr.Close();
-					DBUtil.Disconnect();
-					return artpiece;
+                        Dr.Close();
+                        con.Close();
+                        return artpiece;
+                    }
                 }
+                con.Close();
+                return null;
             }
-
-
-			DBUtil.Disconnect();
-			return null;
         }
 
         public List<Artpiece> GetList(string Field, string Value)
         {
-            SqlCommand Cmd;
-                Cmd = DBUtil.GenerateSql("SELECT * FROM Artpiece WHERE ([" + Field + "] = @Value)");
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@Value", Value);
-
-            using (SqlDataReader Dr = Cmd.ExecuteReader())
+            using (SqlConnection con = DBUtil.BuildConnection())
             {
-                List<Artpiece> Artpiece = new List<Artpiece>();
+                con.Open();
+                SqlCommand Cmd;
+                Cmd = new SqlCommand("SELECT * FROM Artpiece WHERE ([" + Field + "] = @Value)", con);
+                
+                Cmd.Parameters.AddWithValue("@Value", Value);
 
-                while (Dr.Read())
+                using (SqlDataReader Dr = Cmd.ExecuteReader())
                 {
-					/* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
-					// int i = 0;
-					//return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
+                    List<Artpiece> Artpiece = new List<Artpiece>();
 
-					// method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-					/*Artpiece.Add(new Artpiece(
-                        (string)Dr["ArtpieceId"],
-                        (string)Dr["ArtistId"],
-                        (string)Dr["Title"],
-						(string)Dr["About"],
-						(string)Dr["ImageLink"],
-                        Convert.ToDouble((decimal)Dr["Price"]),
-                        (int)Dr["Stocks"],
-                        (bool)Dr["IsForSale"],
-                        (string)Dr["Tags"],
-                        (bool)Dr["IsPublic"]
-                    );*/
-				}
+                    while (Dr.Read())
+                    {
+                        /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
+                        // int i = 0;
+                        //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
 
-                Dr.Close();
-				DBUtil.Disconnect();
+                        // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
+                        /*Artpiece.Add(new Artpiece(
+                            (string)Dr["ArtpieceId"],
+                            (string)Dr["ArtistId"],
+                            (string)Dr["Title"],
+                            (string)Dr["About"],
+                            (string)Dr["ImageLink"],
+                            Convert.ToDouble((decimal)Dr["Price"]),
+                            (int)Dr["Stocks"],
+                            (bool)Dr["IsForSale"],
+                            (string)Dr["Tags"],
+                            (bool)Dr["IsPublic"]
+                        );*/
+                    }
 
-				if (Artpiece.Any())
-                {
-                    return Artpiece;
+                    Dr.Close();
+                    con.Close();
+                    if (Artpiece.Any())
+                    {
+                        return Artpiece;
+                    }
+
+                    return null;
                 }
-
-                return null;
             }
         }
 
         public void Update(Artpiece Artpiece)
         {
-            // SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Customer SET ... WHERE ([CustomerId] = @CustomerId)");
-            SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Artpiece " +
+            using (SqlConnection con = DBUtil.BuildConnection())
+            {
+                // SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Customer SET ... WHERE ([CustomerId] = @CustomerId)");
+                SqlCommand Cmd = new SqlCommand("UPDATE Artpiece " +
                 "SET ArtistId = @ArtistId" +
                 ", Title = @Title" +
                 ", ImageLink = @ImageLink" +
@@ -135,33 +143,38 @@ namespace ArtGallery.Daos
                 ", IsForSale = @IsForSale" +
                 ", Tags = @Tags" +
                 ", IsPublic = @IsPublic" +
-                " WHERE ArtpieceId = @ArtpieceId"
+                " WHERE ArtpieceId = @ArtpieceId", con
             );
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@ArtpieceId", Artpiece.ArtpieceId);
-            Cmd.Parameters.AddWithValue("@ArtistId", Artpiece.ArtistId);
-            Cmd.Parameters.AddWithValue("@Title", Artpiece.Title);
-            Cmd.Parameters.AddWithValue("@ImageLink", Artpiece.ImageLink);
-            Cmd.Parameters.AddWithValue("@Price", Artpiece.Price);
-            Cmd.Parameters.AddWithValue("@Stocks", Artpiece.Stocks);
-            Cmd.Parameters.AddWithValue("@IsForSale", Artpiece.IsForSale);
-            Cmd.Parameters.AddWithValue("@Tags", Artpiece.Tags);
-            Cmd.Parameters.AddWithValue("@IsPublic", Artpiece.IsPublic);
+                con.Open();
+                Cmd.Parameters.AddWithValue("@ArtpieceId", Artpiece.ArtpieceId);
+                Cmd.Parameters.AddWithValue("@ArtistId", Artpiece.ArtistId);
+                Cmd.Parameters.AddWithValue("@Title", Artpiece.Title);
+                Cmd.Parameters.AddWithValue("@ImageLink", Artpiece.ImageLink);
+                Cmd.Parameters.AddWithValue("@Price", Artpiece.Price);
+                Cmd.Parameters.AddWithValue("@Stocks", Artpiece.Stocks);
+                Cmd.Parameters.AddWithValue("@IsForSale", Artpiece.IsForSale);
+                Cmd.Parameters.AddWithValue("@Tags", Artpiece.Tags);
+                Cmd.Parameters.AddWithValue("@IsPublic", Artpiece.IsPublic);
 
-            Cmd.ExecuteNonQuery();
+                Cmd.ExecuteNonQuery();
 
-            DBUtil.Disconnect();
+                con.Close();
+            }
         }
 
         public void Delete(Artpiece Artpiece)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("DELETE FROM Artpiece WHERE ArtpieceId = @ArtpieceId");
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@ArtpieceId", Artpiece.ArtpieceId);
+            using (SqlConnection con = DBUtil.BuildConnection())
+            {
+                con.Open();
+                SqlCommand Cmd = new SqlCommand("DELETE FROM Artpiece WHERE ArtpieceId = @ArtpieceId", con);
+                
+                Cmd.Parameters.AddWithValue("@ArtpieceId", Artpiece.ArtpieceId);
 
-            Cmd.ExecuteNonQuery();
+                Cmd.ExecuteNonQuery();
 
-            DBUtil.Disconnect();
+                con.Close();
+            }
         }
     }
 }

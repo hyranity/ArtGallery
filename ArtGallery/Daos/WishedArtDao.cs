@@ -13,149 +13,167 @@ namespace ArtGallery.Daos
     {
         public WishedArtDao()
         {
-            DBUtil = new DBUtil();
+            
         }
 
         // crud functions
         public void Add(WishedArt WishedArt)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("INSERT INTO WishedArt(ArtpieceId, CustId)"
-                                + "VALUES(@ArtpieceId, @CustId)");
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@ArtpieceId", WishedArt.ArtpieceId);
-            Cmd.Parameters.AddWithValue("@CustId", WishedArt.CustId);
+            using (SqlConnection con = DBUtil.BuildConnection())
+            {
+                con.Open();
+                SqlCommand Cmd = new SqlCommand("INSERT INTO WishedArt(ArtpieceId, CustId)"
+                                + "VALUES(@ArtpieceId, @CustId)", con);
+                Cmd.Parameters.AddWithValue("@ArtpieceId", WishedArt.ArtpieceId);
+                Cmd.Parameters.AddWithValue("@CustId", WishedArt.CustId);
 
-            Cmd.ExecuteNonQuery();
+                Cmd.ExecuteNonQuery();
 
-            DBUtil.Disconnect();
+                con.Close();
+            }
         }
 
         public WishedArt Get(string Field, string Value)
         {
-            SqlCommand Cmd;
-                Cmd = DBUtil.GenerateSql("SELECT * FROM WishedArt WHERE ([" + Field + "] = @Value)");
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@Value", Value);
-
-            using (SqlDataReader Dr = Cmd.ExecuteReader())
+            using (SqlConnection con = DBUtil.BuildConnection())
             {
-                if (Dr.Read())
+                con.Open();
+                SqlCommand Cmd;
+                Cmd = new SqlCommand("SELECT * FROM WishedArt WHERE ([" + Field + "] = @Value)", con);
+                Cmd.Parameters.AddWithValue("@Value", Value);
+
+                using (SqlDataReader Dr = Cmd.ExecuteReader())
                 {
-                    /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
-                    // int i = 0;
-                    //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
+                    if (Dr.Read())
+                    {
+                        /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
+                        // int i = 0;
+                        //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
 
-                    // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-                    WishedArt wishedArt = new WishedArt(
-                        (int)Dr["WishIndex"],
-                        (string)Dr["ArtpieceId"],
-                        (string)Dr["CustId"]
-                    );
+                        // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
+                        WishedArt wishedArt = new WishedArt(
+                            (int)Dr["WishIndex"],
+                            (string)Dr["ArtpieceId"],
+                            (string)Dr["CustId"]
+                        );
 
-                    Dr.Close();
-					DBUtil.Disconnect();
-					return wishedArt;
+                        Dr.Close();
+                        con.Close();
+                        return wishedArt;
+                    }
                 }
+                con.Close();
+                return null;
             }
-			DBUtil.Disconnect();
-			return null;
         }
 
 		public WishedArt GetSpecific(string custId, string artpieceId)
 		{
-			SqlCommand Cmd;
-			Cmd = DBUtil.GenerateSql("SELECT * FROM WishedArt WHERE ([CUSTID] = @CUSTID) AND ([ARTPIECEID] = @ARTPIECEID)");
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@CUSTID", custId);
-			Cmd.Parameters.AddWithValue("@ARTPIECEID", artpieceId);
+            using (SqlConnection con = DBUtil.BuildConnection())
+            {
+                con.Open();
+                SqlCommand Cmd;
+                Cmd = new SqlCommand("SELECT * FROM WishedArt WHERE ([CUSTID] = @CUSTID) AND ([ARTPIECEID] = @ARTPIECEID)", con);
+                Cmd.Parameters.AddWithValue("@CUSTID", custId);
+                Cmd.Parameters.AddWithValue("@ARTPIECEID", artpieceId);
 
-			using (SqlDataReader Dr = Cmd.ExecuteReader())
-			{
-				if (Dr.Read())
-				{
-                    /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
-                    // int i = 0;
-                    //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
+                using (SqlDataReader Dr = Cmd.ExecuteReader())
+                {
+                    if (Dr.Read())
+                    {
+                        /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
+                        // int i = 0;
+                        //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
 
-					// method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-					WishedArt wishedArt = new WishedArt(
-						(int)Dr["WishIndex"],
-						(string)Dr["ArtpieceId"],
-						(string)Dr["CustId"]
-					);
+                        // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
+                        WishedArt wishedArt = new WishedArt(
+                            (int)Dr["WishIndex"],
+                            (string)Dr["ArtpieceId"],
+                            (string)Dr["CustId"]
+                        );
 
-                    Dr.Close();
-					DBUtil.Disconnect();
-					return wishedArt;
-				}
-			}
-			DBUtil.Disconnect();
-			return null;
+                        Dr.Close();
+                        con.Close();
+                        return wishedArt;
+                    }
+                }
+                con.Close();
+                return null;
+            }
 		}
 
 		public List<WishedArt> GetList(string Field, string Value)
         {
-            SqlCommand Cmd;
-                Cmd = DBUtil.GenerateSql("SELECT * FROM Customer WHERE ([" + Field + "] = @Value)");
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@Value", Value);
-
-            using (SqlDataReader Dr = Cmd.ExecuteReader())
+            using (SqlConnection con = DBUtil.BuildConnection())
             {
-                List<WishedArt> WishedArt = new List<WishedArt>();
+                con.Open();
+                SqlCommand Cmd;
+                Cmd = new SqlCommand("SELECT * FROM Customer WHERE ([" + Field + "] = @Value)", con);
+                Cmd.Parameters.AddWithValue("@Value", Value);
 
-                while (Dr.Read())
+                using (SqlDataReader Dr = Cmd.ExecuteReader())
                 {
-                    /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
-                    // int i = 0;
-                    //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
+                    List<WishedArt> WishedArt = new List<WishedArt>();
 
-                    // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
-                    WishedArt.Add(new WishedArt(
-                        (int)Dr["WishIndex"],
-                        (string)Dr["ArtpieceId"],
-                        (string)Dr["CustId"])
-                    );
+                    while (Dr.Read())
+                    {
+                        /* method thanks to Ron C - https://stackoverflow.com/a/41041029 */
+                        // int i = 0;
+                        //return new Customer(Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), Dr.GetString(i++), (byte[]) Dr["PasswordSalt"], Dr.GetString(i++));
+
+                        // method thanks to Andy Edinborough & Cosmin - https://stackoverflow.com/a/5371281
+                        WishedArt.Add(new WishedArt(
+                            (int)Dr["WishIndex"],
+                            (string)Dr["ArtpieceId"],
+                            (string)Dr["CustId"])
+                        );
+                    }
+
+                    Dr.Close();
+                    con.Close();
+                    if (WishedArt.Any())
+                    {
+                        return WishedArt;
+                    }
+
+                    return null;
                 }
-
-                Dr.Close();
-				DBUtil.Disconnect();
-				if (WishedArt.Any())
-                {
-                    return WishedArt;
-                }
-
-                return null;
             }
         }
 
         public void Update(WishedArt WishedArt)
         {
-            // SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Customer SET ... WHERE ([CustomerId] = @CustomerId)");
-            SqlCommand Cmd = DBUtil.GenerateSql("UPDATE WishedArt " +
+            using (SqlConnection con = DBUtil.BuildConnection())
+            {
+                // SqlCommand Cmd = DBUtil.GenerateSql("UPDATE Customer SET ... WHERE ([CustomerId] = @CustomerId)");
+                SqlCommand Cmd = new SqlCommand("UPDATE WishedArt " +
                 "SET ArtpieceId = @ArtpieceId" +
                 ", CustId = @CustId" +
-                " WHERE WishIndex = @WishIndex"
+                " WHERE WishIndex = @WishIndex", con
             );
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@WishIndex", WishedArt.WishIndex);
-            Cmd.Parameters.AddWithValue("@ArtpieceId", WishedArt.ArtpieceId);
-            Cmd.Parameters.AddWithValue("@CustId", WishedArt.CustId);
+                con.Open();
+                Cmd.Parameters.AddWithValue("@WishIndex", WishedArt.WishIndex);
+                Cmd.Parameters.AddWithValue("@ArtpieceId", WishedArt.ArtpieceId);
+                Cmd.Parameters.AddWithValue("@CustId", WishedArt.CustId);
 
-            Cmd.ExecuteNonQuery();
+                Cmd.ExecuteNonQuery();
 
-            DBUtil.Disconnect();
+                con.Close();
+            }
         }
 
         public void Delete(WishedArt WishedArt)
         {
-            SqlCommand Cmd = DBUtil.GenerateSql("DELETE FROM WishedArt WHERE WishIndex = @WishIndex");
-			DBUtil.CheckConnect();
-			Cmd.Parameters.AddWithValue("@WishIndex", WishedArt.WishIndex);
+            using (SqlConnection con = DBUtil.BuildConnection())
+            {
+                con.Open();
+                SqlCommand Cmd = new SqlCommand("DELETE FROM WishedArt WHERE WishIndex = @WishIndex", con);
+                Cmd.Parameters.AddWithValue("@WishIndex", WishedArt.WishIndex);
 
-            Cmd.ExecuteNonQuery();
+                Cmd.ExecuteNonQuery();
 
-            DBUtil.Disconnect();
+                con.Close();
+            }
         }
     }
 }
