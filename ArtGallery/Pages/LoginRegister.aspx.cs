@@ -69,6 +69,7 @@ namespace ArtGallery.Pages
 				{
 					String Id = IdGen.GenerateId("Customer");
 					Customer.RegisterCustomer(Id, txtRegisterUsername.Text, txtRegisterDisplayName.Text, txtRegisterEmail.Text, txtRegisterPassword.Text, null);
+					Email.SendEmail(txtRegisterEmail.Text, "Welcome to ART-X Gallery", "<h1>Thank you for registering with us!</h1>Do check out the latest creations from our gallery!");
 				}
             }
 
@@ -79,6 +80,7 @@ namespace ArtGallery.Pages
 				{
 					String Id = IdGen.GenerateId("Artist");
 					Artist.RegisterArtist(Id, txtRegisterUsername.Text, txtRegisterDisplayName.Text, txtRegisterEmail.Text, txtRegisterPassword.Text);
+					Email.SendEmail(txtRegisterEmail.Text, "Welcome to ART-X Gallery", "<h1>Thank you for registering with us!</h1>Start sharing your creations with the world!");
 				}
             }
 
