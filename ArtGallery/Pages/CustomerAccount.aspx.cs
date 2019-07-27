@@ -1,5 +1,6 @@
 ﻿using ArtGallery.Classes;
 using ArtGallery.Daos;
+using ArtGallery.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,11 @@ namespace ArtGallery.Pages
 {
     public partial class CustomerAccount : System.Web.UI.Page
     {
+		private FormatLabel FormatLbl;
         protected void Page_Load(object sender, EventArgs e)
         {
+			// Initialize
+			FormatLbl = new FormatLabel(lblEditError);
 
 			if (Session["customer"] == null)
 				Response.Redirect("~/Pages/LoginRegister.aspx");
@@ -42,6 +46,11 @@ namespace ArtGallery.Pages
 					
 				}
 			}
+
+			if (Request.QueryString["Edit"] != null)
+				lblEditError = FormatLbl.Success("Account successfully updated");
+
+			lblEditError.ID = "lblEditError";
 		}
 
 		private bool ErrorInEdit(Customer cust)
@@ -63,7 +72,8 @@ namespace ArtGallery.Pages
 			if (checkCust != null || checkArtist != null)
 			{
 				// There is an existing username
-				lblEditError.Text = "An account with this username already exists.";
+				lblEditError = FormatLbl.Error("An account with this username already exists.");
+				lblEditError.ID = "lblEditError";
 				hasError = true;
 			}
 
@@ -86,7 +96,8 @@ namespace ArtGallery.Pages
 			if (checkCust != null || checkArtist != null)
 			{
 				// There is an existing email
-				lblEditError.Text = "An account with this email already exists.";
+				lblEditError = FormatLbl.Error("An account with this email already exists.");
+				lblEditError.ID = "lblEditError";
 				hasError = true;
 			}
 
@@ -122,7 +133,7 @@ namespace ArtGallery.Pages
 				CustomerDao dao = new CustomerDao();
 				dao.Update(newCustomer, OldCustomer.Id); //Update the record based on original ID
 				Session["customer"] = newCustomer; // Update the one in the session
-				Response.Redirect(Request.RawUrl); // Refreshes the page
+				Response.Redirect("CustomerAccount.aspx?Edit=Success"); // Refreshes the page
 			}
 		}
 

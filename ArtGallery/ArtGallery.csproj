@@ -227,6 +227,7 @@
     <Compile Include="Util\DBUtil.cs" />
     <Compile Include="Util\FileUtil.cs" />
     <Compile Include="Util\IdGen.cs" />
+    <Compile Include="Util\FormatLabel.cs" />
     <Compile Include="Util\Quick.cs" />
     <Compile Include="Util\Net.cs" />
   </ItemGroup>

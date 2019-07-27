@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Pages/ArtGallery.Master" CodeBehind="CustomerAccount.aspx.cs" Inherits="ArtGallery.Pages.CustomerAccount" %>
-
+<%@ Import Namespace="ArtGallery.Classes" %>
+<%@ Import Namespace="ArtGallery.Util" %>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <title></title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -37,7 +38,14 @@
 				</div>
 			</div>-->
 			<!--<asp:Button runat="server" href="CustomerProfile.aspx" Text="BACK TO PROFILE" ID="BackBt" CssClass='back' OnClick="BackBt_Click"></asp:Button>-->
-            <a href='CustomerProfile.aspx?username=session' class='back'>BACK TO PROFILE</a>
+			<%
+				string link = "";
+
+				Customer customer = (Customer)Net.GetSession("customer");
+
+				link = "CustomerProfile.aspx?username=" + customer.Username;
+			%>
+            <a href='<%= link %>' class='back'>BACK TO PROFILE</a>
 		</div>
 
 		<div class='purple'>

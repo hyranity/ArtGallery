@@ -67,6 +67,15 @@ namespace ArtGallery.Util
 			HttpContext.Current.Response.Redirect(HttpContext.Current.Request.RawUrl);
 		}
 
+		// Checks whether there's an object in session with the specified name
+		public static bool IsInSession(string name)
+		{
+			if (HttpContext.Current.Session[name] == null)
+				return false;
+			else
+				return true;
+		}
+
 		
 		//EXPERIMENTAL
 		private static void GoNextPage()

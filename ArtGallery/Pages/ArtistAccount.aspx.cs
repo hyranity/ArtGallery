@@ -12,6 +12,7 @@ namespace ArtGallery.Pages
 {
 	public partial class ArtistAccount : System.Web.UI.Page
 	{
+		private FormatLabel FormatLbl;
 		protected void Page_Load(object sender, EventArgs e)
 		{
 			if (Session["artist"] == null)
@@ -42,6 +43,9 @@ namespace ArtGallery.Pages
 					bio.Text = artist.Bio;
 				}
 			}
+
+			if (Request.QueryString["Edit"] != null)
+				lblEditError = FormatLbl.Success("Account successfully updated");
 		}
 
 		private bool ErrorInEdit(Artist artist)
@@ -64,7 +68,8 @@ namespace ArtGallery.Pages
 			if (checkCust != null || checkArtist != null)
 			{
 				// There is an existing username
-				lblEditError.Text = "An account with this username already exists.";
+				lblEditError = FormatLbl.Error("An account with this username already exists.");
+				lblEditError.ID = "lblEditError";
 				hasError = true;
 			}
 
@@ -87,7 +92,8 @@ namespace ArtGallery.Pages
 			if (checkCust != null || checkArtist != null)
 			{
 				// There is an existing email
-				lblEditError.Text = "An account with this email already exists.";
+				lblEditError = FormatLbl.Error("An account with this email already exists.");
+				lblEditError.ID = "lblEditError";
 				hasError = true;
 			}
 
@@ -116,7 +122,7 @@ namespace ArtGallery.Pages
 				ArtistDao dao = new ArtistDao();
 				dao.Update(newArtist, OldArtist.Id); //Update the record based on original ID
 				Session["artist"] = newArtist; // Update the one in the session
-				Response.Redirect(Request.RawUrl); // Refreshes the page
+				Response.Redirect("ArtistAccount.aspx?Edit=Success"); // Refreshes the page
 			}
 		}
 	}

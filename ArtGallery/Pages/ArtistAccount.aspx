@@ -53,7 +53,14 @@
                     <asp:Label ID="lblStatFollowing" runat="server" CssClass="label stat">FOLLOWING</asp:Label>
 				</div>
 			</div>-->
-			<a href='ArtistProfile.aspx?username=session' class='back'>BACK TO PROFILE</a>
+			<%
+				string link = "";
+
+				Artist artist = (Artist)Net.GetSession("artist");
+
+				link = "ArtistProfile.aspx?username=" + artist.Username;
+			%>
+            <a href='<%= link %>' class='back'>BACK TO PROFILE</a>
 		</div>
 
 		<div class='purple'>
