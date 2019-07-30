@@ -73,6 +73,7 @@
     </Content>
     <Content Include="Pages\AllGallery.aspx" />
     <Content Include="Pages\ArtistAccount.aspx" />
+    <Content Include="Pages\ArtpieceEdit.aspx" />
     <Content Include="Pages\CSS\Home.css" />
     <Content Include="Pages\CSS\MasterCss.css" />
     <Content Include="Pages\CSS\PaymentHistory.css" />
@@ -136,6 +137,13 @@
     </Compile>
     <Compile Include="Pages\ArtistAccount.aspx.designer.cs">
       <DependentUpon>ArtistAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ArtpieceEdit.aspx.cs">
+      <DependentUpon>ArtpieceEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ArtpieceEdit.aspx.designer.cs">
+      <DependentUpon>ArtpieceEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\CustomerProfile.aspx.cs">
       <DependentUpon>CustomerProfile.aspx</DependentUpon>
