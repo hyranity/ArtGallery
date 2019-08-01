@@ -14,7 +14,7 @@ namespace ArtGallery.Pages
         int pageNo;
         int offsetAmt = 0;
         int itemLimit = 9; // How many items per page
-        string search = txtSearch.Text;
+		string search;
         protected void Page_Load(object sender, EventArgs e)
         {
             bool hasError = false;
@@ -36,6 +36,10 @@ namespace ArtGallery.Pages
 
 
             offsetAmt = CalculateOffset(itemLimit);
+
+			// Get search from URL
+			search = Net.GetQueryStr("search");
+
             if (search == null)
             {
                 GallerySource.SelectParameters.Clear();
@@ -51,7 +55,7 @@ namespace ArtGallery.Pages
             {
                 GallerySource.SelectParameters.Clear();
 
-                GallerySource.SelectCommand = "SELECT ARTPIECE.TITLE, ARTPIECE.IMAGELINK AS URL, ARTPIECE.ArtpieceId, ARTIST.Username, ARTIST.DisplayName FROM ARTPIECE INNER JOIN ARTIST ON ARTPIECE.ARTISTID = ARTIST.ARTISTID WHERE (ARTPIECE.ISPUBLIC = 1) AND (ARTPIECE.TITLE = @SEARCH) ORDER BY ARTPIECE.ARTPIECEID DESC OFFSET @OFFSETAMT ROWS FETCH NEXT @ITEMLIMIT ROWS ONLY";
+                GallerySource.SelectCommand = "SELECT ARTPIECE.TITLE, ARTPIECE.IMAGELINK AS URL, ARTPIECE.ArtpieceId, ARTIST.Username, ARTIST.DisplayName FROM ARTPIECE INNER JOIN ARTIST ON ARTPIECE.ARTISTID = ARTIST.ARTISTID WHERE (ARTPIECE.ISPUBLIC = 1) AND (ARTPIECE.TITLE LIKE '%' + @SEARCH + '%') ORDER BY ARTPIECE.ARTPIECEID DESC OFFSET @OFFSETAMT ROWS FETCH NEXT @ITEMLIMIT ROWS ONLY";
                 GallerySource.SelectParameters.Add("offsetAmt", System.Data.DbType.Int32, offsetAmt + "");
                 GallerySource.SelectParameters.Add("itemLimit", System.Data.DbType.Int32, itemLimit + "");
                 GallerySource.SelectParameters.Add("search", search + "");
@@ -102,6 +106,9 @@ namespace ArtGallery.Pages
             return (pageNo - 1) * ItemLimit;
         }
 
-
-    }
+		protected void btnSearch_Click(object sender, EventArgs e)
+		{
+			Net.Redirect("~/Pages/AllGallery.aspx?page=1&search=" + txtSearch.Text);
+		}
+	}
 }
