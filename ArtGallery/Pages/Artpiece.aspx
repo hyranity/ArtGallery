@@ -41,6 +41,7 @@
 						<img src='https://i.imgur.com/DXquOBN.png'>
 						<asp:Button ID="btnAddToCart" runat="server" Text="ADD TO CART" CssClass="button" OnClick="btnAddToCart_Click" />
 						<img src='https://i.imgur.com/DXquOBN.png'>
+						<asp:Button ID="btnEdit" runat="server" Text="EDIT STOCKS" CssClass="button" OnClick="btnEdit_Click" />
 					</div>
 				</div>
 				<div class='stats'>
@@ -51,6 +52,7 @@
 					<div>
 						<asp:Label ID="lblStocks" runat="server" CssClass="label number">14</asp:Label>
 						<asp:Label ID="lblStats" runat="server" CssClass="label stat">PCS LEFT</asp:Label>
+						
 					</div>
 					<!--
 					    <div>

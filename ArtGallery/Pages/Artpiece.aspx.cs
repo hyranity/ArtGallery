@@ -23,6 +23,9 @@ namespace ArtGallery.Pages
         {
 			artpiece = new Classes.Artpiece();
 
+			// Hide edit button first
+			btnEdit.Visible = false;
+
             //Hide buttons first
             btnAddToWishlist.Visible = false;
             btnAddToCart.Visible = false;
@@ -109,6 +112,10 @@ namespace ArtGallery.Pages
 							lblForSale.CssClass = "notforsale";
 						}
 					}
+
+					// Show edit button if this is the original artist
+					if (currentArtist != null && currentArtist.Id == artist.Id)
+						btnEdit.Visible = true;
 				}
 			}
 
@@ -265,5 +272,10 @@ namespace ArtGallery.Pages
             // 'Like' feature is under construction
             Net.Redirect("~/Pages/UnderConstruction.aspx");
         }
-    }
+
+		protected void btnEdit_Click(object sender, EventArgs e)
+		{
+			Net.Redirect("~/Pages/ArtpieceEdit.aspx?id="+artpiece.ArtpieceId);
+		}
+	}
 }
