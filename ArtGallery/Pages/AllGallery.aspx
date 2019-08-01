@@ -40,6 +40,10 @@
 			</tr>
 		</table>
 
+        <div class="Search">
+            <asp:TextBox ID="txtSearch" runat="server" placeholder="Search here"></asp:TextBox> <asp:Button ID="btnSearch" runat="server" Text="SEARCH"/>
+        </div>
+
 		<asp:Repeater ID="ArtRepeater" runat="server">
 			<HeaderTemplate>
 				<table class='gallery'>
