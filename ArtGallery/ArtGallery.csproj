@@ -78,6 +78,8 @@
     <Content Include="Pages\CSS\MasterCss.css" />
     <Content Include="Pages\CSS\PaymentHistory.css" />
     <Content Include="Pages\CSS\UnderConstruction.css" />
+    <Content Include="Pages\UserControls\DefaultHeader.ascx" />
+    <Content Include="Pages\UserControls\ArtistHeader.ascx" />
     <Content Include="Pages\CustomerProfile.aspx" />
     <Content Include="Pages\ArtistProfile.aspx" />
     <Content Include="Pages\Artpiece.aspx" />
@@ -92,6 +94,7 @@
     <Content Include="Pages\CSS\LoginRegister.css" />
     <Content Include="Pages\CSS\Upload.css" />
     <Content Include="Pages\CustomerAccount.aspx" />
+    <Content Include="Pages\UserControls\CustomerHeader.ascx" />
     <Content Include="Pages\Home.aspx" />
     <Content Include="Pages\JavaScript\Cart.js" />
     <Content Include="Pages\JavaScript\LoginRegister.js" />
@@ -145,6 +148,20 @@
     <Compile Include="Pages\ArtpieceEdit.aspx.designer.cs">
       <DependentUpon>ArtpieceEdit.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\UserControls\DefaultHeader.ascx.cs">
+      <DependentUpon>DefaultHeader.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UserControls\DefaultHeader.ascx.designer.cs">
+      <DependentUpon>DefaultHeader.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserControls\ArtistHeader.ascx.cs">
+      <DependentUpon>ArtistHeader.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UserControls\ArtistHeader.ascx.designer.cs">
+      <DependentUpon>ArtistHeader.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CustomerProfile.aspx.cs">
       <DependentUpon>CustomerProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -186,6 +203,13 @@
     </Compile>
     <Compile Include="Pages\CustomerAccount.aspx.designer.cs">
       <DependentUpon>CustomerAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserControls\CustomerHeader.ascx.cs">
+      <DependentUpon>CustomerHeader.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UserControls\CustomerHeader.ascx.designer.cs">
+      <DependentUpon>CustomerHeader.ascx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
