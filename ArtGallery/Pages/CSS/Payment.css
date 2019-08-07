@@ -1,0 +1,152 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap');
+
+html, body, form1 {
+    margin: 0px;
+    padding: 0px;
+    width: 1920px;
+    overflow: hidden;
+}
+
+a {
+    font-family: Roboto Condensed;
+    text-decoration: none;
+    color: #4B4848;
+    font-weight: bold;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 30px;
+    margin-left: 50px;
+    /* margin-left: -1300px; */
+}
+
+    .header .title {
+        font-size: 100px;
+        margin-right: 50px;
+    }
+
+    .header .link {
+        font-size: 25px;
+        margin-right: 25px;
+    }
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    z-index: 2;
+    transform: rotate(-10deg);
+    position: absolute;
+    margin-left: 830px;
+    margin-top: 120px;
+}
+
+    .main input[type='submit'] {
+        font-size: 80px;
+        background: transparent;
+        border: none;
+        font-weight: bold;
+        font-family: Roboto Condensed;
+        margin-left: -150px;
+        margin-bottom: 20px;
+        color: #4B4848;
+    }
+
+        .main input[type='submit']::focus {
+            outline: none;
+        }
+
+    .main input[type='text'] {
+        font-size: 35px;
+        z-index: 2;
+        font-weight: bold;
+        width: 300px;
+        border: none;
+        background: transparent;
+        color: #4B4848;
+        text-align: left;
+        font-family: Roboto Condensed;
+    }
+
+        .main input[type='text']::placeholder {
+            color: #4B4848;
+            font-size: 35px;
+            font-family: Roboto Condensed;
+        }
+
+        .main input[type='text']:focus {
+            outline: none;
+        }
+
+    .main img {
+        margin-top: -18px;
+        z-index: 1;
+        width: 50px;
+        margin-bottom: -15px;
+        float: right;
+        filter: invert(30%);
+    }
+
+.cart {
+    background-color: #807187;
+    height: 600px;
+    width: 850px;
+    display: flex;
+    flex-direction: row;
+    z-index: 1;
+    transform: rotate(-10deg);
+    margin-left: -25px;
+    margin-top: 375px;
+    position: absolute;
+}
+
+    .cart .left {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-left: 230px;
+        margin-top: 20px;
+    }
+
+        .cart .left a {
+            font-size: 70px;
+            color: white;
+        }
+
+        .cart .left img {
+            width: 180px;
+            height: 15px;
+        }
+
+    .cart .right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        transform: rotate(90deg);
+        z-index: 0;
+        margin-top: -230px;
+        margin-left: -400px;
+    }
+
+        .cart .right .text {
+            display: flex;
+            flex-direction: row;
+        }
+
+            .cart .right .text a {
+                font-size: 50px;
+                color: white;
+            }
+
+            .cart .right .text .grey {
+                color: #D4C8C8;
+            }
+
+.footer {
+    margin-top: 750px;
+    margin-left: 1000px;
+}
