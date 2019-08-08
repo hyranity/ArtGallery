@@ -36,7 +36,8 @@
 				</div>
 			</div>
 			<!-- ERROR MESSAGE -->
-					<asp:Label ID="lblEditError" runat="server" CssClass="label errorMsg"></asp:Label>
+			<asp:Label ID="lblEditError" runat="server" CssClass="label errorMsg"></asp:Label>
+
 			<div class='stats'>
 				<div>
 					<asp:Label ID="Label2" runat="server" CssClass="label stat">RM </asp:Label>

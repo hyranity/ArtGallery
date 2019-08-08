@@ -8,7 +8,9 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
 
         <div class='main'>
-            <asp:Button ID="btnSubmit" runat="server" Text="CONFIRM PAYMENT" />
+			<!-- ERROR MESSAGE -->
+            <asp:Label ID="lblErrorMsg" runat="server" CssClass="label errorMsg"></asp:Label>
+            <asp:Button ID="btnSubmit" runat="server" Text="CONFIRM PAYMENT" OnClick="btnSubmit_Click" />
             <asp:TextBox ID="txtCardHolderName" placeholder='card holder name' runat="server"></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
             <asp:TextBox ID="txtCardNo" placeholder='card no.' runat="server"></asp:TextBox>

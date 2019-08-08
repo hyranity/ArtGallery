@@ -250,65 +250,7 @@ namespace ArtGallery.Pages
 
 		protected void checkoutBt_Click(object sender, EventArgs e)
 		{
-			// Get customer details
-			Customer customer = (Customer) Net.GetSession("customer");
-
-			// Get count
-			List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
-			int itemCount = oaList.Count;
-			double total = 0;
-
-			// Create order
-			Order order = (Order)Net.GetSession("order");
-			IdGen IdGen = new IdGen();
-			order.OrderId = IdGen.GenerateId("custorder");
-			order.OrderDate = DateTime.Now;
-			order.IsCanceled = false;
-			order.CustomerId = customer.Id;
-			
-
-			foreach (Order_Artwork oa in oaList)
-			{
-				// Cumulate price
-				ArtpieceDao dao = new ArtpieceDao();
-				Classes.Artpiece artpiece = dao.Get("ARTPIECEID", oa.ArtpieceId);
-
-				total += oa.Quantity * artpiece.Price;
-
-
-				// Set Foreign Keys
-				oa.ArtpieceId = artpiece.ArtpieceId;
-				oa.OrderId = order.OrderId;
-
-				// Update stocks
-				artpiece.Stocks = artpiece.Stocks - oa.Quantity;
-
-				// Update artpiece 
-				ArtpieceDao artpieceDao = new ArtpieceDao();
-				artpieceDao.Update(artpiece);
-			}
-
-			// Set cumulated price as total price
-			order.TotalPrice = total;
-
-			// Insert order
-			CustorderDao custorderDao = new CustorderDao();
-			custorderDao.Add(order);
-
-			// Insert OrderArtwork
-			foreach (Order_Artwork oa in oaList)
-			{
-				OrderArtworkDao orderArtworkDao = new OrderArtworkDao();
-				orderArtworkDao.Add(oa);
-			}
-
-			// Clear cart
-			Net.SetSession("order", new Order());
-			Net.SetSession("oaList", new List<Order_Artwork>());
-			Net.SetSession("cartSaved", false);
-
-			// Redirect
-			Net.Redirect("Home.aspx");
+			Net.Redirect("~/Pages/Payment.aspx");
 		}
 
 		protected void saveBt_Click(object sender, EventArgs e)

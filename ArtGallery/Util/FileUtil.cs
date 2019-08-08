@@ -24,18 +24,18 @@ namespace ArtGallery.Util
 		}
 
 		// Saves the file file into the server
-		private void PerformUpload()
+		public void PerformUpload()
 		{
 			// Saves the file itself
 			File.PostedFile.SaveAs(HttpContext.Current.Server.MapPath(StorageLocation) + GetFileName());
 		}
 
-		private string GetFileName()
+		public string GetFileName()
 		{
 			return File.FileName.ToString();
 		}
 
-		private string GetAddress()
+		public string GetAddress()
 		{
 			return StorageLocation + GetFileName();
 		}

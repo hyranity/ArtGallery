@@ -12,22 +12,34 @@ namespace ArtGallery.Pages
 {
     public partial class Upload : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+		private FormatLabel FormatLbl;
+		
+		protected void Page_Load(object sender, EventArgs e)
         {
+			// load the label
+			FormatLbl = new FormatLabel(lblUploadError);
+
 			// Check if logged in as Artist or not
 			if (Session["artist"] == null)
 				Response.Redirect("~/Pages/LoginRegister.aspx");
-        }
+
+			// Set form default values
+			rblIsPublic.Items[0].Selected = true;
+			rblForSale.Items[0].Selected = true;
+		}
 
 		protected void uploadBt_Click(object sender, EventArgs e)
 		{
+			
+
 			// Validate form first
 
 			string errorMsg = ValidateForm();
 
 			if (errorMsg != null) // If there is an error
 			{
-
+				// Set the error msg
+				lblUploadError = FormatLbl.Error(errorMsg);
 			}
 			else // If there is no error
 			{
@@ -61,15 +73,48 @@ namespace ArtGallery.Pages
 				else
 					artpiece.IsPublic = false;
 
-				artpiece.ImageLink = FileUtil.Upload(fileBt, "~/Pics/");     // For image link
+				
+				FileUtil file = new FileUtil(fileBt, "~/Pics/");
+
+				// Set image link
+				artpiece.ImageLink = file.GetAddress();
+
+				// VERIFY THAT IMAGE LINK DOES NOT HAVE DUPLICATE NAME
+				ArtpieceDao linkCheckDao = new ArtpieceDao();
+				Classes.Artpiece checkArtpiece = linkCheckDao.Get("IMAGELINK", file.GetAddress());
+
+				if (checkArtpiece != null) // If there is a duplicate file name
+				{
+					// Set the error msg
+					lblUploadError = FormatLbl.Error("An image with that name already exists. Please rename.");
+				}
+				else // If there is no duplicate
+				{
+					Quick.Print(file.GetFileName().Substring(file.GetFileName().Length - 4));
+					// Check file type
+					if (file.GetFileName().Substring(file.GetFileName().Length - 4) != ".jpg" && file.GetFileName().Substring(file.GetFileName().Length - 4) != ".png" && file.GetFileName().Substring(file.GetFileName().Length - 5) != ".jpeg")
+					{
+						
+						// Show error
+						lblUploadError = FormatLbl.Error("File must be a picture file that ends in jpg, png, or jpeg");
+					}
+					else
+					{
+
+						// Perform file upload
+						file.PerformUpload();
+
+						// Perform database insert
+						ArtpieceDao dao = new ArtpieceDao();
+						dao.Add(artpiece);
+
+						//To redirect user to the new artpiece
+						Response.Redirect("~/Pages/artpiece.aspx?Id=" + artpiece.ArtpieceId);
+					}
+				}
 
 
-				// Perform database insert
-				ArtpieceDao dao = new ArtpieceDao();
-				dao.Add(artpiece);
-
-				//To redirect user to the new artpiece
-				Response.Redirect("~/Pages/artpiece.aspx?Id=" + artpiece.ArtpieceId);
+				
 			}
 		}
 
@@ -103,6 +148,15 @@ namespace ArtGallery.Pages
 			{
 				errorMsg = "Stocks must contain only numbers.";
 			}
+
+			
+
+			// Check for empty fields
+			if (txtDescription.Text == String.Empty || txtPrice.Text == String.Empty || txtTitle.Text == String.Empty || txtStocks.Text == String.Empty || txtTags.Text == String.Empty || fileBt.HasFile == false)
+			{
+				errorMsg = "All fields are required.";
+			}
+
 
 			return errorMsg;
 		}

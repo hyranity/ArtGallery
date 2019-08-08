@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArtGallery.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -140,5 +141,11 @@ namespace ArtGallery.Util
 			Redirect(url + "&page=" + (pageNo - 1));
 		}
 
+		// Redirects the user if it's not the specified authorization
+		public static void AllowOnly(string UserNameInSession)
+		{
+			if (Net.GetSession(UserNameInSession) == null)
+				Redirect("~/LoginRegister.aspx");
+		}
 	}
 }

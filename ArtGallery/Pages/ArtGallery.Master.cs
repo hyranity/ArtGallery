@@ -12,8 +12,7 @@ namespace ArtGallery.Pages
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			if (!IsPostBack)
-			{
+			
 				Control ctrl;
 
 				if (Net.GetSession("customer") != null)
@@ -34,7 +33,7 @@ namespace ArtGallery.Pages
 
 				// Add header to placeholder
 				HeaderPlaceholder.Controls.Add(ctrl);
-			}
+			
 
 		}
 	}
