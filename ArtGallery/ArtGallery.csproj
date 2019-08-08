@@ -262,6 +262,7 @@
     <Compile Include="Pages\Upload.aspx.designer.cs">
       <DependentUpon>Upload.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Util\Bank.cs" />
     <Compile Include="Util\Email.cs" />
     <Compile Include="Util\Hasher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

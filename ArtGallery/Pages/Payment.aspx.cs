@@ -111,13 +111,26 @@ namespace ArtGallery.Pages
 				errorMsg = "Ensure all fields are filled in.";
 			}
 
-			char[] cardNoChar = txtCardNo.Text.ToCharArray();
+			//char[] cardNoChar = txtCardNo.Text.ToCharArray();
 
-			for (int i = 0; i < cardNoChar.Length; i++)
+			/*for (int i = 0; i < cardNoChar.Length; i++)
 			{
 				if (!Char.IsDigit(cardNoChar[i]))
 					errorMsg = "Ensure that Card No. contains only digits";
+			}*/
+
+			// Check date
+			if (!Quick.checkRegex(txtExpDate.Text, @"\d\d\/\d\d")) // If expDate is not 00/00 format
+			{
+				errorMsg = "Ensure that Expiry Date is MM/YY format";
 			}
+
+			// check the credit card
+			if (!Bank.Validate(txtCardNo.Text, txtCvv.Text, txtExpDate.Text, txtCardHolderName.Text)) // If card is invalid
+			{
+				errorMsg = "Credit Card is invalid";
+			}
+
 
 			if (errorMsg == String.Empty)
 				return false;

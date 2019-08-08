@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 
 /*
@@ -30,6 +31,17 @@ namespace ArtGallery.Util
 		public static string FormatPrice(double price)
 		{
 			return String.Format("{0:0.00}", price);
+		}
+
+		public static bool checkRegex(string str, string regex)
+		{
+			Regex rx = new Regex(regex);
+			str.Trim();
+
+			if (rx.IsMatch(str))
+				return true;
+			else
+				return false;
 		}
 		
 	}
