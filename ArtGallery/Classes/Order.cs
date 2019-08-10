@@ -13,6 +13,7 @@ namespace ArtGallery.Classes
 		public double TotalPrice;
 		public bool IsCanceled;
 		public DateTime OrderDate;
+		public string DeliveryAddress;
 
 		// Constructors
 
@@ -20,22 +21,24 @@ namespace ArtGallery.Classes
 		{
 		}
 
-        public Order(string CustomerId, double TotalPrice, bool IsCanceled, DateTime OrderDate)
+        public Order(string CustomerId, double TotalPrice, bool IsCanceled, DateTime OrderDate, string DeliveryAddress)
         {
             OrderId = GenerateLocalId();
             this.CustomerId = CustomerId;
             this.TotalPrice = TotalPrice;
 			this.IsCanceled = IsCanceled;
 			this.OrderDate = OrderDate;
+			this.DeliveryAddress = DeliveryAddress;
         }
 
-		public Order(string OrderId, string CustomerId, double TotalPrice, bool IsCanceled, DateTime OrderDate)
+		public Order(string OrderId, string CustomerId, double TotalPrice, bool IsCanceled, DateTime OrderDate, string DeliveryAddress)
 		{
 			this.OrderId = OrderId;
 			this.CustomerId = CustomerId;
 			this.TotalPrice = TotalPrice;
 			this.IsCanceled = IsCanceled;
 			this.OrderDate = OrderDate;
+			this.DeliveryAddress = DeliveryAddress;
 		}
 
 		// Creates a new order with the first artpiece's price updated

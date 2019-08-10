@@ -34,7 +34,7 @@ namespace ArtGallery.Pages
             // Display orders
             Control container = this.Master.FindControl("MainContent").FindControl("container");
 
-            if (container == null) { Quick.Print("ITS FUCKING NULL ITS FUCKING NULLITS FUCKING NULLITS FUCKING NULLITS FUCKING NULLITS FUCKING NULLITS FUCKING NULLITS FUCKING NULLITS FUCKING NULLITS FUCKING NULLITS FUCKING NULL"); }
+            if (container == null) { Quick.Print("Null exception"); }
 
 
             // DEBUG BOI

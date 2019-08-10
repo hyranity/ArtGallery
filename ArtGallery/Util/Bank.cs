@@ -44,6 +44,7 @@ namespace ArtGallery.Util
 						checkCardHolderName = (string)Dr["CardHolderName"];
 
 						hasResults = true;
+						Quick.Print("Credit card is valid!");
 
 						Dr.Close();
 						con.Close();

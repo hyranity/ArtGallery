@@ -19,6 +19,8 @@
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
             <asp:TextBox ID="txtCvv" placeholder='cvv' runat="server"></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
+			<asp:TextBox ID="txtAddress" placeholder='Delivery address' runat="server"></asp:TextBox>
+            <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
         </div>
 
         <div class='cart'>
@@ -31,11 +33,11 @@
           <div class='right'>
             <div class='text'>
               <a class='grey'>TOTAL</a>
-              <a style='margin-left: 20px;'>RM 231</a>
+              <asp:Label ID="lblTotalPrice" CssClass="label" runat="server" style='margin-left: 20px;'>RM 231</asp:Label>
             </div>
             <div class='text'>
               <a class='grey'>ITEMS</a>
-              <a style='margin-left: 25px;'>6 PCS</a>
+              <asp:Label ID="lblTotalItems" CssClass="label" runat="server" style='margin-left: 25px;'>6 PCS</asp:Label>
             </div>
           </div>
 

@@ -22,15 +22,15 @@ namespace ArtGallery.Daos
             using (SqlConnection con = DBUtil.BuildConnection())
             {
                 con.Open();
-                SqlCommand Cmd = new SqlCommand("INSERT INTO Custorder(OrderId, CustId, TotalPrice, IsCanceled, OrderDate)"
-                                + "VALUES(@OrderId, @CustId, @TotalPrice, @IsCanceled, @OrderDate)", con);
+                SqlCommand Cmd = new SqlCommand("INSERT INTO Custorder(OrderId, CustId, TotalPrice, IsCanceled, OrderDate, DeliveryAddress)"
+                                + "VALUES(@OrderId, @CustId, @TotalPrice, @IsCanceled, @OrderDate, @DeliveryAddress)", con);
                 Cmd.Parameters.AddWithValue("@OrderId", Custorder.OrderId);
                 Cmd.Parameters.AddWithValue("@CustId", Custorder.CustomerId);
                 Cmd.Parameters.AddWithValue("@TotalPrice", Custorder.TotalPrice);
                 Cmd.Parameters.AddWithValue("@IsCanceled", Custorder.IsCanceled);
                 Cmd.Parameters.AddWithValue("@OrderDate", Custorder.OrderDate);
-
-                Cmd.ExecuteNonQuery();
+				Cmd.Parameters.AddWithValue("@DeliveryAddress", Custorder.DeliveryAddress);
+				Cmd.ExecuteNonQuery();
 
                 con.Close();
             }
@@ -59,7 +59,8 @@ namespace ArtGallery.Daos
                             (string)Dr["CustId"],
                             (double)Dr["TotalPrice"],
                             (bool)Dr["IsCanceled"],
-                            (DateTime)Dr["OrderDate"]
+                            (DateTime)Dr["OrderDate"],
+							(string)Dr["DeliveryAddress"]
                         );
 
                         Dr.Close();
@@ -99,8 +100,9 @@ namespace ArtGallery.Daos
                             (string)Dr["CustId"],
                             Convert.ToDouble((decimal)Dr["TotalPrice"]),
                             (bool)Dr["IsCanceled"],
-                            (DateTime)Dr["OrderDate"]
-                        ));
+							(DateTime)Dr["OrderDate"],
+							(string)Dr["DeliveryAddress"]
+						));
                     }
 
                     Dr.Close();
@@ -125,7 +127,8 @@ namespace ArtGallery.Daos
                 ", TotalPrice = @TotalPrice" +
                 ", IsCanceled = @IsCanceled" +
                 ", OrderDate = @OrderDate" +
-                " WHERE OrderId = @OrderId", con
+				", DeliveryAddress = @DeliveryAddress" +
+				" WHERE OrderId = @OrderId", con
             );
                 con.Open();
                 Cmd.Parameters.AddWithValue("@OrderId", Custorder.OrderId);
@@ -133,8 +136,8 @@ namespace ArtGallery.Daos
                 Cmd.Parameters.AddWithValue("@TotalPrice", Custorder.TotalPrice);
                 Cmd.Parameters.AddWithValue("@IsCanceled", Custorder.IsCanceled);
                 Cmd.Parameters.AddWithValue("@OrderDate", Custorder.OrderDate);
-
-                Cmd.ExecuteNonQuery();
+				Cmd.Parameters.AddWithValue("@DeliveryAddress", Custorder.DeliveryAddress);
+				Cmd.ExecuteNonQuery();
 
                 con.Close();
             }
