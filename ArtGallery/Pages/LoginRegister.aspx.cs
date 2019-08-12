@@ -16,6 +16,10 @@ namespace ArtGallery.Pages
 		{
 			lblRegisterError.Text = "";
 			lblLoginError.Text = "";
+
+			// set default choice
+			if (!IsPostBack)
+				ddlRegisterPosition.SelectedIndex = 0;
 		}
 
 		private bool ErrorInReg()
@@ -58,38 +62,60 @@ namespace ArtGallery.Pages
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            IdGen IdGen = new IdGen();
-
-            // Should be changed to dropdownlist
-            if (ddlRegisterPosition.SelectedValue.Equals("Customer"))
-            {
-
-				// Register only if there's no error
-				if (!ErrorInReg())
+			if (regHasEmptyFields())
+			{
+				lblRegisterError.Text = "Ensure all fields are filled in.";
+			}
+			else
+			{
+				if (!Quick.CheckRegex(txtRegisterEmail.Text, @".+\@.+\..+"))
 				{
-					String Id = IdGen.GenerateId("Customer");
-					Customer.RegisterCustomer(Id, txtRegisterUsername.Text, txtRegisterDisplayName.Text, txtRegisterEmail.Text, txtRegisterPassword.Text, null);
-					Email.SendEmail(txtRegisterEmail.Text, "Welcome to ART-X Gallery", "<h1>Thank you for registering with us!</h1>Do check out the latest creations from our gallery!");
+					lblRegisterError.Text = "Email must be valid.";
 				}
-            }
-
-            if (ddlRegisterPosition.SelectedValue.Equals("Artist"))
-            {
-				// Register only if there's no error
-				if (!ErrorInReg())
+				else
 				{
-					String Id = IdGen.GenerateId("Artist");
-					Artist.RegisterArtist(Id, txtRegisterUsername.Text, txtRegisterDisplayName.Text, txtRegisterEmail.Text, txtRegisterPassword.Text);
-					Email.SendEmail(txtRegisterEmail.Text, "Welcome to ART-X Gallery", "<h1>Thank you for registering with us!</h1>Start sharing your creations with the world!");
-				}
-            }
+					IdGen IdGen = new IdGen();
 
-			txtRegisterEmail.Text = "";
-			txtRegisterDisplayName.Text = "";
-			txtRegisterPassword.Text = "";
-			txtRegisterPosition.Text = "";
-			txtRegisterUsername.Text = "";
+					// Should be changed to dropdownlist
+					if (ddlRegisterPosition.SelectedValue.Equals("Customer"))
+					{
+
+						// Register only if there's no error
+						if (!ErrorInReg())
+						{
+							String Id = IdGen.GenerateId("Customer");
+							Customer.RegisterCustomer(Id, txtRegisterUsername.Text, txtRegisterDisplayName.Text, txtRegisterEmail.Text, txtRegisterPassword.Text, null);
+							Email.SendEmail(txtRegisterEmail.Text, "Welcome to ART-X Gallery", "<h1>Thank you for registering with us!</h1>Do check out the latest creations from our gallery!");
+						}
+					}
+
+					if (ddlRegisterPosition.SelectedValue.Equals("Artist"))
+					{
+						// Register only if there's no error
+						if (!ErrorInReg())
+						{
+							String Id = IdGen.GenerateId("Artist");
+							Artist.RegisterArtist(Id, txtRegisterUsername.Text, txtRegisterDisplayName.Text, txtRegisterEmail.Text, txtRegisterPassword.Text);
+							Email.SendEmail(txtRegisterEmail.Text, "Welcome to ART-X Gallery", "<h1>Thank you for registering with us!</h1>Start sharing your creations with the world!");
+						}
+					}
+
+					txtRegisterEmail.Text = "";
+					txtRegisterDisplayName.Text = "";
+					txtRegisterPassword.Text = "";
+					txtRegisterPosition.Text = "";
+					txtRegisterUsername.Text = "";
+				}
+			}
         }
+
+		private bool regHasEmptyFields()
+		{
+			if (Quick.IsEmpty(txtRegisterDisplayName, txtRegisterDisplayName, txtRegisterPassword, txtRegisterUsername))
+				return true; 
+			else
+				return false;
+		}
 
 		protected void btnLogin_Click(object sender, EventArgs e)
 		{

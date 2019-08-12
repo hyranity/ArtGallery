@@ -173,7 +173,7 @@ namespace ArtGallery.Pages
 			}
 
 			// Check date
-			if (!Quick.checkRegex(txtExpDate.Text, @"\d\d\/\d\d")) // If expDate is not 00/00 format
+			if (!Quick.CheckRegex(txtExpDate.Text, @"\d\d\/\d\d")) // If expDate is not 00/00 format
 			{
 				errorMsg = "Ensure that Expiry Date is MM/YY format";
 			}

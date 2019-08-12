@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.UI.WebControls;
 
 /*
  * This class is designed to make programming easier by automating multiple operations or 
@@ -33,7 +34,7 @@ namespace ArtGallery.Util
 			return String.Format("{0:0.00}", price);
 		}
 
-		public static bool checkRegex(string str, string regex)
+		public static bool CheckRegex(string str, string regex)
 		{
 			Regex rx = new Regex(regex);
 			str.Trim();
@@ -43,6 +44,46 @@ namespace ArtGallery.Util
 			else
 				return false;
 		}
-		
+
+		//Check whether textbox is empty or not
+		public static bool IsEmpty(TextBox textbox)
+		{
+			if (textbox.Text == String.Empty)
+				return true;
+			else
+				return false;
+		}
+
+		public static bool IsEmpty(TextBox textbox1, TextBox textbox2)
+		{
+			if (textbox1.Text == String.Empty || textbox2.Text == String.Empty)
+				return true;
+			else
+				return false;
+		}
+
+		public static bool IsEmpty(TextBox textbox1, TextBox textbox2, TextBox textbox3)
+		{
+			if (textbox1.Text == String.Empty || textbox2.Text == String.Empty || textbox3.Text == String.Empty)
+				return true;
+			else
+				return false;
+		}
+		public static bool IsEmpty(TextBox textbox1, TextBox textbox2, TextBox textbox3, TextBox textbox4)
+		{
+			if (textbox1.Text == String.Empty || textbox2.Text == String.Empty || textbox3.Text == String.Empty || textbox4.Text == String.Empty)
+				return true;
+			else
+				return false;
+		}
+
+		public static bool IsEmpty(TextBox textbox1, TextBox textbox2, TextBox textbox3, TextBox textbox4, TextBox textbox5)
+		{
+			if (textbox1.Text == String.Empty || textbox2.Text == String.Empty || textbox3.Text == String.Empty || textbox4.Text == String.Empty || textbox5.Text == String.Empty)
+				return true;
+			else
+				return false;
+		}
+
 	}
 }

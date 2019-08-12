@@ -104,25 +104,44 @@ namespace ArtGallery.Pages
 		{
 			Artist OldArtist = (Artist)Session["artist"];
 
-			if (!ErrorInEdit(OldArtist))
+			// Check for empty fields
+			if (Quick.IsEmpty(username, email, displayName, bio))
 			{
-				string NewPass = OldArtist.Passwd;
-				byte[] NewSalt = OldArtist.PasswordSalt;
-
-				// If password is not empty
-				if (password.Text != String.Empty)
+				// There are empty fields
+				lblEditError = FormatLbl.Error("Ensure you do not have empty fields (except for password).");
+				lblEditError.ID = "lblEditError";
+			}
+			else
+			{
+				// Check for valid email
+				if (!Quick.CheckRegex(email.Text, @".+\@.+\..+"))
 				{
-					Hasher hash = new Hasher(password.Text);
-					NewPass = hash.GetHashedPassword();
-					NewSalt = hash.GetSalt();
+					lblEditError = FormatLbl.Error("Email must be valid.");
+					lblEditError.ID = "lblEditError";
 				}
+				else
+				{
+					if (!ErrorInEdit(OldArtist))
+					{
+						string NewPass = OldArtist.Passwd;
+						byte[] NewSalt = OldArtist.PasswordSalt;
 
-				Artist newArtist = new Artist(OldArtist.Id, username.Text, displayName.Text, email.Text, NewPass, NewSalt, bio.Text);
+						// If password is not empty, update password
+						if (password.Text != String.Empty)
+						{
+							Hasher hash = new Hasher(password.Text);
+							NewPass = hash.GetHashedPassword();
+							NewSalt = hash.GetSalt();
+						}
 
-				ArtistDao dao = new ArtistDao();
-				dao.Update(newArtist, OldArtist.Id); //Update the record based on original ID
-				Session["artist"] = newArtist; // Update the one in the session
-				Response.Redirect("ArtistAccount.aspx?Edit=Success"); // Refreshes the page
+						Artist newArtist = new Artist(OldArtist.Id, username.Text, displayName.Text, email.Text, NewPass, NewSalt, bio.Text);
+
+						ArtistDao dao = new ArtistDao();
+						dao.Update(newArtist, OldArtist.Id); //Update the record based on original ID
+						Session["artist"] = newArtist; // Update the one in the session
+						Response.Redirect("ArtistAccount.aspx?Edit=Success"); // Refreshes the page
+					}
+				}
 			}
 		}
 	}
