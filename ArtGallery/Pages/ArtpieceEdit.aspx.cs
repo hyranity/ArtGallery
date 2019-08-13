@@ -53,52 +53,55 @@ namespace ArtGallery.Pages
 				Artist currentArtist = (Artist)Session["Artist"];
 
 				// Redirect if not original artist
-				if (currentArtist == null || artpiece.ArtistId != artist.Id)
+				if (currentArtist == null || artpiece.ArtistId != currentArtist.Id)
 				{
 					Net.Redirect("Artpiece.aspx?id=" + artpiece.ArtpieceId);
 				}
+				else
+				{
 
 					// Show private artpiece to the original artist
-					 if (!artpiece.IsPublic && currentArtist.Id == artist.Id)
+					if (!artpiece.IsPublic && currentArtist.Id == artist.Id)
 					{
-					if (!IsPostBack)
-					{
-						//Display artpiece details
-						lblArtist.Text = artist.DisplayName;
-						lblDescription.Text = artpiece.About;
-						lblTitle.Text = artpiece.Title + "(PRIVATE ARTPIECE)";
-						txtStocks.Text = artpiece.Stocks + "";
-						artpieceImg.ImageUrl = artpiece.ImageLink;
-						lblArtpiecePrice.Text = Quick.FormatPrice(artpiece.Price);
-
-						if (!artpiece.IsForSale)
+						if (!IsPostBack)
 						{
-							lblForSale.Text = "NOT FOR SALE";
-							lblForSale.CssClass = "notforsale";
+							//Display artpiece details
+							lblArtist.Text = artist.DisplayName;
+							lblDescription.Text = artpiece.About;
+							lblTitle.Text = artpiece.Title + "(PRIVATE ARTPIECE)";
+							txtStocks.Text = artpiece.Stocks + "";
+							artpieceImg.ImageUrl = artpiece.ImageLink;
+							lblArtpiecePrice.Text = Quick.FormatPrice(artpiece.Price);
+
+							if (!artpiece.IsForSale)
+							{
+								lblForSale.Text = "NOT FOR SALE";
+								lblForSale.CssClass = "notforsale";
+							}
 						}
-					}
 					}
 					else // Show public artpiece
 					{
-					if (!IsPostBack)
-					{
-						//Display artpiece details
-						lblArtist.Text = artist.DisplayName;
-						lblDescription.Text = artpiece.About;
-						lblTitle.Text = artpiece.Title;
-						txtStocks.Text = artpiece.Stocks + "";
-						lblArtpiecePrice.Text = Quick.FormatPrice(artpiece.Price);
-						artpieceImg.ImageUrl = artpiece.ImageLink;
-
-
-						if (!artpiece.IsForSale)
+						if (!IsPostBack)
 						{
-							lblForSale.Text = "NOT FOR SALE";
-							lblForSale.CssClass = "notforsale";
+							//Display artpiece details
+							lblArtist.Text = artist.DisplayName;
+							lblDescription.Text = artpiece.About;
+							lblTitle.Text = artpiece.Title;
+							txtStocks.Text = artpiece.Stocks + "";
+							lblArtpiecePrice.Text = Quick.FormatPrice(artpiece.Price);
+							artpieceImg.ImageUrl = artpiece.ImageLink;
+
+
+							if (!artpiece.IsForSale)
+							{
+								lblForSale.Text = "NOT FOR SALE";
+								lblForSale.CssClass = "notforsale";
+							}
 						}
 					}
-					}
 				}
+			}
 			
 
         }

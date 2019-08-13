@@ -15,6 +15,8 @@ namespace ArtGallery.Pages
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
+			Net.AllowOnly("customer");
+
 			// Check for out of stock error if any
 			string errorMsg = (string)Net.GetSession("cartOutOfStocks");
 

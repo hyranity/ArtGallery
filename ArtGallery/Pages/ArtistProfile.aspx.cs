@@ -30,13 +30,15 @@ namespace ArtGallery.Pages
                 Net.Redirect("~/Pages/LoginRegister.aspx");
             }
 
-            /*if (Net.GetSession("artist") == null && Net.GetSession("customer") != null)
+			Net.AllowOnly("artist");
+
+			/*if (Net.GetSession("artist") == null && Net.GetSession("customer") != null)
             {
                 Net.Redirect("~/Pages/CustomerProfile.aspx?username=session");
             }*/
 
 			// To ensure that a valid username is entered
-			
+
 			try
 			{
 				username = Request.QueryString["username"].ToString();
