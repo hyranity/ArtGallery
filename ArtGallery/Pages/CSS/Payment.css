@@ -7,7 +7,7 @@ html, body, form1 {
     overflow: hidden;
 }
 
-a {
+a, .label {
     font-family: Roboto Condensed;
     text-decoration: none;
     color: #4B4848;
@@ -128,7 +128,7 @@ a {
         align-items: flex-start;
         transform: rotate(90deg);
         z-index: 0;
-        margin-top: -230px;
+        margin-top: -150px;
         margin-left: -400px;
     }
 

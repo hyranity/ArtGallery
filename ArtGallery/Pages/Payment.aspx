@@ -33,11 +33,11 @@
           <div class='right'>
             <div class='text'>
               <a class='grey'>TOTAL</a>
-              <asp:Label ID="lblTotalPrice" CssClass="label" runat="server" style='margin-left: 20px;'>RM 231</asp:Label>
+              <asp:Label ID="lblTotalPrice" CssClass="label" runat="server" style='margin-left: 20px; font-size: 50px; color: white; font-family: Roboto Condensed; font-weight: bold;'>RM 231</asp:Label>
             </div>
             <div class='text'>
               <a class='grey'>ITEMS</a>
-              <asp:Label ID="lblTotalItems" CssClass="label" runat="server" style='margin-left: 25px;'>6 PCS</asp:Label>
+              <asp:Label ID="lblTotalItems" CssClass="label" runat="server" style='margin-left: 25px; font-size: 50px; color: white; font-family: Roboto Condensed; font-weight: bold;'>6 PCS</asp:Label>
             </div>
           </div>
 
