@@ -15,6 +15,8 @@ namespace ArtGallery.Pages
 		private FormatLabel FormatLbl;
 		protected void Page_Load(object sender, EventArgs e)
 		{
+			FormatLbl = new FormatLabel(lblEditError);
+
 			if (Session["artist"] == null)
 				Response.Redirect("~/Pages/LoginRegister.aspx");
 			else
