@@ -47,13 +47,13 @@
             <asp:Button ID="btnRegister" runat="server" Text="REGISTER" OnClick="btnRegister_Click" />
           </div>
           <div class='inputs' style='margin-left: -65px;'>
-            <asp:TextBox ID="txtRegisterUsername" Placeholder="username" runat="server" ></asp:TextBox>
+            <asp:TextBox ID="txtRegisterUsername" Placeholder="username" MaxLength="40" runat="server" ></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
-			<asp:TextBox ID="txtRegisterDisplayName" Placeholder="display name" runat="server"></asp:TextBox>
+			<asp:TextBox ID="txtRegisterDisplayName" Placeholder="display name" MaxLength="40" runat="server"></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
-            <asp:TextBox ID="txtRegisterEmail" Placeholder="email" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtRegisterEmail" Placeholder="email" MaxLength="100" runat="server"></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
-            <asp:TextBox ID="txtRegisterPassword" Placeholder="password" runat="server" TextMode="Password"></asp:TextBox>
+            <asp:TextBox ID="txtRegisterPassword" Placeholder="password" MaxLength="100" runat="server" TextMode="Password"></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
             <!--<asp:TextBox ID="txtRegisterPosition" Placeholder="position" runat="server"></asp:TextBox>-->
             <asp:DropDownList ID="ddlRegisterPosition" runat="server">

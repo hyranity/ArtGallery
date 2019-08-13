@@ -52,9 +52,9 @@
 			<div class='container'>
 				<div style='display: flex; flex-direction: row;'>
 					<div id='left'>
-						<asp:TextBox ID="username" Placeholder="username" runat="server"></asp:TextBox>
+						<asp:TextBox ID="username" Placeholder="username" MaxLength="40" runat="server"></asp:TextBox>
 						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
-						<asp:TextBox ID="displayName" Placeholder="display name" runat="server"></asp:TextBox>
+						<asp:TextBox ID="displayName" Placeholder="display name" MaxLength="40" runat="server"></asp:TextBox>
 						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
 						<a class='text'>CUSTOMER<br>
 							ACCOUNT</a>
@@ -64,11 +64,11 @@
 					</div>
 					<div id='right'>
 						<a href='Logout.aspx' class='text'>LOGOUT</a>
-						<asp:TextBox ID="password" TextMode="Password" Placeholder="new password" runat="server"></asp:TextBox>
+						<asp:TextBox ID="password" TextMode="Password" MaxLength="100" Placeholder="new password" runat="server"></asp:TextBox>
 						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
-						<asp:TextBox ID="email" Placeholder="email" runat="server"></asp:TextBox>
+						<asp:TextBox ID="email" Placeholder="email" MaxLength="100" runat="server"></asp:TextBox>
 						<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
-						<asp:TextBox ID="cardNo" Placeholder="card no" runat="server"></asp:TextBox>
+						<asp:TextBox ID="cardNo" Placeholder="card no" MaxLength="40" runat="server"></asp:TextBox>
                         <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
 					</div>
 				</div>

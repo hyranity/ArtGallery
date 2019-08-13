@@ -12,11 +12,11 @@
 		<div class='container'>
 
 			<div id='left'>
-				<asp:Textbox ID="txtTitle" runat="server" Placeholder="title"></asp:Textbox>
+				<asp:Textbox ID="txtTitle" runat="server" MaxLength="100" Placeholder="title"></asp:Textbox>
 				<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
-                <asp:Textbox ID="txtDescription" runat="server" Placeholder="description"></asp:Textbox>
+                <asp:Textbox ID="txtDescription" runat="server" MaxLength="500" Placeholder="description"></asp:Textbox>
 				<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
-				<asp:Textbox ID="txtTags" runat="server" Placeholder="tags"></asp:Textbox>
+				<asp:Textbox ID="txtTags" runat="server" MaxLength="100" Placeholder="tags"></asp:Textbox>
 				<img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
 			</div>
 

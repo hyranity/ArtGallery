@@ -19,7 +19,7 @@
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
             <asp:TextBox ID="txtCvv" placeholder='cvv' runat="server"></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
-			<asp:TextBox ID="txtAddress" placeholder='Delivery address' runat="server"></asp:TextBox>
+			<asp:TextBox ID="txtAddress" placeholder='Delivery address' MaxLength="70" runat="server"></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'>
         </div>
 
