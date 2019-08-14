@@ -78,8 +78,10 @@
     <Content Include="Pages\CSS\MasterCss.css" />
     <Content Include="Pages\CSS\Payment.css" />
     <Content Include="Pages\CSS\PaymentHistory.css" />
+    <Content Include="Pages\CSS\ThankYou.css" />
     <Content Include="Pages\CSS\UnderConstruction.css" />
     <Content Include="Pages\Payment.aspx" />
+    <Content Include="Pages\ThankYou.aspx" />
     <Content Include="Pages\UserControls\DefaultHeader.ascx" />
     <Content Include="Pages\UserControls\ArtistHeader.ascx" />
     <Content Include="Pages\CustomerProfile.aspx" />
@@ -156,6 +158,13 @@
     </Compile>
     <Compile Include="Pages\Payment.aspx.designer.cs">
       <DependentUpon>Payment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ThankYou.aspx.cs">
+      <DependentUpon>ThankYou.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ThankYou.aspx.designer.cs">
+      <DependentUpon>ThankYou.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\UserControls\DefaultHeader.ascx.cs">
       <DependentUpon>DefaultHeader.ascx</DependentUpon>
