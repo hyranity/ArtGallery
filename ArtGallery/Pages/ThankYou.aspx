@@ -10,7 +10,7 @@
         <div class='container'>
           <a class='title'>THANK YOU!</a>
           <a class='description'>Thank you for your purchase.</a>
-          <asp:Button ID="btnProceed" runat="server" Text="Proceed" />
+          <asp:Button ID="btnProceed" runat="server" Text="return to home" OnClick="btnProceed_Click" />
         </div>
 
 </asp:Content>

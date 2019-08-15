@@ -145,7 +145,7 @@ namespace ArtGallery.Util
 		public static void AllowOnly(string UserNameInSession)
 		{
 			if (Net.GetSession(UserNameInSession) == null)
-				Redirect("~/LoginRegister.aspx");
+				Redirect("~/Pages/LoginRegister.aspx");
 		}
 	}
 }

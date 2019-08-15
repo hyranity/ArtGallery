@@ -103,8 +103,7 @@ namespace ArtGallery.Pages
 				Net.SetSession("oaList", new List<Order_Artwork>());
 				Net.SetSession("cartSaved", false);
 
-				// Redirect
-				Net.Redirect("Home.aspx");
+				
 			
 		}
 
@@ -113,6 +112,9 @@ namespace ArtGallery.Pages
 			if (!FormHasError())
 			{
 				pay();
+
+				// Redirect
+				Net.Redirect("~/Pages/ThankYou.aspx");
 			}
 		}
 
@@ -169,7 +171,7 @@ namespace ArtGallery.Pages
 			// check the credit card
 			if (!Bank.Validate(txtCardNo.Text, txtCvv.Text, txtExpDate.Text, txtCardHolderName.Text)) // If card is invalid
 			{
-				errorMsg = "Credit Card is invalid";
+				errorMsg = "Credit Card information is not correct and valid.";
 			}
 
 			// Check date
