@@ -24,8 +24,11 @@ namespace ArtGallery.Pages
 				Response.Redirect("~/Pages/LoginRegister.aspx");
 
 			// Set form default values
-			rblIsPublic.Items[0].Selected = true;
-			rblForSale.Items[0].Selected = true;
+			if (!IsPostBack)
+			{
+				rblIsPublic.Items[0].Selected = true;
+				rblForSale.Items[0].Selected = true;
+			}
 		}
 
 		protected void uploadBt_Click(object sender, EventArgs e)
@@ -73,6 +76,8 @@ namespace ArtGallery.Pages
 				else
 					artpiece.IsPublic = false;
 
+				//debug
+				Quick.Print("selected forsale is " + rblIsPublic.SelectedValue);
 				
 				FileUtil file = new FileUtil(fileBt, "~/Pics/");
 
