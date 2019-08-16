@@ -13,7 +13,7 @@ Page' and enter 'Pages/Home.aspx'.) From there the rest of the web application a
 its features that are currently in place can be accessed.
 
 NOTE: The dummy data for the valid Credit Card information is as follows:
-Card Holder Name: John
-Card No. : 1234567890
-Exp. Date: 12/21
-CVV: 123
+- Card Holder Name: John
+- Card No. : 1234567890
+- Exp. Date: 12/21
+- CVV: 123
