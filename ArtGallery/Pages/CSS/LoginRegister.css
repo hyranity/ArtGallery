@@ -154,3 +154,21 @@ a, .label {
     color: #b04141;
     font-size: 20px;
 }
+
+.dropDownList {
+    background: transparent;
+    font-family: Roboto Condensed;
+    font-weight: bold;
+    font-size: 24px;
+    border: none;
+}
+
+.dropDownList:focus {
+    outline: none;
+}
+
+.dropDownList option {
+    border: none;
+    font-weight: bold;
+    outline: none;
+}

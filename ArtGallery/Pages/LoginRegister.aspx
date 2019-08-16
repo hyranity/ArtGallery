@@ -56,7 +56,7 @@
             <asp:TextBox ID="txtRegisterPassword" Placeholder="password" MaxLength="100" runat="server" TextMode="Password"></asp:TextBox>
             <img src='https://image.flaticon.com/icons/svg/3/3897.svg'/>
             <!--<asp:TextBox ID="txtRegisterPosition" Placeholder="position" runat="server"></asp:TextBox>-->
-            <asp:DropDownList ID="ddlRegisterPosition" runat="server">
+            <asp:DropDownList ID="ddlRegisterPosition" runat="server" CssClass="dropDownList">
                 <asp:ListItem>Artist</asp:ListItem>
                 <asp:ListItem>Customer</asp:ListItem>
               </asp:DropDownList>
