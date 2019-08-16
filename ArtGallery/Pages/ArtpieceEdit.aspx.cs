@@ -110,10 +110,23 @@ namespace ArtGallery.Pages
 		{
 			bool hasError = false;
 
-			//Verify that stocks are correctly entered
+			// Verify that stocks are correctly entered
 			try
 			{
-				artpiece.Stocks = Convert.ToInt32(txtStocks.Text);
+				int stocks = Convert.ToInt32(txtStocks.Text);
+
+                // Verify that stocks are >= 0
+                if (stocks < 0)
+                {
+                    hasError = true;
+
+                    // Show error message
+                    lblEditError = FormatLbl.Error("Ensure that stocks are a positive value.");
+                }
+                else
+                {
+                    artpiece.Stocks = stocks;
+                }
 			}
 			catch (Exception ex)
 			{
@@ -123,9 +136,7 @@ namespace ArtGallery.Pages
 				lblEditError = FormatLbl.Error("Ensure that stocks are numerical.");
 			}
 
-			Quick.Print(txtStocks.Text);
-
-			if (!hasError)
+            if (!hasError)
 			{
 				//Update artpiece
 				ArtpieceDao dao = new ArtpieceDao();

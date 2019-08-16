@@ -137,7 +137,13 @@ namespace ArtGallery.Pages
 			// Check price input is numerical
 			try
 			{
-				Convert.ToDouble(txtPrice.Text);
+				double price = Convert.ToDouble(txtPrice.Text);
+
+                // Check price input is >= 0.00
+                if (price < 0)
+                {
+                    errorMsg = "Price must be a positive value.";
+                }
 			}
 			catch (Exception ex)
 			{
@@ -147,13 +153,18 @@ namespace ArtGallery.Pages
 			// Check stock input is numerical
 			try
 			{
-				Convert.ToInt32(txtStocks.Text);
+				int stocks = Convert.ToInt32(txtStocks.Text);
+
+                // Check stock input is >= 0
+                if (stocks < 0)
+                {
+                    errorMsg = "Stocks must be a positive value.";
+                }
 			}
 			catch (Exception ex)
 			{
 				errorMsg = "Stocks must contain only numbers.";
 			}
-
 			
 
 			// Check for empty fields

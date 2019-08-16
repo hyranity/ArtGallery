@@ -31,8 +31,8 @@
 				</div>
 				<div class='buttons'>
 					<div>
-						<asp:Button ID="btnLike" runat="server" Text="LIKE" CssClass="button" OnClick="btnLike_Click"/>
-						<img src='https://i.imgur.com/DXquOBN.png' />
+						<!--<asp:Button ID="btnLike" runat="server" Text="LIKE" CssClass="button" OnClick="btnLike_Click"/>
+						<img src='https://i.imgur.com/DXquOBN.png' />-->
 						<asp:Button ID="btnViewArtist" runat="server" Text="VIEW ARTIST" CssClass="button" OnClick="btnViewArtist_Click"/>
 						<img src='https://i.imgur.com/DXquOBN.png'>
 					</div>
