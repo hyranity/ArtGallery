@@ -26,7 +26,7 @@
         <div class='cart'>
 
           <div class='left'>
-            <a href='#'>BACK TO CART</a>
+            <a href="~/Pages/Cart.aspx">BACK TO CART</a>
             <img src='https://i.imgur.com/DXquOBN.png'>
           </div>
 
