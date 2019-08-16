@@ -170,7 +170,7 @@ namespace ArtGallery.Pages
 			// Check for empty fields
 			if (txtDescription.Text == String.Empty || txtPrice.Text == String.Empty || txtTitle.Text == String.Empty || txtStocks.Text == String.Empty || txtTags.Text == String.Empty || fileBt.HasFile == false)
 			{
-				errorMsg = "All fields are required.";
+				errorMsg = "All fields are required (including image).";
 			}
 
 
