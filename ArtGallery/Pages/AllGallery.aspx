@@ -41,7 +41,8 @@
 		</table>
 
         <div class="Search">
-            <asp:TextBox ID="txtSearch" runat="server" placeholder="Search here"></asp:TextBox> <asp:Button ID="btnSearch" runat="server" Text="SEARCH" OnClick="btnSearch_Click"/>
+            <asp:TextBox CssClass="searchBar" ID="txtSearch" runat="server" placeholder="Search here"></asp:TextBox> 
+			<asp:Button CssClass="searchBt" ID="btnSearch" runat="server" Text="SEARCH" OnClick="btnSearch_Click"/>
         </div>
 
 		<asp:Repeater ID="ArtRepeater" runat="server">

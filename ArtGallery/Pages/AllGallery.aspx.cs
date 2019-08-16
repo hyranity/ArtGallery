@@ -108,7 +108,10 @@ namespace ArtGallery.Pages
 
 		protected void btnSearch_Click(object sender, EventArgs e)
 		{
-			Net.Redirect("~/Pages/AllGallery.aspx?page=1&search=" + txtSearch.Text);
+			if(txtSearch.Text == String.Empty)
+				Net.Redirect("~/Pages/AllGallery.aspx?page=1");
+			else
+				Net.Redirect("~/Pages/AllGallery.aspx?page=1&search=" + txtSearch.Text);
 		}
 	}
 }

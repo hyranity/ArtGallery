@@ -200,3 +200,37 @@ a {
     margin-left: 25px;
     margin-right: 25px;
 }
+
+.Search {
+	text-align: center;
+}
+
+.searchBar::placeholder, .searchBt {
+	font-family: Roboto Condensed;
+	text-decoration: none;
+	color: #4B4848;
+	font-weight: bold;
+}
+
+.searchBar {
+	border-top-width: 0px;
+	border-left-width: 0px;
+	border-right-width: 0px;
+	border-bottom-color: #4B4848;
+	border-bottom-width: 5px;
+	font-size: 20px;
+	outline: none;
+	text-align: center;
+}
+
+.searchBt {
+	background-color:  #4B4848;
+	color: white;
+	border-top-width: 0px;
+	border-left-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	font-size: 20px;
+	border-radius: 10px;
+	padding: 5px;
+}

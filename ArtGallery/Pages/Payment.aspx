@@ -26,7 +26,7 @@
         <div class='cart'>
 
           <div class='left'>
-            <asp:Button runat="server" ID="backBt" Text="BACK TO CART" OnClick="backBt_Click"></asp:Button>
+            <asp:Button runat="server" CssClass="backButton" ID="backBt" Text="BACK TO CART" OnClick="backBt_Click"></asp:Button>
             <img src='https://i.imgur.com/DXquOBN.png'>
           </div>
 
