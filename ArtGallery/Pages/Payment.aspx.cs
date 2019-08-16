@@ -189,5 +189,10 @@ namespace ArtGallery.Pages
 			}
 
 		}
+
+		protected void backBt_Click(object sender, EventArgs e)
+		{
+			Net.Redirect("~/Pages/Cart.aspx");
+		}
 	}
 }

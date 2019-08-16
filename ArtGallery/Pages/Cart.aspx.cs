@@ -17,6 +17,7 @@ namespace ArtGallery.Pages
 		{
 			Net.AllowOnly("customer");
 
+
 			// Check for out of stock error if any
 			string errorMsg = (string)Net.GetSession("cartOutOfStocks");
 
@@ -24,6 +25,10 @@ namespace ArtGallery.Pages
 				lblErrorMsg.Text = errorMsg;
 
 			bool cartSaved = false;
+			
+			// Get orders from Session
+			List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
+			Order order = (Order)Net.GetSession("order");
 
 			if (Net.GetSession("cartSaved") == null || errorMsg != null)
 				checkoutBt.Visible = false;
@@ -40,8 +45,7 @@ namespace ArtGallery.Pages
 			if (customer == null)
 				Net.Redirect("~/Pages/LoginRegister.aspx"); // Redirect if not logged in as customer
 
-			List<Order_Artwork> oaList = (List<Order_Artwork>)Net.GetSession("oaList");
-			Order order = (Order) Net.GetSession("order");
+			
 
             /* FOR DEBUG PURPOSES */
             //oaList = new List<Order_Artwork>();
@@ -77,7 +81,8 @@ namespace ArtGallery.Pages
 			// if cart is empty
 			if (oaList == null || oaList.Count == 0)
 			{
-
+				// Don't show checkout button
+				checkoutBt.Visible = false;
 			}
 			else
 			{
